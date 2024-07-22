@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { WebSocketProvider } from './context/WebSocketContext';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import App from './App';
 import Home from './pages/Home';
@@ -9,6 +10,7 @@ import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
+    <WebSocketProvider>
     <Router>
       <Routes>
         <Route path="/" element={<App />}>
@@ -18,5 +20,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Route>
       </Routes>
     </Router>
+    </WebSocketProvider>
   </React.StrictMode>
 );

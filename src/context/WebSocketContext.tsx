@@ -8,7 +8,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
   useEffect(() => {
-    const ws = new WebSocket("ws://localhost:3003"); // Your WebSocket server URL
+    const ws = new WebSocket("ws://localhost:3000"); // Your WebSocket server URL
     setSocket(ws);
 
     ws.onopen = () => {

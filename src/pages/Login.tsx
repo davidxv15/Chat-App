@@ -1,6 +1,20 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+
 
 const Login: React.FC = () => {
+  const [username, setUsername] = useState('');
+  const navigate = useNavigate();
+  const { login } = useAuth();
+
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    login(username);
+    navigate('/chat');
+  };
+
+
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md">

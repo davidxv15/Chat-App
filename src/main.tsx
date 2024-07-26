@@ -6,10 +6,12 @@ import App from "./App";
 import Home from "./pages/Home";
 import ChatRoom from "./pages/ChatRoom";
 import Login from "./pages/Login";
+import { AuthProvider } from './context/AuthContext';
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+    <AuthProvider>
     <WebSocketProvider>
       <Router>
         <Routes>
@@ -21,5 +23,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </Routes>
       </Router>
     </WebSocketProvider>
+    </AuthProvider>
   </React.StrictMode>
 );

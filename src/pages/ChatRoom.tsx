@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { useWebSocket } from '../context/WebSocketContext';
+import React, { useState, useEffect } from "react";
+import { useWebSocket } from "../context/WebSocketContext";
 
 const ChatRoom: React.FC = () => {
   const socket = useWebSocket();
   const [messages, setMessages] = useState<string[]>([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (!socket) return;
@@ -17,7 +17,7 @@ const ChatRoom: React.FC = () => {
   const sendMessage = () => {
     if (socket && message) {
       socket.send(message);
-      setMessage('');
+      setMessage("");
     }
   };
 
@@ -37,7 +37,7 @@ const ChatRoom: React.FC = () => {
         placeholder="Type your message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
       />
       <button
         onClick={sendMessage}

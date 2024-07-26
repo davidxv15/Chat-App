@@ -1,10 +1,20 @@
-import React, { useState, useEffect } from "react";
-import { useWebSocket } from "../context/WebSocketContext";
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useWebSocket } from '../context/WebSocketContext';
+import { useAuth } from '../context/AuthContext';
 
 const ChatRoom: React.FC = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
   const socket = useWebSocket();
   const [messages, setMessages] = useState<string[]>([]);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/login');
+    }
+  }, [user, navigate]);
 
   useEffect(() => {
     if (!socket) return;
@@ -17,7 +27,7 @@ const ChatRoom: React.FC = () => {
   const sendMessage = () => {
     if (socket && message) {
       socket.send(message);
-      setMessage("");
+      setMessage('');
     }
   };
 
@@ -37,7 +47,7 @@ const ChatRoom: React.FC = () => {
         placeholder="Type your message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+        onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
       />
       <button
         onClick={sendMessage}

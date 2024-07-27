@@ -6,11 +6,15 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
   useEffect(() => {
-    const ws = new WebSocket('ws://localhost:3000'); // Connect to the WebSocket server
+    const ws = new WebSocket('ws://localhost:3000');
     setSocket(ws);
 
     ws.onopen = () => {
       console.log('WebSocket connection established');
+    };
+
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
     };
 
     ws.onclose = () => {

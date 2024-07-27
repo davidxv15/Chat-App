@@ -20,12 +20,22 @@ const ChatRoom: React.FC = () => {
     if (!socket) return;
 
     socket.onmessage = (event) => {
+      console.log('Message received:', event.data);
       setMessages((prevMessages) => [...prevMessages, event.data]);
+    };
+
+    socket.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    return () => {
+      socket.close();
     };
   }, [socket]);
 
   const sendMessage = () => {
     if (socket && message) {
+      console.log('Sending message:', message);
       socket.send(message);
       setMessage('');
     }

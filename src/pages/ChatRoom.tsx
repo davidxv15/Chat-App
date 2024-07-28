@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useWebSocket } from '../context/WebSocketContext';
-import { useAuth } from '../context/AuthContext';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useWebSocket } from "../context/WebSocketContext";
+import { useAuth } from "../context/AuthContext";
 
 const ChatRoom: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const socket = useWebSocket();
   const [messages, setMessages] = useState<string[]>([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [user, navigate]);
 
@@ -20,12 +20,12 @@ const ChatRoom: React.FC = () => {
     if (!socket) return;
 
     socket.onmessage = (event) => {
-      console.log('Message received:', event.data);
+      console.log("Message received:", event.data);
       setMessages((prevMessages) => [...prevMessages, event.data]);
     };
 
     socket.onerror = (error) => {
-      console.error('WebSocket error:', error);
+      console.error("WebSocket error:", error);
     };
 
     return () => {
@@ -35,9 +35,9 @@ const ChatRoom: React.FC = () => {
 
   const sendMessage = () => {
     if (socket && message) {
-      console.log('Sending message:', message);
+      console.log("Sending message:", message);
       socket.send(message);
-      setMessage('');
+      setMessage("");
     }
   };
 
@@ -57,13 +57,13 @@ const ChatRoom: React.FC = () => {
         placeholder="Type your message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
       />
       <button
         onClick={sendMessage}
         className="mt-2 bg-blue-500 text-white p-2 rounded-md"
       >
-        Send
+        Send!
       </button>
     </div>
   );

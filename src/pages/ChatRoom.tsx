@@ -19,6 +19,10 @@ const ChatRoom: React.FC = () => {
   useEffect(() => {
     if (!socket) return;
 
+    socket.onopen = () => {
+      console.log('WebSocket is open');
+    };
+
     socket.onmessage = (event) => {
       console.log('Message received:', event.data);
       setMessages((prevMessages) => [...prevMessages, event.data]);
@@ -26,6 +30,10 @@ const ChatRoom: React.FC = () => {
 
     socket.onerror = (error) => {
       console.error('WebSocket error:', error);
+    };
+
+    socket.onclose = () => {
+      console.log('WebSocket closed');
     };
 
     return () => {

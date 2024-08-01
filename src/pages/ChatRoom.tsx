@@ -19,10 +19,6 @@ const ChatRoom: React.FC = () => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.onopen = () => {
-      console.log('WebSocket is open');
-    };
-
     socket.onmessage = (event) => {
       console.log('Message received:', event.data);
       setMessages((prevMessages) => [...prevMessages, event.data]);

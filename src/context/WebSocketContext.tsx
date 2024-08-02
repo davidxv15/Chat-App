@@ -1,14 +1,14 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useRef } from 'react';
 
 const WebSocketContext = createContext<WebSocket | null>(null);
 
 export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [socket, setSocket] = useState<WebSocket | null>(null);
+  const socket = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    if (!socket) {
+    if (!socket.current) {
       const ws = new WebSocket('ws://localhost:3000');
-      setSocket(ws);
+      socket.current = ws;
 
       ws.onopen = () => {
         console.log('WebSocket connection established');
@@ -20,17 +20,19 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
 
       ws.onclose = () => {
         console.log('WebSocket connection closed');
-        setSocket(null);
+        socket.current = null;
       };
     }
 
     return () => {
-      socket?.close();
+      if (socket.current) {
+        socket.current.close();
+      }
     };
-  }, [socket]);
+  }, []);
 
   return (
-    <WebSocketContext.Provider value={socket}>
+    <WebSocketContext.Provider value={socket.current}>
       {children}
     </WebSocketContext.Provider>
   );

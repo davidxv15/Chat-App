@@ -6,12 +6,13 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const socket = useRef<WebSocket | null>(null);
 
   useEffect(() => {
-    if (!socket.current) {
+    const connectWebSocket = () => {
+      console.log('Attempting to establish WebSocket connection...');
       const ws = new WebSocket('ws://localhost:3000');
-      socket.current = ws;
 
       ws.onopen = () => {
         console.log('WebSocket connection established');
+        socket.current = ws;
       };
 
       ws.onerror = (error) => {
@@ -21,7 +22,15 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       ws.onclose = () => {
         console.log('WebSocket connection closed');
         socket.current = null;
+        // Attempt to reconnect after a delay
+        setTimeout(connectWebSocket, 1000);
       };
+
+      setSocket(ws);
+    };
+
+    if (!socket.current) {
+      connectWebSocket();
     }
 
     return () => {

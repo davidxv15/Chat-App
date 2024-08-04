@@ -17,11 +17,20 @@ const ChatRoom: React.FC = () => {
   }, [user, navigate]);
 
   useEffect(() => {
-    if (!socket) return;
+    if (!socket) {
+      console.log('WebSocket is not initialized yet');
+      return;
+    }
 
     socket.onmessage = (event) => {
-      console.log('Message received:', event.data);
-      setMessages((prevMessages) => [...prevMessages, event.data]);
+      const data = event.data;
+      console.log('Message received:', data);
+
+      if (typeof data === 'string') {
+        setMessages((prevMessages) => [...prevMessages, data]);
+      } else {
+        console.error('Received data is not a string:', data);
+      }
     };
 
     socket.onerror = (error) => {

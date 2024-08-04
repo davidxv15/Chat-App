@@ -71,7 +71,7 @@ const ChatRoom: React.FC = () => {
       <input
         type="text"
         className="mt-4 p-2 border border-gray-300 rounded-md"
-        placeholder="Type your message..."
+        placeholder="Type message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         onKeyDown={(e) => e.key === 'Enter' && sendMessage()}

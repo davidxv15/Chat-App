@@ -60,7 +60,7 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 p-4">
-      <h1 className="text-2xl font-bold mb-4">Chat Room</h1>
+      <h1 className="text-3xl font-bold mb-4">Chat Room</h1>
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
         {messages.map((msg, index) => (
           <div key={index} className="mb-2">

@@ -1,44 +1,44 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useWebSocket } from '../context/WebSocketContext';
-import { useAuth } from '../context/AuthContext';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useWebSocket } from "../context/WebSocketContext";
+import { useAuth } from "../context/AuthContext";
 
 const ChatRoom: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const socket = useWebSocket();
   const [messages, setMessages] = useState<string[]>([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     if (!user) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [user, navigate]);
 
   useEffect(() => {
     if (!socket) {
-      console.log('WebSocket is not initialized yet');
+      console.log("WebSocket is not initialized yet");
       return;
     }
 
     socket.onmessage = (event) => {
       const data = event.data;
-      console.log('Message received:', data);
+      console.log("Message received:", data);
 
-      if (typeof data === 'string') {
+      if (typeof data === "string") {
         setMessages((prevMessages) => [...prevMessages, data]);
       } else {
-        console.error('Received data is not a string:', data);
+        console.error("Received data is not a string:", data);
       }
     };
 
     socket.onerror = (error) => {
-      console.error('WebSocket error:', error);
+      console.error("WebSocket error:", error);
     };
 
     socket.onclose = () => {
-      console.log('WebSocket closed');
+      console.log("WebSocket closed");
     };
 
     return () => {
@@ -50,11 +50,11 @@ const ChatRoom: React.FC = () => {
 
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
-      console.log('Sending message:', message);
+      console.log("Sending message:", message);
       socket.send(message);
-      setMessage('');
+      setMessage("");
     } else {
-      console.error('WebSocket is not open');
+      console.error("WebSocket is not open");
     }
   };
 
@@ -74,7 +74,7 @@ const ChatRoom: React.FC = () => {
         placeholder="Type message..."
         value={message}
         onChange={(e) => setMessage(e.target.value)}
-        onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+        onKeyDown={(e) => e.key === "Enter" && sendMessage()}
       />
       <button
         onClick={sendMessage}

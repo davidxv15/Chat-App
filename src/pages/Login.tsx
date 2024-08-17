@@ -4,32 +4,42 @@ import { useAuth } from '../context/AuthContext';
 
 const Login: React.FC = () => {
   const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    login(username);
-    navigate('/chat');
+    try {
+      await login(username, password);
+      navigate('/');
+    } catch (error) {
+      console.error('Login failed:', error);
+    }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md">
-        <h1 className="text-2xl font-bold mb-4">Login</h1>
-        <form onSubmit={handleLogin}>
-          <input
-            type="text"
-            className="mb-4 p-2 border border-gray-300 rounded-md w-full"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <button type="submit" className="bg-blue-500 text-white p-2 rounded-md w-full">
-            Login
-          </button>
-        </form>
-      </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <h1 className="text-2xl font-bold mb-4">Login</h1>
+      <form onSubmit={handleSubmit} className="bg-white p-4 rounded-lg shadow-md w-80">
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          className="mb-4 p-2 border border-gray-300 rounded-md w-full"
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="mb-4 p-2 border border-gray-300 rounded-md w-full"
+        />
+        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md w-full">
+          Login
+        </button>
+      </form>
     </div>
   );
 };

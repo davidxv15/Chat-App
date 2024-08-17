@@ -79,7 +79,7 @@ const ChatRoom: React.FC = () => {
         />
         <button
           onClick={sendMessage}
-          className="ml-2 bg-blue-500 text-white p-2 rounded-md"
+          className="ml-2 bg-blue-600 text-white p-2 rounded-md"
         >
           Send
         </button>

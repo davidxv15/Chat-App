@@ -4,7 +4,7 @@ import { useWebSocket } from '../context/WebSocketContext';
 import { useAuth } from '../context/AuthContext';
 
 const ChatRoom: React.FC = () => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const navigate = useNavigate();
   const socket = useWebSocket();
   const [messages, setMessages] = useState<string[]>([]);

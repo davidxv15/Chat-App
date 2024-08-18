@@ -12,14 +12,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (savedToken) {
       setToken(savedToken);
       axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
+      setUser({ username: localStorage.getItem('username') }); // Assuming username is saved
     }
   }, []);
 
   const login = async (username: string, password: string) => {
-    const { data } = await axios.post('/api/auth/login', { username, password });
+    const { data } = await axios.post('http://localhost:3000/api/auth/login', { username, password });
+
     setToken(data.token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
     localStorage.setItem('token', data.token);
+    localStorage.setItem('username', username);
     setUser({ username });
   };
 
@@ -31,11 +34,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setUser(null);
     setToken(null);
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     delete axios.defaults.headers.common['Authorization'];
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, token, login, register, logout }}>
       {children}
     </AuthContext.Provider>
   );

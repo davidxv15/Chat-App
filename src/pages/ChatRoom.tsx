@@ -5,24 +5,23 @@ import { useAuth } from '../context/AuthContext';
 
 const ChatRoom: React.FC = () => {
   const { user, token } = useAuth();
+  const { socket, initializeWebSocket } = useWebSocket();
   const navigate = useNavigate();
-  const socket = useWebSocket();
   const [messages, setMessages] = useState<string[]>([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
     if (!user) {
       navigate('/login');
+    } else if (token) {
+      initializeWebSocket(token);
     }
-  }, [user, navigate]);
+  }, [user, token, navigate, initializeWebSocket]);
 
   useEffect(() => {
-    if (!socket) {
-      console.log('WebSocket is not initialized yet');
-      return;
-    }
+    if (!socket) return;
 
-    socket.onmessage = (event) => {
+    socket.onmessage = (event: MessageEvent) => {
       const data = event.data;
       console.log('Message received:', data);
 
@@ -33,7 +32,7 @@ const ChatRoom: React.FC = () => {
       }
     };
 
-    socket.onerror = (error) => {
+    socket.onerror = (error: Event) => {
       console.error('WebSocket error:', error);
     };
 
@@ -59,7 +58,7 @@ const ChatRoom: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-400 p-4">
+    <div className="flex flex-col min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-4">Chat Room</h1>
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
         {messages.map((msg, index) => (
@@ -79,7 +78,7 @@ const ChatRoom: React.FC = () => {
         />
         <button
           onClick={sendMessage}
-          className="ml-2 bg-blue-600 text-white p-2 rounded-md"
+          className="ml-2 bg-blue-500 text-white p-2 rounded-md"
         >
           Send
         </button>

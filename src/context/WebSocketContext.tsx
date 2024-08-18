@@ -1,52 +1,49 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
-const WebSocketContext = createContext<WebSocket | null>(null);
+interface WebSocketContextType {
+  socket: WebSocket | null;
+  initializeWebSocket: (token: string) => void;
+}
+
+const WebSocketContext = createContext<WebSocketContextType | null>(null);
 
 export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
-  useEffect(() => {
-    const connectWebSocket = () => {
-      console.log('Attempting to establish WebSocket connection...');
-      const ws = new WebSocket('ws://localhost:3000');
+  const initializeWebSocket = (token: string) => {
+    if (socket) return;
 
-      ws.onopen = () => {
-        console.log('WebSocket connection established');
-        setSocket(ws);
-      };
+    console.log('Attempting to establish WebSocket connection...');
+    const ws = new WebSocket(`ws://localhost:3000/ws?token=${token}`);
 
-      ws.onerror = (error) => {
-        console.error('WebSocket error:', error);
-      };
-
-      ws.onclose = () => {
-        console.log('WebSocket connection closed');
-        setSocket(null);
-        // Attempt to reconnect after a delay
-        setTimeout(connectWebSocket, 1000);
-      };
-
-      return ws;
+    ws.onopen = () => {
+      console.log('WebSocket connection established');
+      setSocket(ws);
     };
 
-    if (!socket) {
-      connectWebSocket();
-    }
-
-    return () => {
-      if (socket) {
-        socket.close();
-      }
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
     };
-  }, [socket]);
+
+    ws.onclose = () => {
+      console.log('WebSocket connection closed');
+      setSocket(null);
+      // Optionally, attempt to reconnect after a delay
+      setTimeout(() => initializeWebSocket(token), 1000);
+    };
+  };
 
   return (
-    <WebSocketContext.Provider value={socket}>
+    <WebSocketContext.Provider value={{ socket, initializeWebSocket }}>
       {children}
     </WebSocketContext.Provider>
   );
 };
 
-export const useWebSocket = () => {
-  return useContext(WebSocketContext);
+export const useWebSocket = (): WebSocketContextType => {
+  const context = useContext(WebSocketContext);
+  if (!context) {
+    throw new Error('useWebSocket must be used within a WebSocketProvider');
+  }
+  return context;
 };

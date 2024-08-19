@@ -36,7 +36,7 @@ const Login: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
         />
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md w-full">
+        <button type="submit" className="bg-blue-600 text-white p-2 rounded-md w-full">
           Login
         </button>
       </form>

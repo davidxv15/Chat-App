@@ -12,22 +12,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     if (savedToken) {
       setToken(savedToken);
       axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
-      setUser({ username: localStorage.getItem('username') }); // Assuming username is saved
+      // Fetch user information with the token, or set user directly if you store the username in localStorage
+      setUser({ username: localStorage.getItem('username') });
     }
   }, []);
 
   const login = async (username: string, password: string) => {
     const { data } = await axios.post('http://localhost:3000/api/auth/login', { username, password });
-
     setToken(data.token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
     localStorage.setItem('token', data.token);
-    localStorage.setItem('username', username);
+    localStorage.setItem('username', username); // Optional: store username for later use
     setUser({ username });
   };
 
   const register = async (username: string, password: string) => {
-    await axios.post('/api/auth/register', { username, password });
+    await axios.post('http://localhost:3000/api/auth/register', { username, password });
   };
 
   const logout = () => {

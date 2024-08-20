@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import ChatRoom from "./pages/ChatRoom";
 import Login from "./pages/Login";
 import { AuthProvider } from './context/AuthContext';
+import Register from './pages/Register'; 
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route index element={<Home />} />
             <Route path="chat" element={<ChatRoom />} />
             <Route path="login" element={<Login />} />
+            <Route path="/register" element={<Register />} /> 
           </Route>
         </Routes>
       </Router>

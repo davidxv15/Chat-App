@@ -11,7 +11,7 @@ const ChatRoom: React.FC = () => {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    if (!user) {
+    if (!user || !token) {
       navigate('/login');
     } else if (token) {
       initializeWebSocket(token);

@@ -17,11 +17,12 @@ const ChatRoom: React.FC = () => {
     if (!user || !token) {
       console.log('Redirecting to login because user or token is missing');
       navigate('/login');
-    } else if (token) {
+    } else if (token && !socket) { //only init if no existing socket
+
       console.log('Initializing WebSocket with token:', token);
       initializeWebSocket(token);
     }
-  }, [user, token, loading, navigate, initializeWebSocket]);
+  }, [user, token, loading, ,socket, navigate, initializeWebSocket]);
 
   useEffect(() => {
     if (!socket) return;

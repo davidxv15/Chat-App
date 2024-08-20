@@ -12,12 +12,16 @@ const Register: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:3000/api/auth/register', { username, password });
+      await axios.post('http://localhost:3000/api/auth/register', {
+        username,
+        password,
+      });
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
     }
   };
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">

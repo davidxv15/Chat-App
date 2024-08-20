@@ -9,13 +9,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
+    console.log('Saved token in AuthContext:', savedToken);
     if (savedToken) {
       setToken(savedToken);
       axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
-      // Fetch user information with the token, or set user directly if you store the username in localStorage
-      setUser({ username: localStorage.getItem('username') });
+      const savedUsername = localStorage.getItem('username');
+      console.log('Saved username in AuthContext:', savedUsername);
+      setUser({ username: savedUsername });
     }
   }, []);
+  
 
   const login = async (username: string, password: string) => {
     const { data } = await axios.post('http://localhost:3000/api/auth/login', { username, password });

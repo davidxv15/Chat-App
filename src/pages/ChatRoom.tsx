@@ -4,13 +4,14 @@ import { useWebSocket } from '../context/WebSocketContext';
 import { useAuth } from '../context/AuthContext';
 
 const ChatRoom: React.FC = () => {
-  const { user, token } = useAuth();
+  const { user, token, loading } = useAuth();
   const { socket, initializeWebSocket } = useWebSocket();
   const navigate = useNavigate();
   const [messages, setMessages] = useState<string[]>([]);
   const [message, setMessage] = useState('');
 
   useEffect(() => {
+    if (loading) return; // will only check if loading is done
     console.log('User in ChatRoom:', user);
     console.log('Token in ChatRoom:', token);
     if (!user || !token) {
@@ -20,7 +21,7 @@ const ChatRoom: React.FC = () => {
       console.log('Initializing WebSocket with token:', token);
       initializeWebSocket(token);
     }
-  }, [user, token, navigate, initializeWebSocket]);
+  }, [user, token, loading, navigate, initializeWebSocket]);
 
   useEffect(() => {
     if (!socket) return;
@@ -60,6 +61,10 @@ const ChatRoom: React.FC = () => {
       console.error('WebSocket is not open');
     }
   };
+
+  if (loading) {
+    return <div>Loading....</div>;
+  }
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 p-4">

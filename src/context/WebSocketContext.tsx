@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 interface WebSocketContextType {
   socket: WebSocket | null;
@@ -11,7 +11,9 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
   const [socket, setSocket] = useState<WebSocket | null>(null);
 
   const initializeWebSocket = (token: string) => {
-    if (socket) return;
+    if (socket) {
+      socket.close(); // closes any existing connection before opening new one
+    }
 
     console.log('Attempting to establish WebSocket connection...');
     const ws = new WebSocket(`ws://localhost:3000/ws?token=${token}`);
@@ -28,9 +30,10 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     ws.onclose = () => {
       console.log('WebSocket connection closed');
       setSocket(null);
-      // Optionally, attempt to reconnect after a delay
+      // or set a timeout
       setTimeout(() => initializeWebSocket(token), 1000);
     };
+    setSocket(ws);
   };
 
   return (

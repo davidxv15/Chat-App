@@ -22,17 +22,17 @@ const ChatRoom: React.FC = () => {
       console.log('Initializing WebSocket with token:', token);
       initializeWebSocket(token);
     }
-  }, [user, token, loading, ,socket, navigate, initializeWebSocket]);
+  }, [user, token, loading, socket, navigate, initializeWebSocket]);
 
   useEffect(() => {
     if (!socket) return;
 
     socket.onmessage = (event: MessageEvent) => {
-      const data = event.data;
+      const data = JSON.parse(event.data);
       console.log('Message received:', data);
 
-      if (typeof data === 'string') {
-        setMessages((prevMessages) => [...prevMessages, data]);
+      if (typeof data === 'object' && data.message && data.username) {
+        setMessages((prevMessages) => [...prevMessages, `${data.username}: ${data.message}`]);
       } else {
         console.error('Received data is not a string:', data);
       }
@@ -56,10 +56,14 @@ const ChatRoom: React.FC = () => {
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
       console.log('Sending message:', message);
-      socket.send(message);
+      const messageData = JSON.stringify({
+        username: user.username, //make sure user is defined and has a username
+        message: message,
+      });
+      socket.send(messageData);
       setMessage('');
     } else {
-      console.error('WebSocket is not open');
+      console.error('WebSocket is not open or message is empty');
     }
   };
 

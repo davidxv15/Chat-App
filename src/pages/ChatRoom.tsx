@@ -28,13 +28,20 @@ const ChatRoom: React.FC = () => {
     if (!socket) return;
 
     socket.onmessage = (event: MessageEvent) => {
-      const data = JSON.parse(event.data);
-      console.log('Message received:', data);
-
-      if (typeof data === 'object' && data.message && data.username) {
-        setMessages((prevMessages) => [...prevMessages, `${data.username}: ${data.message}`]);
-      } else {
-        console.error('Received data is not a string:', data);
+      try {
+        const data = JSON.parse(event.data); // Parse the JSON string once
+        console.log('Message received:', data);
+  
+        if (typeof data === 'object' && data.message && data.username) {
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            `${data.username}: ${data.message}`,
+          ]);
+        } else {
+          console.error('Received data is not a valid message object:', data);
+        }
+      } catch (error) {
+        console.error('Error parsing message:', error, 'Message data:', event.data);
       }
     };
 
@@ -57,7 +64,7 @@ const ChatRoom: React.FC = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
       console.log('Sending message:', message);
       const messageData = JSON.stringify({
-        username: user.username, //make sure user is defined and has a username
+        username: user?.username, //make sure user is defined and has a username
         message: message,
       });
       socket.send(messageData);

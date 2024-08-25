@@ -12,7 +12,7 @@ const Home: React.FC = () => {
     <div className="flex justify-center items-center min-h-screen bg-dkgray-100">
       <h1 className="text-3xl font-bold">Welcome to Real-Time Chat</h1>
       <button onClick={goToChat}
-      className="bg-blue-400 text-white px-4 py-2 rounded-md"
+      className="bg-blue-400 text-white px-5 py-2 rounded-md"
       >
         Chat!
       </button>

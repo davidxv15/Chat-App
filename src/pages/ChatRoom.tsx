@@ -4,7 +4,7 @@ import { useWebSocket } from '../context/WebSocketContext';
 import { useAuth } from '../context/AuthContext';
 
 const ChatRoom: React.FC = () => {
-  const { user, token, loading } = useAuth();
+  const { user, token, loading, logout } = useAuth();
   const { socket, initializeWebSocket } = useWebSocket();
   const navigate = useNavigate();
   const [messages, setMessages] = useState<string[]>([]);
@@ -74,6 +74,11 @@ const ChatRoom: React.FC = () => {
     }
   };
 
+  const handleLogout = () => {
+    logout(); //will clear user session
+    navigate('/login');
+  }
+
   if (loading) {
     return <div>Loading....</div>;
   }
@@ -81,6 +86,9 @@ const ChatRoom: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold mb-4">Chat Room</h1>
+      <button onClick={handleLogout} className="bg-red-600 text-white px-4 py-2 rounded-md">
+        Logout
+      </button>
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
         {messages.map((msg, index) => (
           <div key={index} className="mb-2 p-2 bg-gray-200 rounded">

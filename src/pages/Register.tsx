@@ -8,6 +8,7 @@ const Register: React.FC = () => {
     const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,7 +20,7 @@ const Register: React.FC = () => {
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
-      // add registration failure msg
+      setError('Invalid Username');// add registration failure msg
     }
   };
   
@@ -42,6 +43,7 @@ const Register: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
         />
+        {error && <div className="text-red-500 mb-4">{error}</div>}
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md w-full">
           Register
         </button>

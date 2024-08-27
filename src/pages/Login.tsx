@@ -15,6 +15,7 @@ const Login: React.FC = () => {
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
+      // add login failure message
     }
   };
 
@@ -40,6 +41,12 @@ const Login: React.FC = () => {
           Login
         </button>
       </form>
+      <button
+      onClick={() => navigate('/register')}
+      className="mt-4 text-blue-500 p-1"
+      >
+        Register
+      </button>
     </div>
   );
 };

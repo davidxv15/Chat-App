@@ -19,6 +19,7 @@ const Register: React.FC = () => {
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
+      // add registration failure msg
     }
   };
   
@@ -43,6 +44,12 @@ const Register: React.FC = () => {
         />
         <button type="submit" className="bg-blue-500 text-white p-2 rounded-md w-full">
           Register
+        </button>
+        <button
+            onClick={() => navigate('/login')}
+            className="mt-4 text-blue-600 p-1 border border-gray-300 rounded-md w-full"
+        >
+            Login
         </button>
       </form>
     </div>

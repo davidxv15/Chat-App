@@ -21,7 +21,7 @@ const Register: React.FC = () => {
       navigate('/login');
     } catch (error) {
       console.error('Registration failed:', error);
-      setError('Invalid Username');// add registration failure msg
+      setError('Invalid Username. Try again');// add registration failure msg
     }
   };
   

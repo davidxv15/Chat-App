@@ -7,15 +7,17 @@ const Login: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError(''); //setting to 'nothing' will clear prev errors
     try {
       await login(username, password);
       navigate('/');
     } catch (error) {
       console.error('Login failed:', error);
-      // add login failure message
+      setError('Incorrect username or password'); // add login failure message
     }
   };
 
@@ -37,6 +39,7 @@ const Login: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
         />
+        {error && <div className="text-red-500 mb-4">{error}</div>}
         <button type="submit" className="bg-blue-600 text-white p-2 rounded-md w-full">
           Login
         </button>

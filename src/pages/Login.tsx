@@ -48,7 +48,7 @@ const Login: React.FC = () => {
       onClick={() => navigate('/register')}
       className="mt-4 text-blue-500 p-1"
       >
-        Register
+        New User? Register Here
       </button>
     </div>
   );

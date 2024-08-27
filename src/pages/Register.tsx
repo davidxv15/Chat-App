@@ -4,10 +4,10 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
 const Register: React.FC = () => {
+    const { register } = useAuth();
+    const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { register } = useAuth();
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

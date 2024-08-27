@@ -90,7 +90,7 @@ const ChatRoom: React.FC = () => {
       <button onClick={() => {
         navigate('/login');
         window.location.reload();
-      }} className="bg-red-600 text-white px-4 py-2 rounded-md">
+      }} className="bg-red-600 text-white px-4 py-2 rounded-md ml-60 mb-2 pt-2 pl-3">
         Logout
       </button>
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">

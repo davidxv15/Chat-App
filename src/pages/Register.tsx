@@ -64,7 +64,7 @@ const Register: React.FC = () => {
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
         />
         {error && <div className="text-red-500 mb-4">{error}</div>}
-        {success && <div className="text-green-600 mb-4">{success}</div>} {/* Success message */}
+        {success && <div className="text-green-600 border mb-4">{success}</div>} {/* Success message */}
         <button 
           type="submit" 
           className="bg-blue-500 text-white p-2 rounded-md w-full"

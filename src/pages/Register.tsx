@@ -75,7 +75,7 @@ const Register: React.FC = () => {
 
         <button
             onClick={() => navigate('/login')}
-            className="mt-4 text-blue-600 p-1 border border-gray-300 rounded-md w-full"
+            className="mt-4 text-blue-500 p-1 border border-gray-300 rounded-md w-full"
         >
             Login
         </button>

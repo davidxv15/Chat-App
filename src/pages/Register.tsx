@@ -65,9 +65,14 @@ const Register: React.FC = () => {
         />
         {error && <div className="text-red-500 mb-4">{error}</div>}
         {success && <div className="text-green-500 mb-4">{success}</div>} {/* Success message */}
-        <button type="submit" className="bg-blue-500 text-white p-2 rounded-md w-full">
-          Register
+        <button 
+          type="submit" 
+          className="bg-blue-500 text-white p-2 rounded-md w-full"
+          disabled={loading} // Disable button while loading
+        >
+          {loading ? 'Registering...' : 'Register'}
         </button>
+
         <button
             onClick={() => navigate('/login')}
             className="mt-4 text-blue-600 p-1 border border-gray-300 rounded-md w-full"

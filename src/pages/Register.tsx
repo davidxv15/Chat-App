@@ -9,10 +9,13 @@ const Register: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(''); //clears prev error msg
+    setSuccess(''); //resets
     try {
       await axios.post('http://localhost:3000/api/auth/register', {
         username,
@@ -22,6 +25,22 @@ const Register: React.FC = () => {
     } catch (error) {
       console.error('Registration failed:', error);
       setError('Invalid Username. Try again');// add registration failure msg
+    }
+  };
+
+  setLoading(true); // Start loading
+    try {
+      await axios.post('http://localhost:3000/api/auth/register', {
+        username,
+        password,
+      });
+      setSuccess('Registration successful! Redirecting to login...');
+      setTimeout(() => navigate('/login'), 2000); // Delay before redirecting to login
+    } catch (error) {
+      console.error('Registration failed:', error);
+      setError('Invalid Username. Try again');
+    } finally {
+      setLoading(false); // End loading
     }
   };
   

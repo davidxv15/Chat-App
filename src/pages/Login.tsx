@@ -48,17 +48,22 @@ const Login: React.FC = () => {
         {error && <div className="text-red-500 mb-4">{error}</div>}
 
         <div className="flex items-center mb-4">
-          <input
-            type="checkbox"
-            checked={rememberMe}
-            onChange={(e) => setRememberMe(e.target.checked)}
-            className="mr-2"
-          />
-          <label>Remember Me</label>
+          <label className="flex items-center">
+            <input
+              type="checkbox"
+              checked={rememberMe}
+              onChange={(e) => setRememberMe(e.target.checked)}
+              className="mr-2"
+            />
+            Remember Me
+          </label>
         </div>
 
 
-        <button type="submit" className="bg-blue-600 text-white p-2 rounded-md w-full"
+
+        <button 
+        type="submit" 
+        className="bg-blue-600 text-white p-2 rounded-md w-full"
         disabled={loading} //disables button while loading
         >
           {loading ? 'Logging in...' : 'Login'}

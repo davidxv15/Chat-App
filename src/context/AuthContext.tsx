@@ -1,36 +1,43 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import jwtDecode from 'jwt-decode';
+import jwtDecode from 'jwt-decode'; 
 
 const AuthContext = createContext<any>(null);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<any>(null);
   const [token, setToken] = useState<string | null>(null);
-  // ADD LOADING STATE!
-  const [loading, setLoading] = useState(true);
-
+  // ADD LOADING STATE
+  const [loading, setLoading] = useState(true); 
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
-    console.log('Saved token in AuthContext:', savedToken);
     if (savedToken) {
+      const decodedToken: any = jwtDecode(savedToken); // Decode token = checks it's expiration
+      const currentTime = Date.now() / 1000;
 
-      setToken(savedToken);
-      axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
-      const savedUsername = localStorage.getItem('username');
-      console.log('Saved username in AuthContext:', savedUsername);
-      setUser({ username: savedUsername });
+      if (decodedToken.exp < currentTime) {
+        // If token is expired, clear the storage and set user to null
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        setUser(null);
+        setToken(null);
+        axios.defaults.headers.common['Authorization'] = '';
+      } else {
+        // If token is still good, set both user and token state
+        setToken(savedToken);
+        axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
+        setUser({ username: localStorage.getItem('username') });
+      }
     }
-    setLoading(false); //reset loading AFTER state is init
+    setLoading(false); // Finished checking session state
   }, []);
-  
 
   const login = async (username: string, password: string) => {
     const { data } = await axios.post('http://localhost:3000/api/auth/login', { username, password });
     setToken(data.token);
     axios.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
     localStorage.setItem('token', data.token);
-    localStorage.setItem('username', username); // Optional: store username for later use
+    localStorage.setItem('username', username);
     setUser({ username });
   };
 

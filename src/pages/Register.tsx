@@ -8,6 +8,7 @@ const Register: React.FC = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState('');
@@ -16,6 +17,13 @@ const Register: React.FC = () => {
     e.preventDefault();
     setError(''); // Clears previous error message
     setSuccess(''); // Resets success message
+
+    //before 'setLoading', check if PWords match
+    if (password !== confirmPassword) {
+        setError('Passwords do not match. Please try again.');
+        return;
+    }
+
     setLoading(true); // Start loading (then the next bit of code...)
 
     try {
@@ -49,6 +57,13 @@ const Register: React.FC = () => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="mb-4 p-2 border border-gray-300 rounded-md w-full"
+        />
+        <input
+          type="password"
+          placeholder="Confirm Password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
         />
         {error && <div className="text-red-500 mb-4">{error}</div>}

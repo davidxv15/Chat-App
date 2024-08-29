@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+// import jwtDecode from 'jwt-decode';
 
 const AuthContext = createContext<any>(null);
 
@@ -13,6 +14,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const savedToken = localStorage.getItem('token');
     console.log('Saved token in AuthContext:', savedToken);
     if (savedToken) {
+
       setToken(savedToken);
       axios.defaults.headers.common['Authorization'] = `Bearer ${savedToken}`;
       const savedUsername = localStorage.getItem('username');

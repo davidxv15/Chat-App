@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { decode } from 'jwt-decode';
+import jwtDecode from 'jwt-decode';
 
 
 const AuthContext = createContext<any>(null);
@@ -12,10 +12,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   // ADD LOADING STATE
   const [loading, setLoading] = useState(true);
+  
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
     if (savedToken) {
-      const decodedToken: any = (jwtDecode as any)(savedToken); // Decode token = checks it's expiration
+      const decodedToken: any = jwtDecode(savedToken);// Decode token = checks it's expiration
       const currentTime = Date.now() / 1000;
 
       if (decodedToken.exp < currentTime) {

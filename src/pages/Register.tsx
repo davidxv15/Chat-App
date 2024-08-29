@@ -16,7 +16,7 @@ const Register: React.FC = () => {
     e.preventDefault();
     setError(''); // Clears previous error message
     setSuccess(''); // Resets success message
-    setLoading(true); // Start loading
+    setLoading(true); // Start loading (then the next bit of code...)
 
     try {
       await axios.post('http://localhost:3000/api/auth/register', {
@@ -29,7 +29,7 @@ const Register: React.FC = () => {
       console.error('Registration failed:', error);
       setError('Invalid Username. Try again');
     } finally {
-      setLoading(false); // End loading
+      setLoading(false); // ... End loading
     }
   };
 

@@ -4,8 +4,8 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 
 const Register: React.FC = () => {
-    const { register } = useAuth();
-    const navigate = useNavigate();
+  const { register } = useAuth();
+  const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -14,21 +14,10 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(''); //clears prev error msg
-    setSuccess(''); //resets
-    try {
-      await axios.post('http://localhost:3000/api/auth/register', {
-        username,
-        password,
-      });
-      navigate('/login');
-    } catch (error) {
-      console.error('Registration failed:', error);
-      setError('Invalid Username. Try again');// add registration failure msg
-    }
-  };
+    setError(''); // Clears previous error message
+    setSuccess(''); // Resets success message
+    setLoading(true); // Start loading
 
-  setLoading(true); // Start loading
     try {
       await axios.post('http://localhost:3000/api/auth/register', {
         username,
@@ -43,7 +32,6 @@ const Register: React.FC = () => {
       setLoading(false); // End loading
     }
   };
-  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
@@ -64,7 +52,7 @@ const Register: React.FC = () => {
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
         />
         {error && <div className="text-red-500 mb-4">{error}</div>}
-        {success && <div className="text-green-600 border mb-4">{success}</div>} {/* Success message */}
+        {success && <div className="text-green-500 mb-4">{success}</div>} {/* Success message */}
         <button 
           type="submit" 
           className="bg-blue-500 text-white p-2 rounded-md w-full"
@@ -74,10 +62,11 @@ const Register: React.FC = () => {
         </button>
 
         <button
-            onClick={() => navigate('/login')}
-            className="mt-4 text-blue-500 p-1 border border-gray-300 rounded-md w-full"
+          onClick={() => navigate('/login')}
+          className="mt-4 text-blue-600 p-1 border border-gray-300 rounded-md w-full"
+          disabled={loading} // Disable button while loading
         >
-            Login
+          Returning User Login
         </button>
       </form>
     </div>

@@ -1,7 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
-import jwtDecode from 'jwt-decode';
-
+import { jwtDecode } from 'jwt-decode';
 
 const AuthContext = createContext<any>(null);
 
@@ -10,13 +9,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [user, setUser] = useState<any>(null);
   const [token, setToken] = useState<string | null>(null);
-  // ADD LOADING STATE
   const [loading, setLoading] = useState(true);
-  
+
   useEffect(() => {
     const savedToken = localStorage.getItem("token");
     if (savedToken) {
-      const decodedToken: any = jwtDecode(savedToken);// Decode token = checks it's expiration
+      const decodedToken: any = jwtDecode(savedToken); // Decode the saved token
       const currentTime = Date.now() / 1000;
 
       if (decodedToken.exp < currentTime) {
@@ -27,7 +25,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         setToken(null);
         axios.defaults.headers.common["Authorization"] = "";
       } else {
-        // If token is still good, set both user and token state
+        // If token is still valid, set both user and token state
         setToken(savedToken);
         axios.defaults.headers.common["Authorization"] = `Bearer ${savedToken}`;
         setUser({ username: localStorage.getItem("username") });

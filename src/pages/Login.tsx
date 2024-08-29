@@ -17,7 +17,7 @@ const Login: React.FC = () => {
     setLoading(true); //starts the loading...
 
     try {
-      await login(username, password);
+      await login(username, password, rememberMe); // passing rememberMe state to login func
       navigate('/'); //redirect to home page after successful login 
     } catch (error) {
       console.error('Login failed:', error);
@@ -46,6 +46,18 @@ const Login: React.FC = () => {
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
         />
         {error && <div className="text-red-500 mb-4">{error}</div>}
+
+        <div className="flex items-center mb-4">
+          <input
+            type="checkbox"
+            checked={rememberMe}
+            onChange={(e) => setRememberMe(e.target.checked)}
+            className="mr-2"
+          />
+          <label>Remember Me</label>
+        </div>
+
+
         <button type="submit" className="bg-blue-600 text-white p-2 rounded-md w-full"
         disabled={loading} //disables button while loading
         >

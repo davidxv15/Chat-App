@@ -72,7 +72,7 @@ const Login: React.FC = () => {
       </form>
       <button
         onClick={() => navigate("/register")}
-        className="mt-4 text-blue-500 p-1"
+        className="mt-4 text-blue-600 p-1"
         disabled={loading} //disables button while loading
       >
         New User? Register Here

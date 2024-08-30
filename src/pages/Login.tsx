@@ -21,7 +21,7 @@ const Login: React.FC = () => {
       navigate("/"); //redirect to home page after successful login
     } catch (error) {
       console.error("Login failed:", error);
-      setError("Incorrect username or password. Please try Again."); // add login failure message
+      setError("Incorrect username or password. Please try again."); // add login failure message
     } finally {
       setLoading(false); // ... ends loading
     }

@@ -12,7 +12,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const savedToken = localStorage.getItem("token");
+    const savedToken = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (savedToken) {
       const decodedToken: any = jwtDecode(savedToken); // Decode the saved token
       const currentTime = Date.now() / 1000;
@@ -20,29 +20,37 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       if (decodedToken.exp < currentTime) {
         //If token is expired, clear the localestorage and set user & token to null (below)
         localStorage.removeItem("token");
+        sessionStorage.removeItem("token");
         localStorage.removeItem("username");
+        sessionStorage.removeItem("username");
         setUser(null);
         setToken(null);
         axios.defaults.headers.common["Authorization"] = "";
       } else {
-        // If token is still valid, set both user and token state
+        // If token is still valid, SET both user and token state
         setToken(savedToken);
         axios.defaults.headers.common["Authorization"] = `Bearer ${savedToken}`;
-        setUser({ username: localStorage.getItem("username") });
+        setUser({ username: localStorage.getItem("username") || sessionStorage.getItem("username")  });
       }
     }
-    setLoading(false); // Finished checking session state
+    setLoading(false); // Finished checking session state, so loading must be set false
   }, []);
 
-  const login = async (username: string, password: string) => {
+  const login = async (username: string, password: string, rememberMe: boolean) => {
     const { data } = await axios.post("http://localhost:3000/api/auth/login", {
       username,
       password,
     });
     setToken(data.token);
     axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
-    localStorage.setItem("token", data.token);
-    localStorage.setItem("username", username);
+
+    if (rememberMe) {
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("username", username);
+    } else {
+      sessionStorage.setItem("token", data.token);
+      sessionStorage.setItem("username", username);
+    }
     setUser({ username });
   };
 
@@ -57,7 +65,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setUser(null);
     setToken(null);
     localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     localStorage.removeItem("username");
+    sessionStorage.removeItem("username");
     delete axios.defaults.headers.common["Authorization"];
   };
 

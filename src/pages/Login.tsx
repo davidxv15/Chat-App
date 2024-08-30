@@ -1,27 +1,27 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const Login: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError(''); //setting to 'nothing' will clear prev errors
+    setError(""); //setting to 'nothing' will clear prev errors
     setLoading(true); //starts the loading...
 
     try {
       await login(username, password, rememberMe); // passing rememberMe state to login func
-      navigate('/'); //redirect to home page after successful login 
+      navigate("/"); //redirect to home page after successful login
     } catch (error) {
-      console.error('Login failed:', error);
-      setError('Incorrect username or password'); // add login failure message
+      console.error("Login failed:", error);
+      setError("Incorrect username or password"); // add login failure message
     } finally {
       setLoading(false); // ... ends loading
     }
@@ -30,7 +30,10 @@ const Login: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <h1 className="text-3xl font-bold mb-4">Login</h1>
-      <form onSubmit={handleSubmit} className="bg-white p-4 rounded-lg shadow-md w-80">
+      <form
+        onSubmit={handleSubmit}
+        className="bg-white p-4 rounded-lg shadow-md w-80"
+      >
         <input
           type="text"
           placeholder="Username"
@@ -59,20 +62,18 @@ const Login: React.FC = () => {
           </label>
         </div>
 
-
-
-        <button 
-        type="submit" 
-        className="bg-blue-600 text-white p-2 rounded-md w-full"
-        disabled={loading} //disables button while loading
+        <button
+          type="submit"
+          className="bg-blue-600 text-white p-2 rounded-md w-full"
+          disabled={loading} //disables button while loading
         >
-          {loading ? 'Logging in...' : 'Login'}
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
       <button
-      onClick={() => navigate('/register')}
-      className="mt-4 text-blue-500 p-1"
-      disabled={loading} //disables button while loading
+        onClick={() => navigate("/register")}
+        className="mt-4 text-blue-500 p-1"
+        disabled={loading} //disables button while loading
       >
         New User? Register Here
       </button>

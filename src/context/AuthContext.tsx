@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
 const AuthContext = createContext<any>(null);
 
@@ -18,7 +18,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       const currentTime = Date.now() / 1000;
 
       if (decodedToken.exp < currentTime) {
-        // If token is expired, clear the storage and set user to null
+        //If token is expired, clear the localestorage and set user & token to null (below)
         localStorage.removeItem("token");
         localStorage.removeItem("username");
         setUser(null);

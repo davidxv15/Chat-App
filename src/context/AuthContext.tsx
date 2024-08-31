@@ -73,7 +73,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     localStorage.removeItem("username");
     sessionStorage.removeItem("username");
     delete axios.defaults.headers.common["Authorization"];
-    navigate('/login'); 
+    navigate('/login'); // redirects to login after logout
   };
 
   const startInactivityTimer = () => {

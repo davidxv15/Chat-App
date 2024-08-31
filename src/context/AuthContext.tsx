@@ -64,34 +64,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  const startInactivityTimer = () => {
-    const timeoutId = setTimeout(() => {
-      logout();
-      navigate('/login');
-    }, 5 * 60 * 1000); // 5 minutes inactivity timeout
-  };
-  
-
-  useEffect(() => {
-    const resetTimer = () => {
-      clearTimeout(timeoutId);
-      startInactivityTimer();
-    };
-  
-    window.addEventListener('mousemove', resetTimer);
-    window.addEventListener('keypress', resetTimer);
-    window.addEventListener('touchstart', resetTimer);
-  
-    return () => {
-      window.removeEventListener('mousemove', resetTimer);
-      window.removeEventListener('keypress', resetTimer);
-      window.removeEventListener('touchstart', resetTimer);
-    };
-  }, []);
-
-  
-  
-
   const logout = () => {
     setUser(null);
     setToken(null);
@@ -101,6 +73,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     sessionStorage.removeItem("username");
     delete axios.defaults.headers.common["Authorization"];
   };
+
+  const startInactivityTimer = () => {
+    const timeoutId = setTimeout(() => {
+      logout();
+      navigate('/login');
+    }, 5 * 60 * 1000); // 5 minutes inactivity timeout
+  };
+
+  useEffect(() => {
+    const resetTimer = () => {
+      clearTimeout(timeoutId);
+      startInactivityTimer();
+    };
+
+    window.addEventListener('mousemove', resetTimer);
+    window.addEventListener('keypress', resetTimer);
+    window.addEventListener('touchstart', resetTimer);
+
+    return () => {
+      window.removeEventListener('mousemove', resetTimer);
+      window.removeEventListener('keypress', resetTimer);
+      window.removeEventListener('touchstart', resetTimer);
+    };
+  }, []);
 
   return (
     <AuthContext.Provider

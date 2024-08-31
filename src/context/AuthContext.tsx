@@ -54,6 +54,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       sessionStorage.setItem("username", username);
     }
     setUser({ username });
+    startInactivityTimer();
   };
 
   const register = async (username: string, password: string) => {

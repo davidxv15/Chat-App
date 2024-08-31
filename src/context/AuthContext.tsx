@@ -77,17 +77,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const startInactivityTimer = () => {
-    const timeoutId = setTimeout(() => {
+    clearTimeout(inactivityTimeout);
+    inactivityTimeout = setTimeout(() => {
       logout();
-      navigate('/login');
+      alert("You have been logged out due to inactivity.");
     }, 5 * 60 * 1000); // 5 minutes inactivity timeout
   };
 
   useEffect(() => {
     const resetTimer = () => {
-      clearTimeout(timeoutId);
       startInactivityTimer();
     };
+
 
     window.addEventListener('mousemove', resetTimer);
     window.addEventListener('keypress', resetTimer);

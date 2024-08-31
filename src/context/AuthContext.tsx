@@ -12,6 +12,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  let inactivityTimeout: NodeJS.Timeout;
 
   useEffect(() => {
     const savedToken = localStorage.getItem("token") || sessionStorage.getItem("token");

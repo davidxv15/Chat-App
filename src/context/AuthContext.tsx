@@ -62,6 +62,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
+  const startInactivityTimer = () => {
+    const timeoutId = setTimeout(() => {
+      logout();
+      navigate('/login');
+    }, 5 * 60 * 1000); // 5 minutes inactivity timeout
+  };
+  
+
   useEffect(() => {
     const resetTimer = () => {
       clearTimeout(timeoutId);
@@ -78,6 +86,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       window.removeEventListener('touchstart', resetTimer);
     };
   }, []);
+
+  
   
 
   const logout = () => {

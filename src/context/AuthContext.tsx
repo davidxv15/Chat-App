@@ -62,6 +62,24 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
+  useEffect(() => {
+    const resetTimer = () => {
+      clearTimeout(timeoutId);
+      startInactivityTimer();
+    };
+  
+    window.addEventListener('mousemove', resetTimer);
+    window.addEventListener('keypress', resetTimer);
+    window.addEventListener('touchstart', resetTimer);
+  
+    return () => {
+      window.removeEventListener('mousemove', resetTimer);
+      window.removeEventListener('keypress', resetTimer);
+      window.removeEventListener('touchstart', resetTimer);
+    };
+  }, []);
+  
+
   const logout = () => {
     setUser(null);
     setToken(null);

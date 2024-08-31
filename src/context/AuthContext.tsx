@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     }
     setLoading(false); // Finished checking session state, so loading must be set false
-  }, []);
+  }, [navigate]);
 
   const login = async (username: string, password: string, rememberMe: boolean) => {
     const { data } = await axios.post("http://localhost:3000/api/auth/login", {

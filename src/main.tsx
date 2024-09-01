@@ -22,7 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="chat" element={<ChatRoom />} />
             <Route path="login" element={<Login />} />
             <Route path="/register" element={<Register />} /> 
-            <Route path="*" element={<NotFound />} /> {/* Handle undefined routes */}
+            <Route path="*" element={<NotFound />} /> 
           </Route>
         </Routes>
     </WebSocketProvider>

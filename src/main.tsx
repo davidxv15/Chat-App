@@ -12,9 +12,9 @@ import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
+      <Router>
     <AuthProvider>
     <WebSocketProvider>
-      <Router>
         <Routes>
           <Route path="/" element={<App />}>
             <Route index element={<Home />} />
@@ -23,8 +23,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/register" element={<Register />} /> 
           </Route>
         </Routes>
-      </Router>
     </WebSocketProvider>
     </AuthProvider>
+      </Router>
   </React.StrictMode>
 );

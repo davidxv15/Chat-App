@@ -25,6 +25,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             <Route path="/register" element={<Register />} /> 
             <Route path="*" element={<NotFound />} /> 
           </Route>
+          <Route path="/error" element={<ErrorPage />} /> 
         </Routes>
     </WebSocketProvider>
     </AuthProvider>

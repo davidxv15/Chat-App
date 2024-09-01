@@ -96,6 +96,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       startInactivityTimer();
     };
 
+  const handleError = () => {
+    navigate('error');
+  }
+
 
     window.addEventListener('mousemove', resetTimer);
     window.addEventListener('keypress', resetTimer);

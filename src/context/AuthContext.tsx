@@ -47,6 +47,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     setToken(data.token);
     axios.defaults.headers.common["Authorization"] = `Bearer ${data.token}`;
 
+    // Clear any existing data before log in 
+      localStorage.removeItem("token");
+      localStorage.removeItem("username");
+      sessionStorage.removeItem("token");
+      sessionStorage.removeItem("username");
+
+
     if (rememberMe) {
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", username);

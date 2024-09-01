@@ -7,8 +7,9 @@ import Home from "./pages/Home";
 import ChatRoom from "./pages/ChatRoom";
 import Login from "./pages/Login";
 import Register from './pages/Register'; 
-import { AuthProvider } from './context/AuthContext';
 import NotFound from './pages/NotFound';
+import ErrorPage from "./pages/ErrorPage"
+import { AuthProvider } from './context/AuthContext';
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

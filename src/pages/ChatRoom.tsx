@@ -68,13 +68,20 @@ const ChatRoom: React.FC = () => {
     };
 
     return () => {
-      socket.removeEventListener('message', handleMessage); // Clean up the event listener
-      if (socket.readyState === WebSocket.OPEN) {
-        socket.close();
+      socket.removeEventListener('message', handleMessage); 
+      if (soundEnabled) {
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.close();
+        }
       }
     };
-  }, [socket, soundEnabled]);
-  
+  }, [socket]);
+
+  const handleToggleSound = () => {
+    setSoundEnabled((prev) => !prev);
+  console.log(`Sound ${!soundEnabled ? 'enabled' : 'disabled'}`);
+};
+
 
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
@@ -108,7 +115,7 @@ const ChatRoom: React.FC = () => {
         <input
           type="checkbox"
           checked={soundEnabled}
-          onChange={() => setSoundEnabled(!soundEnabled)}
+          onChange={handleToggleSound} 
           className="toggle-checkbox"
         />
       </label>

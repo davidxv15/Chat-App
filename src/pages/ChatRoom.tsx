@@ -61,7 +61,6 @@ const ChatRoom: React.FC = () => {
 
     return () => {
       if (socket.readyState === WebSocket.OPEN) {
-        socket.close();
       }
     };
   }, [socket, soundEnabled]);

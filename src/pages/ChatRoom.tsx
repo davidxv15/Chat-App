@@ -40,9 +40,13 @@ const ChatRoom: React.FC = () => {
             ...prevMessages,
             `${data.username}: ${data.message}`,
           ]);
+
           if (soundEnabled) {
             const audio = new Audio("/notification.wav");
             audio.play();
+            console.log('Sound Played');
+          } else {
+            console.log('Sound is disabled, not playing sound')
           }
         } else {
           console.error("Received data is not a valid message object:", data);
@@ -68,14 +72,12 @@ const ChatRoom: React.FC = () => {
     };
 
     return () => {
-      socket.removeEventListener('message', handleMessage); 
-      if (soundEnabled) {
-        if (socket.readyState === WebSocket.OPEN) {
-          socket.close();
-        }
+      socket.removeEventListener('message', handleMessage);
+      if (socket.readyState === WebSocket.OPEN) {
+        socket.close();
       }
     };
-  }, [socket]);
+  }, [socket, soundEnabled]);
 
   const handleToggleSound = () => {
     setSoundEnabled((prev) => !prev);

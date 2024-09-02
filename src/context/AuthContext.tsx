@@ -88,7 +88,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     inactivityTimeout = setTimeout(() => {
       logout();
       alert("You have been logged out due to inactivity.");
-    }, 1 * 60 * 1000); // 15 minutes inactivity timeout
+    }, 15 * 60 * 1000); // 15 minutes inactivity timeout
   };
 
   useEffect(() => {

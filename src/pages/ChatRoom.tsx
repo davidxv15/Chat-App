@@ -38,6 +38,10 @@ const ChatRoom: React.FC = () => {
             ...prevMessages,
             `${data.username}: ${data.message}`,
           ]);
+          if (soundEnabled) {
+            const audio = new Audio('/notification.wav');
+            audio.play();
+          }
         } else {
           console.error('Received data is not a valid message object:', data);
         }
@@ -59,7 +63,7 @@ const ChatRoom: React.FC = () => {
         socket.close();
       }
     };
-  }, [socket]);
+  }, [socket, soundEnabled]);
 
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {

@@ -97,7 +97,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     };
 
   const handleError = () => {
-    navigate('error');
+    navigate('/error');
   }
 
 

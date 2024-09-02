@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useWebSocket } from '../context/WebSocketContext';
 import { useAuth } from '../context/AuthContext';
+import './ChatRoom.css';
 
 const ChatRoom: React.FC = () => {
   const { user, token, loading, logout } = useAuth();

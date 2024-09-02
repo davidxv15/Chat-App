@@ -9,6 +9,7 @@ const ChatRoom: React.FC = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState<string[]>([]);
   const [message, setMessage] = useState('');
+  const [soundEnabled, setSoundEnabled] = useState(true);
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done
@@ -87,6 +88,15 @@ const ChatRoom: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold">Chat Room</h1>
+      <label className="flex items-center space-x-2">
+    <span>Sound</span>
+    <input 
+      type="checkbox" 
+      checked={soundEnabled} 
+      onChange={() => setSoundEnabled(!soundEnabled)} 
+      className="toggle-checkbox" 
+    />
+  </label>
       <button onClick={() => {
         navigate('/login');
         window.location.reload();

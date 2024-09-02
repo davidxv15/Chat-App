@@ -1,27 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useWebSocket } from '../context/WebSocketContext';
-import { useAuth } from '../context/AuthContext';
-import './ChatRoom.css';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useWebSocket } from "../context/WebSocketContext";
+import { useAuth } from "../context/AuthContext";
+import "./ChatRoom.css";
 
 const ChatRoom: React.FC = () => {
   const { user, token, loading, logout } = useAuth();
   const { socket, initializeWebSocket } = useWebSocket();
   const navigate = useNavigate();
   const [messages, setMessages] = useState<string[]>([]);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [soundEnabled, setSoundEnabled] = useState(true);
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done
-    console.log('User in ChatRoom:', user);
-    console.log('Token in ChatRoom:', token);
+    console.log("User in ChatRoom:", user);
+    console.log("Token in ChatRoom:", token);
     if (!user || !token) {
-      console.log('Redirecting to login because user or token is missing');
-      navigate('/login');
-    } else if (token && !socket) { //only init if no existing socket
+      console.log("Redirecting to login because user or token is missing");
+      navigate("/login");
+    } else if (token && !socket) {
+      //only init if no existing socket
 
-      console.log('Initializing WebSocket with token:', token);
+      console.log("Initializing WebSocket with token:", token);
       initializeWebSocket(token);
     }
   }, [user, token, loading, socket, navigate, initializeWebSocket]);
@@ -29,9 +30,9 @@ const ChatRoom: React.FC = () => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.onmessage = (event: MessageEvent) => {
+    const handleMessage = (event: MessageEvent) => {
       try {
-        const data = JSON.parse(event.data); // Parse the JSON string once
+        const data = JSON.parse(event.data);
         console.log('Message received:', data);
   
         if (typeof data === 'object' && data.message && data.username) {
@@ -40,50 +41,60 @@ const ChatRoom: React.FC = () => {
             `${data.username}: ${data.message}`,
           ]);
           if (soundEnabled) {
-            const audio = new Audio('/notification.wav');
+            const audio = new Audio("/notification.wav");
             audio.play();
           }
         } else {
-          console.error('Received data is not a valid message object:', data);
+          console.error("Received data is not a valid message object:", data);
         }
       } catch (error) {
-        console.error('Error parsing message:', error, 'Message data:', event.data);
+        console.error(
+          "Error parsing message:",
+          error,
+          "Message data:",
+          event.data
+        );
       }
     };
 
+    socket.addEventListener('message', handleMessage);
+
     socket.onerror = (error: Event) => {
-      console.error('WebSocket error:', error);
+      console.error("WebSocket error:", error);
     };
 
     socket.onclose = () => {
-      console.log('WebSocket closed');
+      console.log("WebSocket closed");
     };
 
     return () => {
+      socket.removeEventListener('message', handleMessage); // Clean up the event listener
       if (socket.readyState === WebSocket.OPEN) {
+        socket.close();
       }
     };
   }, [socket, soundEnabled]);
+  
 
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
-      console.log('Sending message:', message);
+      console.log("Sending message:", message);
       const messageData = JSON.stringify({
         username: user?.username, //make sure user is defined and has a username
         message: message,
       });
       socket.send(messageData);
-      setMessage('');
+      setMessage("");
     } else {
-      console.error('WebSocket is not open or message is empty');
+      console.error("WebSocket is not open or message is empty");
     }
   };
 
   const handleLogout = () => {
     logout(); //will clear user session
-    navigate('/login');
+    navigate("/login");
     window.location.reload();
-  }
+  };
 
   if (loading) {
     return <div>Loading....</div>;
@@ -93,18 +104,21 @@ const ChatRoom: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold">Chat Room</h1>
       <label className="flex items-center space-x-2">
-    <span>Sound</span>
-    <input 
-      type="checkbox" 
-      checked={soundEnabled} 
-      onChange={() => setSoundEnabled(!soundEnabled)} 
-      className="toggle-checkbox" 
-    />
-  </label>
-      <button onClick={() => {
-        navigate('/login');
-        window.location.reload();
-      }} className="bg-red-600 text-white px-4 py-2 rounded-md ml-60 mb-2 mt-0 pt-2 pl-3">
+        <span>Sound</span>
+        <input
+          type="checkbox"
+          checked={soundEnabled}
+          onChange={() => setSoundEnabled(!soundEnabled)}
+          className="toggle-checkbox"
+        />
+      </label>
+      <button
+        onClick={() => {
+          navigate("/login");
+          window.location.reload();
+        }}
+        className="bg-red-600 text-white px-4 py-2 rounded-md ml-60 mb-2 mt-0 pt-2 pl-3"
+      >
         Logout
       </button>
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
@@ -121,7 +135,7 @@ const ChatRoom: React.FC = () => {
           placeholder="Type your message..."
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
         <button
           onClick={sendMessage}

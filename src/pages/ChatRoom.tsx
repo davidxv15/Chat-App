@@ -43,17 +43,21 @@ const ChatRoom: React.FC = () => {
 
           if (soundEnabled) {
             const audio = new Audio("/notification.wav");
-            audio.play().catch(err => {
-              console.error('Error playing sound:', err);
-            });
+            audio.play();
+            console.log('Sound Played');
           } else {
-            console.log('Sound is disabled, not playing sound');
+            console.log('Sound is disabled, not playing sound')
           }
         } else {
           console.error("Received data is not a valid message object:", data);
         }
       } catch (error) {
-        console.error("Error parsing message:", error, "Message data:", event.data);
+        console.error(
+          "Error parsing message:",
+          error,
+          "Message data:",
+          event.data
+        );
       }
     };
 
@@ -70,12 +74,7 @@ const ChatRoom: React.FC = () => {
     return () => {
       socket.removeEventListener('message', handleMessage);
     };
-  }, [socket]);
-
-  const handleToggleSound = () => {
-    setSoundEnabled(!soundEnabled);
-    console.log(`Sound ${!soundEnabled ? "enabled" : "disabled"}`);
-  };
+  }, [socket, soundEnabled]);
 
   
   const sendMessage = () => {
@@ -105,15 +104,9 @@ const ChatRoom: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold">Chat Room</h1>
-      <label className="flex items-center space-x-2">
-        <span>Sound</span>
-        <input
-          type="checkbox"
-          checked={soundEnabled}
-          onChange={handleToggleSound} 
-          className="toggle-checkbox"
-        />
-      </label>
+      
+      <SoundToggle soundEnabled={soundEnabled} setSoundEnabled={setSoundEnabled} />
+
       <button
         onClick={() => {
           navigate("/login");

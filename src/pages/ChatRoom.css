@@ -11,7 +11,7 @@
 }
 
 .toggle-checkbox:checked {
-  background-color: #4CAF50;
+  background-color: #4caf96;
 }
 
 .toggle-checkbox::before {

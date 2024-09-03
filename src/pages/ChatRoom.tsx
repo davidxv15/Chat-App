@@ -19,9 +19,8 @@ const ChatRoom: React.FC = () => {
     if (!user || !token) {
       console.log("Redirecting to login because user or token is missing");
       navigate("/login");
-    } else if (token && !socket) {
+    } else if (!socket) {
       //only init if no existing socket
-
       console.log("Initializing WebSocket with token:", token);
       initializeWebSocket(token);
     }
@@ -33,9 +32,9 @@ const ChatRoom: React.FC = () => {
     const handleMessage = (event: MessageEvent) => {
       try {
         const data = JSON.parse(event.data);
-        console.log('Message received:', data);
-  
-        if (typeof data === 'object' && data.message && data.username) {
+        
+        if (data.message && data.username) {
+          console.log('Message received:', data);
           setMessages((prevMessages) => [
             ...prevMessages,
             `${data.username}: ${data.message}`,
@@ -43,21 +42,17 @@ const ChatRoom: React.FC = () => {
 
           if (soundEnabled) {
             const audio = new Audio("/notification.wav");
-            audio.play();
-            console.log('Sound Played');
+            audio.play().catch(err => {
+              console.error('Error playing sound:', err);
+            });
           } else {
-            console.log('Sound is disabled, not playing sound')
+            console.log('Sound is disabled, not playing sound');
           }
         } else {
           console.error("Received data is not a valid message object:", data);
         }
       } catch (error) {
-        console.error(
-          "Error parsing message:",
-          error,
-          "Message data:",
-          event.data
-        );
+        console.error("Error parsing message:", error, "Message data:", event.data);
       }
     };
 
@@ -73,18 +68,15 @@ const ChatRoom: React.FC = () => {
 
     return () => {
       socket.removeEventListener('message', handleMessage);
-      if (socket.readyState === WebSocket.OPEN) {
-        socket.close();
-      }
     };
-  }, [socket, soundEnabled]);
+  }, [socket]);
 
   const handleToggleSound = () => {
-    setSoundEnabled((prev) => !prev);
-  console.log(`Sound ${!soundEnabled ? 'enabled' : 'disabled'}`);
-};
+    setSoundEnabled(!soundEnabled);
+    console.log(`Sound ${!soundEnabled ? "enabled" : "disabled"}`);
+  };
 
-
+  
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
       console.log("Sending message:", message);

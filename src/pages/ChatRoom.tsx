@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useAuth } from "../context/AuthContext";
 import "./ChatRoom.css";
+import SoundToggle from '../components/SoundToggle';
 
 const ChatRoom: React.FC = () => {
   const { user, token, loading, logout } = useAuth();

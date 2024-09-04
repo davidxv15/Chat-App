@@ -45,30 +45,24 @@ const ChatRoom: React.FC = () => {
             `${data.username}: ${data.message}`,
           ]);
 
-        } else if (data.typing && data.username) {
-          setIsTyping(data.typing);
-          setTypingUser(data.username);
-
-
-          if (soundEnabled) {
-            const audio = new Audio("/notification.wav");
-            audio.play();
-            console.log('Sound Played');
-          } else {
-            console.log('Sound is disabled, not playing sound')
-          }
-        } else {
-          console.error("Received data is not a valid message object:", data);
+         // Play sound if enabled
+         if (soundEnabled) {
+          const audio = new Audio("/notification.wav");
+          audio.play();
         }
-      } catch (error) {
-        console.error(
-          "Error parsing message:",
-          error,
-          "Message data:",
-          event.data
-        );
+
+      // Handle typing indicator
+      } else if (data.typing && data.username) {
+        setIsTyping(data.typing);
+        setTypingUser(data.username);
+
+      } else {
+        console.error("Received data is not valid:", data);
       }
-    };
+    } catch (error) {
+      console.error("Error parsing message:", error, "Message data:", event.data);
+    }
+  };
 
     socket.addEventListener('message', handleMessage);
 

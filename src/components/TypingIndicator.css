@@ -1,7 +1,7 @@
 /* TypingIndicator.css */
 .typing-indicator {
     font-style: italic;
-    color: gray;
+    color: rgba(128, 128, 128, 0.673);
     margin-top: 10px;
   }
   

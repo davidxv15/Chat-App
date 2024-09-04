@@ -37,6 +37,7 @@ const ChatRoom: React.FC = () => {
       try {
         const data = JSON.parse(event.data);
         
+        // handle received msg
         if (data.message && data.username) {
           console.log('Message received:', data);
           setMessages((prevMessages) => [

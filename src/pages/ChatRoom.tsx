@@ -5,6 +5,7 @@ import { useAuth } from "../context/AuthContext";
 import "./ChatRoom.css";
 import SoundToggle from '../components/SoundToggle';
 import TypingIndicator from "../components/TypingIndicator";
+import EmojiPicker from 'emoji-picker-react';
 
 const ChatRoom: React.FC = () => {
   const { user, token, loading, logout } = useAuth();

@@ -7,7 +7,7 @@
   cursor: pointer;
   appearance: none;
   outline: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.5s;
 }
 
 .toggle-checkbox:checked {

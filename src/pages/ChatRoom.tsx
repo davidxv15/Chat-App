@@ -44,6 +44,11 @@ const ChatRoom: React.FC = () => {
             `${data.username}: ${data.message}`,
           ]);
 
+        } else if (data.typing && data.username) {
+          setIsTyping(data.typing);
+          setTypingUser(data.username);
+
+
           if (soundEnabled) {
             const audio = new Audio("/notification.wav");
             audio.play();

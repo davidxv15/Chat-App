@@ -38,11 +38,11 @@ const ChatRoom: React.FC = () => {
         const data = JSON.parse(event.data);
         
         // handle received msg
-        if (data.message && data.username) {
+        if (data.message && data.username && data.timestamp) {
           console.log('Message received:', data);
           setMessages((prevMessages) => [
             ...prevMessages,
-            `${data.username}: ${data.message}`,
+            `${data.timestamp} - ${data.username}: ${data.message}`,
           ]);
 
          // Play sound if enabled
@@ -83,9 +83,11 @@ const ChatRoom: React.FC = () => {
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
       console.log("Sending message:", message);
+      const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
       const messageData = JSON.stringify({
         username: user?.username, //make sure user is defined and has a username
         message: message,
+        timestamp: timestamp
       });
       socket.send(messageData);
       setMessage("");

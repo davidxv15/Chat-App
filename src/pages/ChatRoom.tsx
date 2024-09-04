@@ -94,6 +94,17 @@ const ChatRoom: React.FC = () => {
     }
   };
 
+  const handleTyping = () => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(
+        JSON.stringify({
+          username: user?.username,
+          typing: message.length > 0,
+        })
+      );
+    }
+  };
+
   const handleLogout = () => {
     logout(); //will clear user session
     navigate("/login");

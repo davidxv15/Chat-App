@@ -129,7 +129,7 @@ const ChatRoom: React.FC = () => {
           navigate("/login");
           window.location.reload();
         }}
-        className="bg-red-600 text-white px-4 py-2 rounded-md ml-60 mb-2 mt-0 pt-2 pl-3"
+        className="bg-red-600 text-white px-4 py-2 rounded-md absolute top-2 right-4"
       >
         Logout
       </button>

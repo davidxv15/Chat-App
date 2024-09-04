@@ -141,6 +141,7 @@ const ChatRoom: React.FC = () => {
             {msg}
           </div>
         ))}
+        <TypingIndicator isTyping={isTyping} username={typingUser} />
       </div>
       <div className="flex mt-4">
         <input

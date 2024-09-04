@@ -13,6 +13,8 @@ const ChatRoom: React.FC = () => {
   const [messages, setMessages] = useState<string[]>([]);
   const [message, setMessage] = useState("");
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [isTyping, setIsTyping] = useState(false);
+  const [typingUser, setTypingUser] = useState("");
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done

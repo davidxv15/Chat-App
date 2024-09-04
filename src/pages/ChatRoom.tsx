@@ -130,21 +130,26 @@ const ChatRoom: React.FC = () => {
       >
         Logout
       </button>
+
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
         {messages.map((msg, index) => (
           <div key={index} className="mb-2 p-2 bg-gray-200 rounded">
             {msg}
           </div>
         ))}
+
         <TypingIndicator isTyping={isTyping} username={typingUser} />
       </div>
       <div className="flex mt-4">
-        <input
+      <input
           type="text"
           className="flex-1 p-2 border border-gray-300 rounded-md"
           placeholder="Type your message..."
           value={message}
-          onChange={(e) => setMessage(e.target.value)}
+          onChange={(e) => {
+            setMessage(e.target.value);
+            handleTyping();
+          }}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
         />
         <button

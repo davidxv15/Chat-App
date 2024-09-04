@@ -16,6 +16,7 @@ const ChatRoom: React.FC = () => {
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState("");
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done
@@ -108,6 +109,10 @@ const ChatRoom: React.FC = () => {
     }
   };
 
+  const onEmojiClick = (emojiObject: any) => {
+    setMessage((prevMessage) => prevMessage + emojiObject.emoji);
+  };
+
   const handleLogout = () => {
     logout(); //will clear user session
     navigate("/login");
@@ -143,7 +148,19 @@ const ChatRoom: React.FC = () => {
 
         <TypingIndicator isTyping={isTyping} username={typingUser} />
       </div>
+
+
+
       <div className="flex mt-4">
+      <button
+          className="emoji-button"
+          onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+        >
+          😀
+        </button>
+        {showEmojiPicker && (
+          <EmojiPicker onEmojiClick={onEmojiClick} />
+        )}
       <input
           type="text"
           className="flex-1 p-2 border border-gray-300 rounded-md"

@@ -139,7 +139,7 @@ const ChatRoom: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col min-h-screen bg-gray-200 p-4">
       <h1 className="text-2xl font-bold">Chat Room</h1>
 
       <SoundToggle
@@ -160,7 +160,7 @@ const ChatRoom: React.FC = () => {
 {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
   {messages.map((msg, index) => (
-    <div key={index} className="message mb-2 p-2 bg-gray-200 rounded">
+    <div key={index} className="message mb-2 p-2 bg-gray-500 rounded">
       <span className="timestamp">{msg.timestamp} </span>
       <span className="username">{msg.username}</span>: 
       <span className="message-content"> {msg.message}</span>

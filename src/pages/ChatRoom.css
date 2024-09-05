@@ -38,6 +38,7 @@
   margin-bottom: 10px;
   position: relative;
   padding-right: 50px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .timestamp {
@@ -50,11 +51,11 @@
 
 .username {
   font-weight: bold;
-  color: #2d9cdb;
+  color: #42b4f6;
 }
 
 .message-content {
-  color: #333;
+  color: #ffffff;
 }
 
 /* Chat box styling */
@@ -69,7 +70,7 @@
   top: 3rem; /* shoule be just below title and lougout*/
   bottom: 3.6rem; /* should be just above input*/
   width: 95%;
-  z-index: 100;
+  z-index: 90;
   background-color: white; 
   border: 1px solid #eeaa0c;
   border-radius: 8px;
@@ -87,7 +88,8 @@
   bottom: 0;
   display: flex;
   align-items: center;
-  background-color: #fff;
+  border-radius: 8px;
+  background-color: #ecf1f9;
   padding: 10px;
   border-top: 1px solid #e0e0e0;
 }

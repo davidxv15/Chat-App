@@ -92,6 +92,7 @@
   background-color: #ecf1f9;
   padding: 10px;
   border-top: 1px solid #e0e0e0;
+  transform: translateY(5px);
 }
 
 .emoji-button {

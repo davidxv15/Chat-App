@@ -166,14 +166,20 @@ const ChatRoom: React.FC = () => {
         <TypingIndicator isTyping={isTyping} username={typingUser} />
       </div>
 
-      <div className="flex mt-4">
+      {/* Emoji Picker */}
+      <div className={`emoji-picker-wrapper ${showEmojiPicker ? "show" : ""}`}>
+        {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+      </div>
+
+      {/* Input and Send Button */}
+      <div className="input-wrapper">
         <button
           className="emoji-button"
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         >
           😀
         </button>
-        {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+
         <input
           type="text"
           className="flex-1 p-2 border border-gray-300 rounded-md"

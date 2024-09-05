@@ -7,7 +7,9 @@
   cursor: pointer;
   appearance: none;
   outline: none;
+  display: inline-block;
   transition: background-color 0.5s;
+  transform: translateY(2px);
 }
 
 .toggle-checkbox:checked {
@@ -55,20 +57,57 @@
   color: #333;
 }
 
-/* emoji picker */
-.emoji-picker-react {
-  background-color: #458ec7; /* Custom background color */
-  border: 3px solid #322c2c; /* Add a border */
+/* Chat box styling */
+.flex-1 {
+  overflow-y: auto;
 }
 
-.emoji-picker-react .emoji-search {
-  background-color: rgb(146, 95, 95); /* Change search bar background */
+/* Emoji picker wrapper */
+.emoji-picker-wrapper {
+  display: none;
+  position: absolute;
+  bottom: 60px; /* Position it above the input field */
+  width: 100%;
+  z-index: 100;
 }
 
-.emoji-picker-react .emoji-group {
-  font-size: 8px; /* Adjust the size of the emoji group labels */
+.emoji-picker-wrapper.show {
+  display: block;
+}
+
+/* Input and Send button wrapper */
+.input-wrapper {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 10px;
+  border-top: 1px solid #e0e0e0;
 }
 
 .emoji-button {
-  font-size: 40px;
+  font-size: 1.5rem;
+  margin-right: 10px;
 }
+
+.flex-1 {
+  flex: 1;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+}
+
+/* Customize emoji picker */
+.emoji-picker-react {
+  width: 100% !important; /* Make it span the full width */
+  max-height: 200px;
+  overflow-y: auto;
+}
+

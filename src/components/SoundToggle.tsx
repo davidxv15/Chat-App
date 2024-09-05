@@ -12,7 +12,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled
   };
 
   return (
-    <label className="flex items-center space-x-2">
+    <label className="sound-toggle">
       <span>Sound</span>
       <input
         type="checkbox"

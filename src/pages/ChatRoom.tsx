@@ -3,9 +3,9 @@ import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useAuth } from "../context/AuthContext";
 import "./ChatRoom.css";
-import SoundToggle from '../components/SoundToggle';
+import SoundToggle from "../components/SoundToggle";
 import TypingIndicator from "../components/TypingIndicator";
-import EmojiPicker from 'emoji-picker-react';
+import EmojiPicker from "emoji-picker-react";
 
 const ChatRoom: React.FC = () => {
   const { user, token, loading, logout } = useAuth();
@@ -38,35 +38,44 @@ const ChatRoom: React.FC = () => {
     const handleMessage = (event: MessageEvent) => {
       try {
         const data = JSON.parse(event.data);
-        
-        // handle received msg
-        if (data.message && data.username && data.timestamp) {
-          console.log('Message received:', data);
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            `${data.timestamp} - ${data.username}: ${data.message}`,
-          ]);
 
-         // Play sound if enabled
-         if (soundEnabled) {
-          const audio = new Audio("/notification.wav");
-          audio.play();
+             // Store each message as an object with separate fields
+      if (data.message && data.username && data.timestamp) {
+        console.log("Message received:", data);
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          { 
+            timestamp: data.timestamp, 
+            username: data.username, 
+            message: data.message 
+          }
+        ]);
+
+
+          // Play sound if enabled
+          if (soundEnabled) {
+            const audio = new Audio("/notification.wav");
+            audio.play();
+          }
+
+          // Handle typing indicator
+        } else if (data.typing && data.username) {
+          setIsTyping(data.typing);
+          setTypingUser(data.username);
+        } else {
+          console.error("Received data is not valid:", data);
         }
-
-      // Handle typing indicator
-      } else if (data.typing && data.username) {
-        setIsTyping(data.typing);
-        setTypingUser(data.username);
-
-      } else {
-        console.error("Received data is not valid:", data);
+      } catch (error) {
+        console.error(
+          "Error parsing message:",
+          error,
+          "Message data:",
+          event.data
+        );
       }
-    } catch (error) {
-      console.error("Error parsing message:", error, "Message data:", event.data);
-    }
-  };
+    };
 
-    socket.addEventListener('message', handleMessage);
+    socket.addEventListener("message", handleMessage);
 
     socket.onerror = (error: Event) => {
       console.error("WebSocket error:", error);
@@ -77,19 +86,21 @@ const ChatRoom: React.FC = () => {
     };
 
     return () => {
-      socket.removeEventListener('message', handleMessage);
+      socket.removeEventListener("message", handleMessage);
     };
   }, [socket, soundEnabled]);
 
-  
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
       console.log("Sending message:", message);
-      const timestamp = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const timestamp = new Date().toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+      });
       const messageData = JSON.stringify({
         username: user?.username, //make sure user is defined and has a username
         message: message,
-        timestamp: timestamp
+        timestamp: timestamp,
       });
       socket.send(messageData);
       setMessage("");
@@ -126,8 +137,11 @@ const ChatRoom: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-100 p-4">
       <h1 className="text-2xl font-bold">Chat Room</h1>
-      
-      <SoundToggle soundEnabled={soundEnabled} setSoundEnabled={setSoundEnabled} />
+
+      <SoundToggle
+        soundEnabled={soundEnabled}
+        setSoundEnabled={setSoundEnabled}
+      />
 
       <button
         onClick={() => {
@@ -139,29 +153,28 @@ const ChatRoom: React.FC = () => {
         Logout
       </button>
 
+{/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
-        {messages.map((msg, index) => (
-          <div key={index} className="mb-2 p-2 bg-gray-200 rounded">
-            {msg}
-          </div>
-        ))}
+  {messages.map((msg, index) => (
+    <div key={index} className="message mb-2 p-2 bg-gray-200 rounded">
+      <span className="timestamp">{msg.timestamp}</span> - 
+      <span className="username">{msg.username}</span>: 
+      <span className="message-content">{msg.message}</span>
+    </div>
+  ))}
 
         <TypingIndicator isTyping={isTyping} username={typingUser} />
       </div>
 
-
-
       <div className="flex mt-4">
-      <button
+        <button
           className="emoji-button"
           onClick={() => setShowEmojiPicker(!showEmojiPicker)}
         >
           😀
         </button>
-        {showEmojiPicker && (
-          <EmojiPicker onEmojiClick={onEmojiClick} />
-        )}
-      <input
+        {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+        <input
           type="text"
           className="flex-1 p-2 border border-gray-300 rounded-md"
           placeholder="Type your message..."

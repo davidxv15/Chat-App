@@ -30,19 +30,32 @@
   transform: translateX(20px);
 }
 
+/* Chat message and content */
+.message {
+  font-size: 14px;
+  margin-bottom: 10px;
+  position: relative;
+  padding-right: 50px;
+}
+
 .timestamp {
-  color: green;
+  position: absolute;
+  bottom: 0; 
+  right: 10px;
+  font-size: 8px;
+  color: gray;
 }
 
 .username {
-  color: orange;
+  font-weight: bold;
+  color: #2d9cdb;
 }
 
 .message-content {
-  color: purple;
+  color: #333;
 }
 
-/* Custom styles for the emoji picker */
+/* emoji picker */
 .emoji-picker-react {
   background-color: #458ec7; /* Custom background color */
   border: 3px solid #322c2c; /* Add a border */
@@ -59,4 +72,3 @@
 .emoji-button {
   font-size: 40px;
 }
-/* Further style other elements inside the EmojiPicker */

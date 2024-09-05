@@ -157,9 +157,9 @@ const ChatRoom: React.FC = () => {
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
   {messages.map((msg, index) => (
     <div key={index} className="message mb-2 p-2 bg-gray-200 rounded">
-      <span className="timestamp">{msg.timestamp}</span> - 
+      <span className="timestamp">{msg.timestamp} </span>
       <span className="username">{msg.username}</span>: 
-      <span className="message-content">{msg.message}</span>
+      <span className="message-content"> {msg.message}</span>
     </div>
   ))}
 

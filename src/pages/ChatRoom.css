@@ -44,16 +44,19 @@
 
 /* Custom styles for the emoji picker */
 .emoji-picker-react {
-  background-color: #f0f0f0; /* Custom background color */
-  border: 1px solid #ccc; /* Add a border */
+  background-color: #458ec7; /* Custom background color */
+  border: 3px solid #322c2c; /* Add a border */
 }
 
 .emoji-picker-react .emoji-search {
-  background-color: white; /* Change search bar background */
+  background-color: rgb(146, 95, 95); /* Change search bar background */
 }
 
 .emoji-picker-react .emoji-group {
-  font-size: 14px; /* Adjust the size of the emoji group labels */
+  font-size: 8px; /* Adjust the size of the emoji group labels */
 }
 
+.emoji-button {
+  font-size: 40px;
+}
 /* Further style other elements inside the EmojiPicker */

@@ -124,6 +124,10 @@ const ChatRoom: React.FC = () => {
     setMessage((prevMessage) => prevMessage + emojiObject.emoji);
   };
 
+  const toggleEmojiPicker = () => {
+    setShowEmojiPicker((prevState) => !prevState);
+  };
+
   const handleLogout = () => {
     logout(); //will clear user session
     navigate("/login");
@@ -171,15 +175,17 @@ const ChatRoom: React.FC = () => {
         {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
       </div>
 
-      {/* Input and Send Button */}
       <div className="input-wrapper">
-        <button
-          className="emoji-button"
-          onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-        >
-          😀
+        <button className="emoji-button" onClick={toggleEmojiPicker}>
+          {showEmojiPicker ? "😄 Hide Emojis" : "😀 Show Emojis"}
         </button>
+        {showEmojiPicker && (
+          <div className="emoji-picker-wrapper">
+            <EmojiPicker onEmojiClick={onEmojiClick} />
+          </div>
+        )}
 
+        {/* Input and Send Button */}
         <input
           type="text"
           className="flex-1 p-2 border border-gray-300 rounded-md"

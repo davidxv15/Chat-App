@@ -39,18 +39,17 @@ const ChatRoom: React.FC = () => {
       try {
         const data = JSON.parse(event.data);
 
-             // Store each message as an object with separate fields
-      if (data.message && data.username && data.timestamp) {
-        console.log("Message received:", data);
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          { 
-            timestamp: data.timestamp, 
-            username: data.username, 
-            message: data.message 
-          }
-        ]);
-
+        // Store each message as an object with separate fields
+        if (data.message && data.username && data.timestamp) {
+          console.log("Message received:", data);
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              timestamp: data.timestamp,
+              username: data.username,
+              message: data.message,
+            },
+          ]);
 
           // Play sound if enabled
           if (soundEnabled) {
@@ -157,15 +156,15 @@ const ChatRoom: React.FC = () => {
         Logout
       </button>
 
-{/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
+      {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
       <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
-  {messages.map((msg, index) => (
-    <div key={index} className="message mb-2 p-2 bg-gray-500 rounded">
-      <span className="timestamp">{msg.timestamp} </span>
-      <span className="username">{msg.username}</span>: 
-      <span className="message-content"> {msg.message}</span>
-    </div>
-  ))}
+        {messages.map((msg, index) => ( // check after scroll functions
+          <div key={index} className="message mb-2 p-2 bg-gray-500 rounded">
+            <span className="timestamp">{msg.timestamp} </span>
+            <span className="username">{msg.username}</span>:
+            <span className="message-content"> {msg.message}</span>
+          </div>
+        ))}
 
         <TypingIndicator isTyping={isTyping} username={typingUser} />
       </div>

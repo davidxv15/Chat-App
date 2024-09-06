@@ -23,7 +23,7 @@ const ChatRoom: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  
+
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -96,6 +96,12 @@ const ChatRoom: React.FC = () => {
       socket.removeEventListener("message", handleMessage);
     };
   }, [socket, soundEnabled]);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {

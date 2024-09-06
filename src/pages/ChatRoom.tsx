@@ -99,7 +99,9 @@ const ChatRoom: React.FC = () => {
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      setTimeout(() => { // delay- msgs are rendered before scroll
+        chatContainerRef.current!.scrollTop = chatContainerRef.current!.scrollHeight;
+      }, 100);
     }
   }, [messages]);
 
@@ -171,7 +173,7 @@ const ChatRoom: React.FC = () => {
       </button>
 
       {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
-      <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto">
+      <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto" ref={chatContainerRef}>
         {messages.map((msg, index) => ( // check after scroll functions
           <div key={index} className="message mb-2 p-2 bg-gray-500 rounded">
             <span className="timestamp">{msg.timestamp} </span>

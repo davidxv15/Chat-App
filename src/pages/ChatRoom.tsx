@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useAuth } from "../context/AuthContext";
@@ -7,11 +7,17 @@ import SoundToggle from "../components/SoundToggle";
 import TypingIndicator from "../components/TypingIndicator";
 import EmojiPicker from "emoji-picker-react";
 
+interface Message {
+  timestamp: string;
+  username: string;
+  message: string;
+}
+
 const ChatRoom: React.FC = () => {
   const { user, token, loading, logout } = useAuth();
   const { socket, initializeWebSocket } = useWebSocket();
   const navigate = useNavigate();
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState("");
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [isTyping, setIsTyping] = useState(false);

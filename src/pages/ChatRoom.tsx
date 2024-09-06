@@ -1,4 +1,5 @@
 import React, { useState, useLayoutEffect, useRef } from "react";
+// useLayoutEffect triggers before rerender, DOM updates before logic starts
 import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useAuth } from "../context/AuthContext";
@@ -26,7 +27,7 @@ const ChatRoom: React.FC = () => {
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (loading) return; // will only check if loading is done
     console.log("User in ChatRoom:", user);
     console.log("Token in ChatRoom:", token);
@@ -40,7 +41,7 @@ const ChatRoom: React.FC = () => {
     }
   }, [user, token, loading, socket, navigate, initializeWebSocket]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!socket) return;
 
     const handleMessage = (event: MessageEvent) => {
@@ -97,7 +98,7 @@ const ChatRoom: React.FC = () => {
     };
   }, [socket, soundEnabled]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (chatContainerRef.current) {
       setTimeout(() => { // delay- msgs are rendered before scroll
         chatContainerRef.current!.scrollTop = chatContainerRef.current!.scrollHeight;

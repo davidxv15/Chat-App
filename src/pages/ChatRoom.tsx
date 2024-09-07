@@ -98,10 +98,12 @@ const ChatRoom: React.FC = () => {
     };
   }, [socket, soundEnabled]);
 
-  useEffect(() => {
+  //useLayoutEffect wil ensure 'scroll' will happen after DOM update
+  useLayoutEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop =
-        chatContainerRef.current.scrollHeight;
+      setTimeout(() => {
+        chatContainerRef.current!.scrollTop = chatContainerRef.current!.scrollHeight;
+      }, 100); // Optional delay to ensure the messages are rendered before scrolling
     }
   }, [messages]);
 

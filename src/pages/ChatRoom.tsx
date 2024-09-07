@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // useLayoutEffect triggers before rerender, DOM updates before logic starts
 import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
@@ -26,8 +26,9 @@ const ChatRoom: React.FC = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (loading) return; // will only check if loading is done
     console.log("User in ChatRoom:", user);
     console.log("Token in ChatRoom:", token);
@@ -41,7 +42,7 @@ const ChatRoom: React.FC = () => {
     }
   }, [user, token, loading, socket, navigate, initializeWebSocket]);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (!socket) return;
 
     const handleMessage = (event: MessageEvent) => {
@@ -98,11 +99,9 @@ const ChatRoom: React.FC = () => {
     };
   }, [socket, soundEnabled]);
 
-  useLayoutEffect(() => {
-    if (chatContainerRef.current) {
-      setTimeout(() => { // delay- msgs are rendered before scroll
-        chatContainerRef.current!.scrollTop = chatContainerRef.current!.scrollHeight;
-      }, 100);
+  useEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 

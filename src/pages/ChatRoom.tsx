@@ -26,7 +26,6 @@ const ChatRoom: React.FC = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
-  const lastMessageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done

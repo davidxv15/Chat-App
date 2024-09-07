@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
 // useLayoutEffect triggers before rerender, DOM updates before logic starts
 import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
@@ -100,10 +100,10 @@ const ChatRoom: React.FC = () => {
 
   useEffect(() => {
     if (chatContainerRef.current) {
-      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
     }
   }, [messages]);
-
 
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
@@ -173,14 +173,22 @@ const ChatRoom: React.FC = () => {
       </button>
 
       {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
-      <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto" ref={chatContainerRef}>
-        {messages.map((msg, index) => ( // check after scroll functions
-          <div key={index} className="message mb-2 p-2 bg-gray-500 rounded">
-            <span className="timestamp">{msg.timestamp} </span>
-            <span className="username">{msg.username}</span>:
-            <span className="message-content"> {msg.message}</span>
-          </div>
-        ))}
+      <div
+        className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto"
+        ref={chatContainerRef}
+      >
+        {messages.map(
+          (
+            msg,
+            index // check after scroll functions
+          ) => (
+            <div key={index} className="message mb-2 p-2 bg-gray-500 rounded">
+              <span className="timestamp">{msg.timestamp} </span>
+              <span className="username">{msg.username}</span>:
+              <span className="message-content"> {msg.message}</span>
+            </div>
+          )
+        )}
 
         <TypingIndicator isTyping={isTyping} username={typingUser} />
       </div>

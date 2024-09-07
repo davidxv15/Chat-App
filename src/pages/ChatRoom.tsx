@@ -99,10 +99,11 @@ const ChatRoom: React.FC = () => {
   }, [socket, soundEnabled]);
 
   useEffect(() => {
-    if (lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages]);
+
 
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {

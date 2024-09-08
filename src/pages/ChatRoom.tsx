@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useLayoutEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // useLayoutEffect triggers before rerender, DOM updates before logic starts
 import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
@@ -99,7 +99,7 @@ const ChatRoom: React.FC = () => {
   }, [socket, soundEnabled]);
 
   //useLayoutEffect wil ensure 'scroll' will happen after DOM update
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (chatContainerRef.current) {
       setTimeout(() => {
         chatContainerRef.current!.scrollTop = chatContainerRef.current!.scrollHeight;

@@ -26,6 +26,7 @@ const ChatRoom: React.FC = () => {
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const lastMessageRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done

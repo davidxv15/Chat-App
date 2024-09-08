@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-// useLayoutEffect triggers before rerender, DOM updates before logic starts
 import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
 import { useAuth } from "../context/AuthContext";
@@ -98,13 +97,19 @@ const ChatRoom: React.FC = () => {
     };
   }, [socket, soundEnabled]);
 
-  //useLayoutEffect wil ensure 'scroll' will happen after DOM update
+  //mutationObserver to detect changes in the chat container. trigger the scroll
   useEffect(() => {
-    if (chatContainerRef.current) {
-      setTimeout(() => {
-        chatContainerRef.current!.scrollTop = chatContainerRef.current!.scrollHeight;
-      }, 100); // Optional delay to ensure the messages are rendered before scrolling
-    }
+    const chatContainer = chatContainerRef.current;
+    if (!chatContainer) return;
+
+    const observer = new MutationObserver(() => {
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+    });
+
+    // Observes changes in child elements inside chatcontainer
+    observer.observe(chatContainer, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
   }, [messages]);
 
   const sendMessage = () => {

@@ -221,7 +221,7 @@ const ChatRoom: React.FC = () => {
             setMessage(e.target.value);
             handleTyping();
           }}
-          onKeyDown={showEmojiPicker ? handleKeyDown : undefined} // Custom behavior when emoji picker is open
+          onKeyDown={handleKeyDown} // Custom behavior when emoji picker is open
         />
         <button
           onClick={sendMessage}

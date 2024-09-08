@@ -118,6 +118,7 @@ const ChatRoom: React.FC = () => {
       });
       socket.send(messageData);
       setMessage("");
+      setShowEmojiPicker(false); // closes emojis
     } else {
       console.error("WebSocket is not open or message is empty");
     }
@@ -147,6 +148,14 @@ const ChatRoom: React.FC = () => {
     navigate("/login");
     window.location.reload();
   };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      e.preventDefault(); // Prevent default behavior if the emoji picker is open
+      sendMessage(); // Send the message instead
+    }
+  };
+
 
   if (loading) {
     return <div>Loading....</div>;

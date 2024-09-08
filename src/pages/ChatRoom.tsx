@@ -140,10 +140,10 @@ const ChatRoom: React.FC = () => {
   const onEmojiClick = (emojiObject: any) => {
     setMessage((prevMessage) => prevMessage + emojiObject.emoji);
 
-    // Momentarily shift focus away and then back to the input field
+    // momentarily shift focus away and then back to the input field
     setTimeout(() => {
-      inputRef.current?.focus(); // Re-focus on input after emoji selection (click)
-    }, 100); // Delay for focus restoration after emoji selection
+      inputRef.current?.focus(); //re-focus on input after emoji selection (click)
+    }, 100); // short delay for focus restoration after emoji selection
   };
 
   const toggleEmojiPicker = () => {

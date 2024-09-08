@@ -120,6 +120,7 @@ const ChatRoom: React.FC = () => {
       socket.send(messageData);
       setMessage("");
       setShowEmojiPicker(false); // closes emojis
+      inputRef.current?.focus();
     } else {
       console.error("WebSocket is not open or message is empty");
     }
@@ -142,6 +143,7 @@ const ChatRoom: React.FC = () => {
 
   const toggleEmojiPicker = () => {
     setShowEmojiPicker((prevState) => !prevState);
+    inputRef.current?.focus(); 
   };
 
   const handleLogout = () => {

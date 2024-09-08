@@ -25,6 +25,7 @@ const ChatRoom: React.FC = () => {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done
@@ -97,19 +98,10 @@ const ChatRoom: React.FC = () => {
     };
   }, [socket, soundEnabled]);
 
-  //mutationObserver to detect changes in the chat container. trigger the scroll
   useEffect(() => {
-    const chatContainer = chatContainerRef.current;
-    if (!chatContainer) return;
-
-    const observer = new MutationObserver(() => {
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-    });
-
-    // Observes changes in child elements inside chatcontainer
-    observer.observe(chatContainer, { childList: true, subtree: true });
-
-    return () => observer.disconnect();
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
   }, [messages]);
 
   const sendMessage = () => {

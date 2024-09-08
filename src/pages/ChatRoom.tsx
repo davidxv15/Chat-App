@@ -172,22 +172,17 @@ const ChatRoom: React.FC = () => {
       </button>
 
       {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
-      <div
-        className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto"
-        ref={chatContainerRef}
-      >
-        {messages.map(
-          (
-            msg,
-            index // check after scroll functions
-          ) => (
-            <div key={index} className="message mb-2 p-2 bg-gray-500 rounded">
-              <span className="timestamp">{msg.timestamp} </span>
-              <span className="username">{msg.username}</span>:
-              <span className="message-content"> {msg.message}</span>
-            </div>
-          )
-        )}
+      <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto" ref={chatContainerRef}>
+        {messages.map((msg, index) => (
+          <div
+            key={index}
+            className="message mb-2 p-2 bg-gray-500 rounded"
+            ref={index === messages.length - 1 ? lastMessageRef : null} 
+          >
+            <span className="timestamp">{msg.timestamp}</span>
+            <span className="username">{msg.username}</span>: <span className="message-content">{msg.message}</span>
+          </div>
+        ))}
 
         <TypingIndicator isTyping={isTyping} username={typingUser} />
       </div>

@@ -139,6 +139,11 @@ const ChatRoom: React.FC = () => {
 
   const onEmojiClick = (emojiObject: any) => {
     setMessage((prevMessage) => prevMessage + emojiObject.emoji);
+
+    // Momentarily shift focus away and then back to the input field
+    setTimeout(() => {
+      inputRef.current?.focus(); // Re-focus on input after emoji selection (click)
+    }, 100); // Delay for focus restoration after emoji selection
   };
 
   const toggleEmojiPicker = () => {
@@ -220,6 +225,7 @@ const ChatRoom: React.FC = () => {
           className="flex-1 p-2 border border-gray-300 rounded-md"
           placeholder="Type your message..."
           value={message}
+          ref={inputRef}
           onChange={(e) => {
             setMessage(e.target.value);
             handleTyping();

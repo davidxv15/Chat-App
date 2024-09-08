@@ -188,7 +188,7 @@ const ChatRoom: React.FC = () => {
         {messages.map((msg, index) => (
           <div
             key={index}
-            className="message mb-2 p-2 bg-gray-500 rounded"
+            className="message mb-2 p-2 bg-gray-600 rounded"
             ref={index === messages.length - 1 ? lastMessageRef : null} 
           >
             <span className="timestamp">{msg.timestamp}</span>

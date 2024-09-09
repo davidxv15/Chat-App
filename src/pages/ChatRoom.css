@@ -32,6 +32,17 @@
   transform: translateX(20px);
 }
 
+/* Dark mode styles */
+.dark .toggle-checkbox {
+  background-color: #555; /* Background color in dark mode */
+}
+
+/* Dark mode checked state */
+.dark .toggle-checkbox:checked {
+  background-color: #119173; /* A blue color for dark mode */
+}
+
+
 /* Chat message and content */
 .message {
   font-size: 14px;

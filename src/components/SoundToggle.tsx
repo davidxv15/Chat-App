@@ -13,7 +13,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled
 
   return (
     <label className="sound-toggle">
-      <span>Sound</span>
+      <span className="text-black dark:text-gray-200">Sound</span>
       <input
         type="checkbox"
         checked={soundEnabled}

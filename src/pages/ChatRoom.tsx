@@ -174,12 +174,13 @@ const ChatRoom: React.FC = () => {
     <div className="flex flex-col min-h-screen bg-gray-200 p-4">
       <h1 className="text-2xl font-bold">Chat Room</h1>
 
+      <div className="flex items-center space-x-2">
       <SoundToggle
         soundEnabled={soundEnabled}
         setSoundEnabled={setSoundEnabled}
       />
-
       <DarkModeToggle />
+      </div>
 
       <button
         onClick={() => {

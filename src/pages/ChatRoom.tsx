@@ -179,6 +179,8 @@ const ChatRoom: React.FC = () => {
         setSoundEnabled={setSoundEnabled}
       />
 
+      <DarkModeToggle />
+
       <button
         onClick={() => {
           navigate("/login");

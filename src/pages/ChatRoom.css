@@ -31,6 +31,10 @@
 .toggle-checkbox:checked::before {
   transform: translateX(20px);
 }
+.dark .toggle-checkbox:checked::before {
+  transform: translateX(20px);
+  background-color:#c5c5c5;
+}
 
 /* Dark mode styles */
 .dark .toggle-checkbox {

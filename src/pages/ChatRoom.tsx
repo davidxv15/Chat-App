@@ -172,7 +172,7 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4">
-      <h1 className="text-2xl font-bold dark:text-gray-200">Chat Room</h1>
+      <h1 className="text-2xl font-bold dark:text-gray-300">Chat Room</h1>
 
       <div className="flex items-center space-x-2">
       <SoundToggle
@@ -193,7 +193,7 @@ const ChatRoom: React.FC = () => {
       </button>
 
       {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
-      <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto" ref={chatContainerRef}>
+      <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800" ref={chatContainerRef}>
         {messages.map((msg, index) => (
           <div
             key={index}
@@ -213,7 +213,7 @@ const ChatRoom: React.FC = () => {
         {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
       </div>
 
-      <div className="input-wrapper">
+      <div className="input-wrapper dark:bg-gray-800">
         <button className="emoji-button" onClick={toggleEmojiPicker}>
           {showEmojiPicker ? "❌" : "😀"}
         </button>
@@ -226,7 +226,7 @@ const ChatRoom: React.FC = () => {
         {/* Input and Send Button */}
         <input
           type="text"
-          className="flex-1 p-2 border border-gray-300 rounded-md"
+          className="flex-1 p-2 border border-gray-300 rounded-md dark:bg-gray-600"
           placeholder="Type your message..."
           value={message}
           ref={inputRef}
@@ -238,7 +238,7 @@ const ChatRoom: React.FC = () => {
         />
         <button
           onClick={sendMessage}
-          className="ml-2 bg-blue-500 text-white p-2 rounded-md"
+          className="ml-2 bg-blue-500 text-white p-2 rounded-md dark:bg-blue-800 dark:text-gray-300"
         >
           Send
         </button>

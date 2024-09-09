@@ -4,6 +4,7 @@ export default {
     "./index.html", // this will include the main HTML file
     "./src/**/*.{js,ts,jsx,tsx}", // Include all JS, TS, JSX, and TSX files in the src folder
   ],
+  darkMode: 'class',
   theme: {
     extend: {},
   },

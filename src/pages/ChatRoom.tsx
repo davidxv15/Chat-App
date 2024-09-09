@@ -101,7 +101,7 @@ const ChatRoom: React.FC = () => {
 
   useEffect(() => {
     if (lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      lastMessageRef.current.scrollIntoView({ behavior: "instant" });
     }
   }, [messages]);
 

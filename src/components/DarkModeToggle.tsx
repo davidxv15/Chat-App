@@ -30,9 +30,9 @@ const DarkModeToggle: React.FC = () => {
       className="bg-gray-600 dark:bg-gray-600 text-white dark:text-gray-300 px-2 py-2 rounded"
     >
       {darkMode ? (
-        <SunIcon className="h-6 w-6" /> // Show Sun icon in dark mode
+        <SunIcon className="h-5 w-5 dark:text-yellow-300" /> // Show Sun icon in dark mode
       ) : (
-        <MoonIcon className="h-6 w-6" /> // Show Moon icon in light mode
+        <MoonIcon className="h-5 w-5 text-purple-300" /> // Show Moon icon in light mode
       )}
     </button>
   );

@@ -3,30 +3,26 @@ import { useNavigate } from "react-router-dom";
 
 const ChatroomSelector: React.FC = () => {
   const navigate = useNavigate();
+  const rooms = ["General", "Sports", "Tech", "Movies", "Music", "Work"];
 
-  // Room names and routes
-  const chatrooms = [
-    { name: "General", route: "general" },
-    { name: "Development", route: "development" },
-    { name: "Gaming", route: "gaming" },
-    { name: "Movies", route: "movies" },
-  ];
-
-  const handleRoomSelection = (route: string) => {
-    navigate(`/chat/${route}`);
+  const handleRoomSelection = (room: string) => {
+    navigate(`/chat/${room.toLowerCase()}`);
   };
 
   return (
-    <div className="grid grid-cols-2 gap-4 p-4">
-      {chatrooms.map((room) => (
-        <button
-          key={room.route}
-          onClick={() => handleRoomSelection(room.route)}
-          className="bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-700 transition"
-        >
-          {room.name}
-        </button>
-      ))}
+    <div className="flex flex-col items-center">
+      <h1 className="text-2xl font-bold mb-4">Select a Chat Room</h1>
+      <div className="grid grid-cols-3 gap-4">
+        {rooms.map((room) => (
+          <button
+            key={room}
+            onClick={() => handleRoomSelection(room)}
+            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
+          >
+            {room}
+          </button>
+        ))}
+      </div>
     </div>
   );
 };

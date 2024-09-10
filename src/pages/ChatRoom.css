@@ -9,7 +9,7 @@
   outline: none;
   display: inline-block;
   transition: background-color 0.5s;
-  transform: translate(3px, 3px);
+  transform: translate(-3px, 1px);
 }
 
 .toggle-checkbox:checked {

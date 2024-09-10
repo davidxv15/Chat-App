@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { WebSocketProvider } from "./context/WebSocketContext";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home";
 import ChatRoom from "./pages/ChatRoom";
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <WebSocketProvider>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<Home />} />
+          <Route path="/home" element={<Home />} />
             <Route path="chat" element={<ChatRoom />} />
             <Route path="login" element={<Login />} />
             <Route path="/register" element={<Register />} /> 

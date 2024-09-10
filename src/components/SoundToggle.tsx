@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/solid';
 
 interface SoundToggleProps {
   soundEnabled: boolean;

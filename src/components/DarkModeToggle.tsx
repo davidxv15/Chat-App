@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { MoonIcon, SunIcon } from '@heroicons/react/24/solid';
 
 const DarkModeToggle: React.FC = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -28,7 +29,11 @@ const DarkModeToggle: React.FC = () => {
       onClick={toggleDarkMode}
       className="bg-gray-600 dark:bg-gray-600 text-white dark:text-gray-300 px-2 py-2 rounded"
     >
-      {darkMode ? 'Light Mode' : 'Dark Mode'}
+      {darkMode ? (
+        <SunIcon className="h-6 w-6" /> // Show Sun icon in dark mode
+      ) : (
+        <MoonIcon className="h-6 w-6" /> // Show Moon icon in light mode
+      )}
     </button>
   );
 };

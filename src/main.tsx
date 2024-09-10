@@ -19,6 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <WebSocketProvider>
         <Routes>
           <Route path="/" element={<App />}>
+          <Route index element={<Navigate to="/home" />} />
           <Route path="/home" element={<Home />} />
             <Route path="chat" element={<ChatRoom />} />
             <Route path="login" element={<Login />} />

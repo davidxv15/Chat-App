@@ -83,9 +83,9 @@
   position: absolute;
   top: 3rem; /* shoule be just below title and lougout*/
   bottom: 3.6rem; /* should be just above input*/
-  width: 95%;
+  /* width: 95%; */
   z-index: 90;
-  background-color: rgb(0, 0, 0);
+  background-color: rgb(100, 183, 81);
   border: 1px solid #000000;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -94,7 +94,7 @@
 
 .emoji-picker-wrapper.show {
   display: block;
-  background-color: #f0e3e3;
+  background-color: #b74e4e;
 }
 
 /* Input and Send button wrapper */
@@ -104,7 +104,7 @@
   display: flex;
   align-items: center;
   border-radius: 8px;
-  background-color: #ecf1f9;
+  background-color: #19407f;
   padding: 10px;
   border-top: 1px solid #e0e0e0;
   transform: translateY(5px);

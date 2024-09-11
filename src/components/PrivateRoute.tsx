@@ -7,8 +7,12 @@ interface PrivateRouteProps {
 }
 
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-  const { user } = useAuth();
+  const { user, loading  } = useAuth();
+        console.log('User in PrivateRoute:', user);
 
+    if (loading) {
+        return <div>Authenticating...</div>;
+    }
   return user ? children : <Navigate to="/login" />;
 };
 

@@ -16,11 +16,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
 
   useEffect(() => {
     const savedToken = localStorage.getItem("token") || sessionStorage.getItem("token");
+    console.log("Token on load: ", savedToken);
     if (savedToken) {
       const decodedToken: any = jwtDecode(savedToken); // Decode the saved token
+      console.log("Decoded Token: ", decodedToken);
       const currentTime = Date.now() / 1000;
 
       if (decodedToken.exp < currentTime) {
+        console.log("Token expired, clearing local storage");
         //If token is expired, clear the localestorage and set user & token to null (below)
         localStorage.removeItem("token");
         sessionStorage.removeItem("token");
@@ -30,6 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
         setToken(null);
         axios.defaults.headers.common["Authorization"] = "";
       } else {
+        console.log("Token is valid, setting user and token");
         // If token is still valid, SET both user and token state
         setToken(savedToken);
         axios.defaults.headers.common["Authorization"] = `Bearer ${savedToken}`;

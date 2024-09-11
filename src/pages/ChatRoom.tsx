@@ -172,7 +172,7 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4">
-      <h1 className="text-2xl font-bold dark:text-gray-300">Chat Room</h1>
+      <h1 className="text-2xl font-bold dark:text-gray-400">Chat Room</h1>
 
       <div className="flex items-center space-x-2">
       <SoundToggle
@@ -183,11 +183,17 @@ const ChatRoom: React.FC = () => {
       </div>
 
       <button
+      onClick={() => navigate("/home")}
+      className="bg-blue-500 text-white px-4 py-2 rounded-md dark:bg-blue-800 dark:text-gray-400"
+      >
+        Home
+      </button>
+      <button
         onClick={() => {
           navigate("/login");
           window.location.reload();
         }}
-        className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-300 px-4 py-2 rounded-md absolute top-2 right-4"
+        className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4"
       >
         Logout
       </button>
@@ -238,7 +244,7 @@ const ChatRoom: React.FC = () => {
         />
         <button
           onClick={sendMessage}
-          className="ml-2 bg-blue-500 text-white p-2 rounded-md dark:bg-blue-800 dark:text-gray-300"
+          className="ml-2 bg-blue-500 text-white p-2 rounded-md dark:bg-blue-800 dark:text-gray-400"
         >
           Send
         </button>

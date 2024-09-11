@@ -85,8 +85,8 @@
   bottom: 3.6rem; /* should be just above input*/
   width: 95%;
   z-index: 90;
-  background-color: white;
-  border: 1px solid #eeaa0c;
+  background-color: rgb(0, 0, 0);
+  border: 1px solid #000000;
   border-radius: 8px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -94,6 +94,7 @@
 
 .emoji-picker-wrapper.show {
   display: block;
+  background-color: #f0e3e3;
 }
 
 /* Input and Send button wrapper */

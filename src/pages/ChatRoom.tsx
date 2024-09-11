@@ -17,6 +17,7 @@ interface Message {
 const ChatRoom: React.FC = () => {
   const { user, token, loading, logout } = useAuth();
   const { socket, initializeWebSocket } = useWebSocket();
+  const { roomName } = useParams<{ roomName: string }>();
   const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState("");
@@ -172,7 +173,9 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4">
-      <h1 className="text-2xl font-bold dark:text-gray-400">Chat Room</h1>
+      <h1 className="text-2xl font-bold dark:text-gray-400">
+        {roomName ? roomName.charAt(0).toUpperCase() + roomName.slice(1) : "General"} Chat
+        </h1>
 
       <div className="flex items-center space-x-2">
       <SoundToggle

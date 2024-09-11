@@ -174,7 +174,7 @@ const ChatRoom: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4">
       <h1 className="text-2xl font-bold dark:text-gray-400">
-        {roomName ? roomName.charAt(0).toUpperCase() + roomName.slice(1) : "General"} Chat
+       Welcome to {roomName ? roomName.charAt(0).toUpperCase() + roomName.slice(1) : "General"} Chat
         </h1>
 
       <div className="flex items-center space-x-2">

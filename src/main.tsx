@@ -15,6 +15,7 @@ import Register from "./pages/Register";
 import NotFound from "./pages/NotFound";
 import ErrorPage from "./pages/ErrorPage";
 import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -25,8 +26,12 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<Navigate to="/home" />} />
-              <Route path="/home" element={<Home />} />
-              <Route path="chat" element={<ChatRoom />} />
+              <Route path="/home" element={
+              <PrivateRoute><Home /></PrivateRoute>
+              } />
+              <Route path="chat" element={
+              <PrivateRoute><ChatRoom /></PrivateRoute>
+              } />
               <Route path="login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="*" element={<NotFound />} />

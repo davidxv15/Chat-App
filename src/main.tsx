@@ -29,7 +29,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               <Route path="/home" element={
               <PrivateRoute><Home /></PrivateRoute>
               } />
-              <Route path="chat" element={
+              <Route path="/chat/:roomName" element={
               <PrivateRoute><ChatRoom /></PrivateRoute>
               } />
               <Route path="login" element={<Login />} />

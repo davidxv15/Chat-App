@@ -184,7 +184,7 @@ const ChatRoom: React.FC = () => {
 
       <button
       onClick={() => navigate("/home")}
-      className="bg-blue-500 text-white px-4 py-2 rounded-md dark:bg-blue-800 dark:text-gray-400"
+      className="bg-blue-500 text-white py-2 px-4 py-2 rounded-md dark:bg-blue-800 dark:text-gray-400"
       >
         Home
       </button>
@@ -193,7 +193,7 @@ const ChatRoom: React.FC = () => {
           navigate("/login");
           window.location.reload();
         }}
-        className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4"
+        className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4 hover:bg-red-400"
       >
         Logout
       </button>

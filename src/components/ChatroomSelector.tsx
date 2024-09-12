@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const ChatroomSelector: React.FC = () => {
   const navigate = useNavigate();
-  const rooms = ["General", "Sports", "Tech", "Movies", "Music", "Work", "Collectors", "Food"];
+  const rooms = ["General", "Sports", "Tech", "Movies", "Music", "Collectors", "Food"];
 
   const handleRoomSelection = (room: string) => {
     navigate(`/chat/${room.toLowerCase()}`);

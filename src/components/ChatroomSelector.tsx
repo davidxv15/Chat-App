@@ -1,11 +1,25 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useWebSocket } from "../context/WebSocketContext";
 
 const ChatroomSelector: React.FC = () => {
   const navigate = useNavigate();
+  const { socket } = useWebSocket();
+
   const rooms = ["General", "Sports", "Tech", "Movies", "Music", "Collectors", "Food"];
 
   const handleRoomSelection = (room: string) => {
+    // Send "join" event to WebSocket server
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(
+        JSON.stringify({
+          type: "join",
+          room: room.toLowerCase(),
+        })
+      );
+    }
+
+    // Navigate to the selected chat room
     navigate(`/chat/${room.toLowerCase()}`);
   };
 

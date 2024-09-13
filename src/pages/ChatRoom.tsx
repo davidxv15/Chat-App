@@ -31,6 +31,38 @@ const ChatRoom: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    if (socket && roomName) {
+      const sendJoinMessage = () => {
+        // Check if the WebSocket is open before sending the message
+        if (socket.readyState === WebSocket.OPEN) {
+          const joinMessage = JSON.stringify({
+            type: 'join',
+            room: roomName,
+            username: user?.username,
+          });
+          socket.send(joinMessage);
+          console.log(`Joined room: ${roomName}`);
+        } else {
+          console.log('WebSocket is not ready. Will attempt to join later.');
+        }
+      };
+  
+      // If the WebSocket is still connecting, wait for it to open before sending the join message
+      if (socket.readyState === WebSocket.CONNECTING) {
+        socket.addEventListener('open', sendJoinMessage);
+      } else {
+        sendJoinMessage();
+      }
+  
+      return () => {
+        socket.removeEventListener('open', sendJoinMessage); // 'Cleanup' event listener on unmount
+      };
+    }
+  }, [socket, roomName, user?.username]);
+  
+
+
+  useEffect(() => {
     if (loading) return; // will only check if loading is done
     console.log("User in ChatRoom:", user);
     console.log("Token in ChatRoom:", token);
@@ -48,20 +80,23 @@ const ChatRoom: React.FC = () => {
     if (!socket) return;
 
     const handleMessage = (event: MessageEvent) => {
-      try {
-        const data = JSON.parse(event.data);
+    try {
+      const data = JSON.parse(event.data);
+      console.log("Message received on client:", data);
 
-        // Store each message as an object with separate fields
-        if (data.message && data.username && data.timestamp) {
-          console.log("Message received:", data);
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            {
-              timestamp: data.timestamp,
-              username: data.username,
-              message: data.message,
-            },
-          ]);
+      if (data.room === roomName && data.message && data.username) {
+        // Update the messages in the correct room
+        setMessages((prevMessages) => [
+          ...prevMessages,
+          {
+            timestamp: new Date().toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+            username: data.username,
+            message: data.message,
+          },
+        ]);
 
           // Play sound if enabled
           if (soundEnabled) {
@@ -115,6 +150,8 @@ const ChatRoom: React.FC = () => {
         minute: "2-digit",
       });
       const messageData = JSON.stringify({
+        type: "message",
+        room: roomName,
         username: user?.username, //make sure user is defined and has a username
         message: message,
         timestamp: timestamp,

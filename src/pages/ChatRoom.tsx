@@ -36,7 +36,7 @@ const ChatRoom: React.FC = () => {
         // Check if the WebSocket is open before sending the message
         if (socket.readyState === WebSocket.OPEN) {
           const joinMessage = JSON.stringify({
-            type: 'join',
+            type: "join",
             room: roomName,
             username: user?.username,
           });

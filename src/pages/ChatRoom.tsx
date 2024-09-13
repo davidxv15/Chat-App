@@ -41,9 +41,9 @@ const ChatRoom: React.FC = () => {
             username: user?.username,
           });
           socket.send(joinMessage);
-          console.log(`Joined room: ${roomName}`);
+          console.log(`Joined room: ${roomName} as ${user?.username}`);
         } else {
-          console.log('WebSocket is not ready. Will attempt to join later.');
+          console.log('WebSocket is not ready.');
         }
       };
   

@@ -84,7 +84,7 @@ const ChatRoom: React.FC = () => {
       const data = JSON.parse(event.data);
       console.log("Message received on client:", data);
 
-      if (data.room === roomName && data.message && data.username) {
+      if (data.message && data.username && data.room === roomName) {
         // Update the messages in the correct room
         setMessages((prevMessages) => [
           ...prevMessages,

@@ -75,6 +75,7 @@
 /* Chat box styling */
 .flex-1 {
   overflow-y: auto;
+  color: #42b4f6;
 }
 
 /* Emoji picker wrapper */

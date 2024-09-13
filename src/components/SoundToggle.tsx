@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SpeakerWaveIcon, SpeakerXMarkIcon } from '@heroicons/react/24/solid';
 
 interface SoundToggleProps {
@@ -7,6 +7,20 @@ interface SoundToggleProps {
 }
 
 const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled }) => {
+
+  // Load sound preference from localStorage on mount
+  useEffect(() => {
+    const savedSoundPref = localStorage.getItem('soundEnabled');
+    if (savedSoundPref !== null) {
+      setSoundEnabled(JSON.parse(savedSoundPref));
+    }
+  }, [setSoundEnabled]);
+
+  // Update localStorage when the soundEnabled state changes
+  useEffect(() => {
+    localStorage.setItem('soundEnabled', JSON.stringify(soundEnabled));
+  }, [soundEnabled]);
+
   const handleToggle = () => {
     setSoundEnabled(!soundEnabled);
     console.log(`Sound ${!soundEnabled ? 'enabled' : 'disabled'}`);

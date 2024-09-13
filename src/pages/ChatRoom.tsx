@@ -215,10 +215,13 @@ const ChatRoom: React.FC = () => {
         </h1>
 
       <div className="flex items-center space-x-2">
-      <SoundToggle
-        soundEnabled={soundEnabled}
-        setSoundEnabled={setSoundEnabled}
-      />
+      {soundEnabled !== null && (
+  <SoundToggle
+    soundEnabled={soundEnabled as boolean} // This ensures it's passed as boolean
+    setSoundEnabled={setSoundEnabled}
+  />
+)}
+
       <DarkModeToggle />
       </div>
 

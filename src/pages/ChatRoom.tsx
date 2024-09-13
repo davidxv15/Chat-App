@@ -6,7 +6,7 @@ import "./ChatRoom.css";
 import SoundToggle from "../components/SoundToggle";
 import TypingIndicator from "../components/TypingIndicator";
 import EmojiPicker from "emoji-picker-react";
-import DarkModeToggle from '../components/DarkModeToggle';
+import DarkModeToggle from "../components/DarkModeToggle";
 
 interface Message {
   timestamp: string;
@@ -43,24 +43,22 @@ const ChatRoom: React.FC = () => {
           socket.send(joinMessage);
           console.log(`Joined room: ${roomName} as ${user?.username}`);
         } else {
-          console.log('WebSocket is not ready.');
+          console.log("WebSocket is not ready.");
         }
       };
-  
+
       // If the WebSocket is still connecting, wait for it to open before sending the join message
       if (socket.readyState === WebSocket.CONNECTING) {
-        socket.addEventListener('open', sendJoinMessage);
+        socket.addEventListener("open", sendJoinMessage);
       } else {
         sendJoinMessage();
       }
-  
+
       return () => {
-        socket.removeEventListener('open', sendJoinMessage); // 'Cleanup' event listener on unmount
+        socket.removeEventListener("open", sendJoinMessage); // 'Cleanup' event listener on unmount
       };
     }
   }, [socket, roomName, user?.username]);
-  
-
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done
@@ -80,23 +78,23 @@ const ChatRoom: React.FC = () => {
     if (!socket) return;
 
     const handleMessage = (event: MessageEvent) => {
-    try {
-      const data = JSON.parse(event.data);
-      console.log("Message received on client:", data);
+      try {
+        const data = JSON.parse(event.data);
+        console.log("Message received on client:", data);
 
-      if (data.message && data.username && data.room === roomName) {
-        // Update the messages in the correct room
-        setMessages((prevMessages) => [
-          ...prevMessages,
-          {
-            timestamp: new Date().toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            }),
-            username: data.username,
-            message: data.message,
-          },
-        ]);
+        if (data.message && data.username && data.room === roomName) {
+          // Update the messages in the correct room
+          setMessages((prevMessages) => [
+            ...prevMessages,
+            {
+              timestamp: new Date().toLocaleTimeString([], {
+                hour: "2-digit",
+                minute: "2-digit",
+              }),
+              username: data.username,
+              message: data.message,
+            },
+          ]);
 
           // Play sound if enabled
           if (soundEnabled) {
@@ -187,7 +185,7 @@ const ChatRoom: React.FC = () => {
 
   const toggleEmojiPicker = () => {
     setShowEmojiPicker((prevState) => !prevState);
-    inputRef.current?.focus(); 
+    inputRef.current?.focus();
   };
 
   const handleLogout = () => {
@@ -203,7 +201,6 @@ const ChatRoom: React.FC = () => {
     }
   };
 
-
   if (loading) {
     return <div>Loading....</div>;
   }
@@ -211,23 +208,24 @@ const ChatRoom: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4">
       <h1 className="text-2xl font-bold dark:text-gray-400">
-       Welcome to {roomName ? roomName.charAt(0).toUpperCase() + roomName.slice(1) : "General"} Chat
-        </h1>
+        Welcome to{" "}
+        {roomName
+          ? roomName.charAt(0).toUpperCase() + roomName.slice(1)
+          : "General"}{" "}
+        Chat
+      </h1>
 
       <div className="flex items-center space-x-2">
-      {soundEnabled !== null && (
-  <SoundToggle
-    soundEnabled={soundEnabled as boolean} // This ensures it's passed as boolean
-    setSoundEnabled={setSoundEnabled}
-  />
-)}
-
-      <DarkModeToggle />
+        <SoundToggle
+          soundEnabled={soundEnabled}
+          setSoundEnabled={setSoundEnabled}
+        />
+        <DarkModeToggle />
       </div>
 
       <button
-      onClick={() => navigate("/home")}
-      className="bg-blue-500 text-white py-2 px-4 py-2 rounded-md dark:bg-blue-800 dark:text-gray-400"
+        onClick={() => navigate("/home")}
+        className="bg-blue-500 text-white py-2 px-4 py-2 rounded-md dark:bg-blue-800 dark:text-gray-400"
       >
         Home
       </button>
@@ -242,15 +240,19 @@ const ChatRoom: React.FC = () => {
       </button>
 
       {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
-      <div className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800" ref={chatContainerRef}>
+      <div
+        className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
+        ref={chatContainerRef}
+      >
         {messages.map((msg, index) => (
           <div
             key={index}
             className="message mb-2 p-2 bg-gray-600 rounded"
-            ref={index === messages.length - 1 ? lastMessageRef : null} 
+            ref={index === messages.length - 1 ? lastMessageRef : null}
           >
             <span className="timestamp">{msg.timestamp}</span>
-            <span className="username">{msg.username}</span> : <span className="message-content">{msg.message}</span>
+            <span className="username">{msg.username}</span> :{" "}
+            <span className="message-content">{msg.message}</span>
           </div>
         ))}
 

@@ -247,7 +247,7 @@ const ChatRoom: React.FC = () => {
             ref={index === messages.length - 1 ? lastMessageRef : null} 
           >
             <span className="timestamp">{msg.timestamp}</span>
-            <span className="username">{msg.username}</span>: <span className="message-content">{msg.message}</span>
+            <span className="username">{msg.username}</span> : <span className="message-content">{msg.message}</span>
           </div>
         ))}
 

@@ -10,17 +10,12 @@ const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled
   // Load sound preference from localStorage on mount
   useEffect(() => {
     const savedSoundPref = localStorage.getItem('soundEnabled');
-    if (savedSoundPref !== null && savedSoundPref !== undefined) {
-      try {
-        const parsedPref = JSON.parse(savedSoundPref);
-        setSoundEnabled(parsedPref);
-      } catch (error) {
-        console.error('Failed to parse sound preference:', error);
-      }
-    } else {
-      setSoundEnabled(true); // Default to true if no preference is found
-    }
+    console.log('Sound preference in localStorage (on load):', savedSoundPref);
+    if (savedSoundPref !== null) {
+      setSoundEnabled(JSON.parse(savedSoundPref));
+    } 
   }, [setSoundEnabled]);
+
 
   // Update localStorage when the soundEnabled state changes
   useEffect(() => {

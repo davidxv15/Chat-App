@@ -163,6 +163,8 @@ const ChatRoom: React.FC = () => {
     }
   };
 
+  
+
   const handleTyping = () => {
     if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(

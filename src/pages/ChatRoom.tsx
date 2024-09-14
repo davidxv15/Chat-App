@@ -96,6 +96,16 @@ const ChatRoom: React.FC = () => {
             },
           ]);
 
+
+          useEffect(() => {
+            const savedSoundPref = localStorage.getItem("soundEnabled");
+            console.log("Loaded sound preference from localStorage:", savedSoundPref); // Check what is loaded
+            if (savedSoundPref !== null) {
+              setSoundEnabled(JSON.parse(savedSoundPref));  // Ensure it's parsed and set
+            }
+          }, []);
+          
+
           // Play sound if enabled
           if (soundEnabled) {
             const audio = new Audio("/notification.wav");
@@ -162,14 +172,6 @@ const ChatRoom: React.FC = () => {
       console.error("WebSocket is not open or message is empty");
     }
   };
-
-  useEffect(() => {
-    const savedSoundPref = localStorage.getItem("soundEnabled");
-    if (savedSoundPref !== null) {
-      setSoundEnabled(JSON.parse(savedSoundPref));  // Load saved sound preference
-    }
-  }, []);
-  
 
   const handleTyping = () => {
     if (socket && socket.readyState === WebSocket.OPEN) {

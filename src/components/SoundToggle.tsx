@@ -30,9 +30,9 @@ const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled
   return (
     <label className="flex items-center space-x-2">
       {soundEnabled ? (
-        <SpeakerWaveIcon className="h-6 w-6 text-blue-700" /> 
+        <SpeakerWaveIcon className="h-6 w-6 text-blue-800" /> 
       ) : (
-        <SpeakerXMarkIcon className="h-6 w-6 text-red-500" /> 
+        <SpeakerXMarkIcon className="h-6 w-6 text-red-700" /> 
       )}
       <input
         type="checkbox"

@@ -163,6 +163,12 @@ const ChatRoom: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    const savedSoundPref = localStorage.getItem("soundEnabled");
+    if (savedSoundPref !== null) {
+      setSoundEnabled(JSON.parse(savedSoundPref));  // Load saved sound preference
+    }
+  }, []);
   
 
   const handleTyping = () => {

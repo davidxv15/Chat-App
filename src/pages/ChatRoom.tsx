@@ -31,6 +31,14 @@ const ChatRoom: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const savedSoundPref = localStorage.getItem("soundEnabled");
+    console.log("Loaded sound preference from localStorage:", savedSoundPref); // Check what's loaded
+    if (savedSoundPref !== null) {
+      setSoundEnabled(JSON.parse(savedSoundPref)); // Parsed and set
+    }
+  }, []); // Only load on mount, no need to add soundEnabled to this dependency array
+
+  useEffect(() => {
     if (socket && roomName) {
       const sendJoinMessage = () => {
         // Check if the WebSocket is open before sending the message
@@ -95,16 +103,6 @@ const ChatRoom: React.FC = () => {
               message: data.message,
             },
           ]);
-
-
-          useEffect(() => {
-            const savedSoundPref = localStorage.getItem("soundEnabled");
-            console.log("Loaded sound preference from localStorage:", savedSoundPref); // Check what is loaded
-            if (savedSoundPref !== null) {
-              setSoundEnabled(JSON.parse(savedSoundPref));  // Ensure it's parsed and set
-            }
-          }, []);
-          
 
           // Play sound if enabled
           if (soundEnabled) {

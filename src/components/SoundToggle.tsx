@@ -14,7 +14,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled
     if (savedSoundPref !== null) {
       setSoundEnabled(JSON.parse(savedSoundPref));
     } 
-  }, [setSoundEnabled]);
+  }, []);
 
 
   // Update localStorage when the soundEnabled state changes

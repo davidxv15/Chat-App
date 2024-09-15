@@ -21,7 +21,10 @@ const ChatRoom: React.FC = () => {
   const navigate = useNavigate();
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState("");
-  const [soundEnabled, setSoundEnabled] = useState<boolean>(false);
+  const [soundEnabled, setSoundEnabled] = useState<boolean>(() => {
+    const savedSoundPref = localStorage.getItem("soundEnabled");
+    return savedSoundPref !== null ? JSON.parse(savedSoundPref) : false;
+  });
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -31,7 +34,7 @@ const ChatRoom: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const savedSoundPref = localStorage.getItem("soundEnabled");
+    const savedSoundPref = localStorage.getItem('soundEnabled');
     console.log("Loaded sound preference from localStorage:", savedSoundPref); // Check what's loaded
     if (savedSoundPref !== null) {
       setSoundEnabled(JSON.parse(savedSoundPref)); // Parsed and set

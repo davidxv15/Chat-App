@@ -175,15 +175,18 @@ const ChatRoom: React.FC = () => {
   };
 
   const handleTyping = () => {
-    if (socket && socket.readyState === WebSocket.OPEN) {
+    if (socket && socket.readyState === WebSocket.OPEN && roomName) {
       socket.send(
         JSON.stringify({
+          type: "typing",
           username: user?.username,
+          room: roomName, // include the room in the typing event
           typing: message.length > 0,
         })
       );
     }
   };
+  
 
   const onEmojiClick = (emojiObject: any) => {
     setMessage((prevMessage) => prevMessage + emojiObject.emoji);

@@ -107,12 +107,6 @@ const ChatRoom: React.FC = () => {
             },
           ]);
 
-          // Play sound if enabled
-          if (soundEnabled) {
-            const audio = new Audio("/notification.wav");
-            audio.play();
-          }
-
           // Handle typing indicator
         } else if (data.typing && data.username) {
           setIsTyping(data.typing);
@@ -129,6 +123,12 @@ const ChatRoom: React.FC = () => {
         );
       }
     };
+
+    // Play sound if enabled
+    if (soundEnabled) {
+      const audio = new Audio("/notification.wav");
+      audio.play();
+    }
 
     socket.addEventListener("message", handleMessage);
 

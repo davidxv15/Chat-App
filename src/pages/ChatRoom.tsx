@@ -113,8 +113,8 @@ const ChatRoom: React.FC = () => {
             audio.play();
           }
 
-          // Handle typing indicator
-        } else if (data.typing && data.username) {
+          // Handle typing indicator only if same room
+        } else if (data.typing && data.username && data.room === roomName) {
           setIsTyping(data.typing);
           setTypingUser(data.username);
         } else {

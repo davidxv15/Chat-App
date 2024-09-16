@@ -7,6 +7,7 @@ import SoundToggle from "../components/SoundToggle";
 import TypingIndicator from "../components/TypingIndicator";
 import EmojiPicker from "emoji-picker-react";
 import DarkModeToggle from "../components/DarkModeToggle";
+import ActiveUsersList from "../components/ActiveUsersList";
 
 interface Message {
   timestamp: string;

@@ -28,7 +28,7 @@ const ActiveUsersList: React.FC<ActiveUsersListProps> = ({ roomName }) => {
 
   return (
     <div className="active-users-list bg-gray-300 dark:bg-gray-700 rounded-md p-2 mt-4 text-sm max-h-32 overflow-y-auto">
-      <h2 className="text-xl font-bold">Active Users in {roomName}</h2>
+      <h2 className="text-center text-md font-bold mb-2">Active Users in {roomName}</h2>
       <ul>
         {activeUsers.length > 0 ? (
           activeUsers.map((user, index) => (

@@ -254,7 +254,7 @@ const ChatRoom: React.FC = () => {
       >
         Logout
       </button>
-      <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-600 p-4">
+      <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-4">
     <ActiveUsersList roomName={roomName!} />
   </div>
 

@@ -238,6 +238,9 @@ const ChatRoom: React.FC = () => {
         />
         <DarkModeToggle />
       </div>
+      <div className="flex flex-col min- bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-2">
+    <ActiveUsersList roomName={roomName!} />
+  </div>
 
       <button
         onClick={() => navigate("/home")}
@@ -254,9 +257,6 @@ const ChatRoom: React.FC = () => {
       >
         Logout
       </button>
-      <div className="flex flex-col bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-2">
-    <ActiveUsersList roomName={roomName!} />
-  </div>
 
       {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
       <div

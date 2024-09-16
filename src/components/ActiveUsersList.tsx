@@ -27,7 +27,7 @@ const ActiveUsersList: React.FC<ActiveUsersListProps> = ({ roomName }) => {
   }, [socket]);
 
   return (
-    <div className="active-users-list">
+    <div className="active-users-list bg-gray-300 dark:bg-gray-700 rounded-md p-2 mt-4 text-sm max-h-32 overflow-y-auto">
       <h2 className="text-xl font-bold">Active Users in {roomName}</h2>
       <ul>
         {activeUsers.length > 0 ? (

@@ -254,6 +254,9 @@ const ChatRoom: React.FC = () => {
       >
         Logout
       </button>
+      <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-600 p-4">
+    <ActiveUsersList roomName={roomName!} />
+  </div>
 
       {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
       <div

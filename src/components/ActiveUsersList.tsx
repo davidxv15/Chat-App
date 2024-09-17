@@ -9,6 +9,12 @@ const ActiveUsersList: React.FC<ActiveUsersListProps> = ({ roomName }) => {
   const { socket } = useWebSocket();
   const [activeUsers, setActiveUsers] = useState<string[]>([]);
 
+  // Utility function to ensure unique users
+  const addUniqueUser = (users: string[], newUser: string) => {
+    return users.includes(newUser) ? users : [...users, newUser];
+  };
+
+
   useEffect(() => {
     if (!socket) return;
 

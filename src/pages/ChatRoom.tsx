@@ -177,7 +177,7 @@ const ChatRoom: React.FC = () => {
   };
 
   const handleTyping = () => {
-    if (socket && socket.readyState === WebSocket.OPEN && roomName) {
+    if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(
         JSON.stringify({
           type: "typing",

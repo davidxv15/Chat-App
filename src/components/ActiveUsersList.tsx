@@ -19,11 +19,14 @@ const ActiveUsersList: React.FC<ActiveUsersListProps> = ({ roomName }) => {
     if (!socket) return;
 
     const handleUserListUpdate = (event: MessageEvent) => {
-      const data = JSON.parse(event.data);
-      if (data.type === "userListUpdate") {
-        setActiveUsers(data.users);
-      }
-    };
+        const data = JSON.parse(event.data);
+        if (data.type === "userListUpdate" && data.room === roomName) {
+          // no duplicates when setting active users
+          const updatedUsers = [...new Set(data.users)]; 
+          setActiveUsers(updatedUsers);
+        }
+      };
+  
 
     socket.addEventListener("message", handleUserListUpdate);
 

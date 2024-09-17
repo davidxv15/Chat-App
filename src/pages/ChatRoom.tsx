@@ -145,7 +145,7 @@ const ChatRoom: React.FC = () => {
     return () => {
       socket.removeEventListener("message", handleMessage);
     };
-  }, [socket, soundEnabled]);
+  }, [socket, soundEnabled, roomName]);
 
   useEffect(() => {
     if (lastMessageRef.current) {

@@ -5,6 +5,8 @@ interface ActiveUsersListProps {
   roomName: string;
 }
 
+// This component may become less intensive
+
 const ActiveUsersList: React.FC<ActiveUsersListProps> = ({ roomName }) => {
   const { socket } = useWebSocket();
   const [activeUsers, setActiveUsers] = useState<string[]>([]);

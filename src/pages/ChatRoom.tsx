@@ -237,9 +237,9 @@ const ChatRoom: React.FC = () => {
         />
         <DarkModeToggle />
       </div>
-      <div className="flex flex-col min- bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-2">
+      {/* <div className="flex flex-col min- bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-2">
     <ActiveUsersList roomName={roomName!} />
-  </div>
+  </div> */}
 
       <button
         onClick={() => navigate("/home")}

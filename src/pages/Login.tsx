@@ -62,6 +62,12 @@ const Login: React.FC = () => {
           </label>
         </div>
 
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+    {/* reCAPTCHA widget */}
+<div className="g-recaptcha" data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"></div>
+
+
         <button
           type="submit"
           className="bg-blue-600 text-white p-2 rounded-md w-full"

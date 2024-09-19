@@ -31,17 +31,11 @@ const ChatroomSelector: React.FC = () => {
   }, [socket]);
 
   const handleRoomSelection = (room: string) => {
-    // Send "join" event to WebSocket server
-    if (socket && socket.readyState === WebSocket.OPEN) {
-      socket.send(
-        JSON.stringify({
-          type: "join",
-          room: room.toLowerCase(),
-        })
-      );
+    // send 'join' event to socket
+    if (socket && socket.readyState === socket.OPEN) {
+      socket.send(JSON.stringify({ type: "join", room }));
     }
 
-    // Navigate to the selected chat room
     navigate(`/chat/${room.toLowerCase()}`);
   };
 

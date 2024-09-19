@@ -5,6 +5,7 @@ import { useWebSocket } from "../context/WebSocketContext";
 const ChatroomSelector: React.FC = () => {
   const navigate = useNavigate();
   const { socket } = useWebSocket();
+  const [roomUsers, setRoomUsers] = useState<{ [roomName: string]: string[] }>({});
 
   const rooms = ["General", "Sports", "Tech", "Movies", "Music", "Collectors", "Food"];
 

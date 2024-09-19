@@ -43,21 +43,20 @@ const ChatRoom: React.FC = () => {
   }, []); // Only load on mount, no need to add soundEnabled to this dependency array
 
   useEffect(() => {
-    if (socket && roomName) {
-      const sendJoinMessage = () => {
-        // Check if the WebSocket is open before sending the message
-        if (socket.readyState === WebSocket.OPEN) {
-          const joinMessage = JSON.stringify({
+  if (socket && roomName) {
+    const sendJoinMessage = () => {
+      //check if websocket is open first
+      if (socket.readyState === WebSocket.OPEN) {
+        socket.send(
+          JSON.stringify({
             type: "join",
             room: roomName,
             username: user?.username,
-          });
-          socket.send(joinMessage);
-          console.log(`Joined room: ${roomName} as ${user?.username}`);
-        } else {
-          console.log("WebSocket is not ready.");
-        }
-      };
+          })
+        );
+        console.log(`Joined room: ${roomName} as ${user?.username}`);
+      }
+    };
 
       // If the WebSocket is still connecting, wait for it to open before sending the join message
       if (socket.readyState === WebSocket.CONNECTING) {
@@ -145,7 +144,7 @@ const ChatRoom: React.FC = () => {
     return () => {
       socket.removeEventListener("message", handleMessage);
     };
-  }, [socket, soundEnabled]);
+  }, [socket, soundEnabled, roomName]);
 
   useEffect(() => {
     if (lastMessageRef.current) {
@@ -177,7 +176,7 @@ const ChatRoom: React.FC = () => {
   };
 
   const handleTyping = () => {
-    if (socket && socket.readyState === WebSocket.OPEN && roomName) {
+    if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(
         JSON.stringify({
           type: "typing",

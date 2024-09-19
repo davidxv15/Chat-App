@@ -9,6 +9,27 @@ const ChatroomSelector: React.FC = () => {
 
   const rooms = ["General", "Sports", "Tech", "Movies", "Music", "Collectors", "Food"];
 
+   //for user list updates to each room
+   useEffect(() => {
+    if (!socket) return;
+
+    const handleUserListUpdate = (event: MessageEvent) => {
+      const data = JSON.parse(event.data);
+      if (data.type === "userListUpdate") {
+        setRoomUsers((prevRoomUsers) => ({
+          ...prevRoomUsers,
+          [data.room]: data.users,
+        }));
+      }
+    };
+
+    socket.addEventListener("message", handleUserListUpdate);
+
+    return () => {
+      socket.removeEventListener("message", handleUserListUpdate);
+    };
+  }, [socket]);
+
   const handleRoomSelection = (room: string) => {
     // Send "join" event to WebSocket server
     if (socket && socket.readyState === WebSocket.OPEN) {

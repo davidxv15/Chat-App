@@ -31,11 +31,17 @@ const ChatroomSelector: React.FC = () => {
   }, [socket]);
 
   const handleRoomSelection = (room: string) => {
-    // send 'join' event to socket
-    if (socket && socket.readyState === socket.OPEN) {
-      socket.send(JSON.stringify({ type: "join", room }));
+    // Send "join" event to WebSocket server
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(
+        JSON.stringify({
+          type: "join",
+          room: room.toLowerCase(),
+        })
+      );
     }
 
+    // Navigate to the selected chat room
     navigate(`/chat/${room.toLowerCase()}`);
   };
 
@@ -44,14 +50,13 @@ const ChatroomSelector: React.FC = () => {
       <h1 className="text-2xl font-bold mb-4">Select a Chat Room</h1>
       <div className="grid grid-cols-3 gap-4">
         {rooms.map((room) => (
-          <div key={room} className="room-item">
           <button
+            key={room}
             onClick={() => handleRoomSelection(room)}
             className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
           >
-            {room} ({roomUsers[room]?.length || 0} users)
+            {room}
           </button>
-        </div>
         ))}
       </div>
     </div>

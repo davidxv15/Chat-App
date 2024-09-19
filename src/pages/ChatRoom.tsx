@@ -93,6 +93,12 @@ const ChatRoom: React.FC = () => {
         const data = JSON.parse(event.data);
         console.log("Message received on client:", data);
 
+        // Handle room joining (add the user to the active user list)
+    if (data.type === "join" && data.room === roomName) {
+      setActiveUsers((prevUsers) => [...new Set([...prevUsers, data.username])]);
+    }
+
+
         if (data.message && data.username && data.room === roomName) {
           // Update the messages in the correct room
           setMessages((prevMessages) => [

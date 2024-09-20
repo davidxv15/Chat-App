@@ -9,7 +9,6 @@ declare global {
   }
 }
 
-
 const Login: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -18,6 +17,16 @@ const Login: React.FC = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+
+  // Ensure the recaptcha script is loaded
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  }, []);
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

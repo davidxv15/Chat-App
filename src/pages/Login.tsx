@@ -17,14 +17,29 @@ const Login: React.FC = () => {
     setError(""); //setting to 'nothing' will clear prev errors
     setLoading(true); //starts the loading...
 
-    try {
-      await login(username, password, rememberMe); // passing rememberMe state to login func
-      navigate("/"); //redirect to home page after successful login
-    } catch (error) {
+     // Get reCAPTCHA token from the widget
+     const token = grecaptcha.getResponse();
+     if (!token) {
+       setError("Please complete the CAPTCHA");
+       setLoading(false);
+       return;
+     }
+
+     try {
+      // Send reCAPTCHA token to backend for verification
+      const captchaResponse = await axios.post("/verify-captcha", { token });
+      if (captchaResponse.data.message === "Verification successful") {
+        // If CAPTCHA is verified, proceed with the login
+        await login(username, password, rememberMe); // passing rememberMe state to login func
+        navigate("/"); // Redirect to home page after successful login
+      } else {
+        setError("CAPTCHA failed. Please try again.");
+      }
+    } catch (error: any) {  // Specify error as any to satisfy TypeScript
       console.error("Login failed:", error);
-      setError("Incorrect username or password. Please try again."); // add login failure message
+      setError("Incorrect username, password, or CAPTCHA. Please try again."); // Update error message
     } finally {
-      setLoading(false); // ... ends loading
+      setLoading(false); // Stop the loading process
     }
   };
 
@@ -63,7 +78,6 @@ const Login: React.FC = () => {
           </label>
         </div>
 
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     {/* reCAPTCHA widget */}
 <div className="g-recaptcha" data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"></div>
@@ -84,6 +98,7 @@ const Login: React.FC = () => {
       >
         New User? Register Here
       </button>
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     </div>
   );
 };

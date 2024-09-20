@@ -43,7 +43,7 @@ const Login: React.FC = () => {
 
      try {
       // Send reCAPTCHA token to backend for verification
-      const captchaResponse = await axios.post("/verify-captcha", { token });
+      const captchaResponse = await axios.post("http://localhost:3001/verify-captcha", { token });
       if (captchaResponse.data.message === "Verification successful") {
         // If CAPTCHA is verified, proceed with the login
         await login(username, password, rememberMe); // passing rememberMe state to login func

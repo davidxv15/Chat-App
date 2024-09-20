@@ -34,7 +34,7 @@ const Login: React.FC = () => {
     setLoading(true); //starts the loading...
 
      // Get reCAPTCHA token from the widget
-     const token = grecaptcha.getResponse();
+     const token = window.grecaptcha?.getResponse();
      if (!token) {
        setError("Please complete the CAPTCHA");
        setLoading(false);

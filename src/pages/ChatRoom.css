@@ -157,3 +157,21 @@ button {
   flex-grow: 1;
   max-height: 250px;
 }
+
+hr {
+  border: none;
+  border-top: 3px double rgb(162, 162, 162);
+  color: #000000;
+  /* overflow: visible; */
+  text-align: center;
+  height: 15px;
+  width: 113%;
+}
+
+hr::after {
+  background: #ae4545;
+  content: '§';
+  padding: 0 4px;
+  position: relative;
+  top: -13px;
+}

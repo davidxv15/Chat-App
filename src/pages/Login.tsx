@@ -3,6 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
 
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
+
+
 const Login: React.FC = () => {
   const { login } = useAuth();
   const navigate = useNavigate();

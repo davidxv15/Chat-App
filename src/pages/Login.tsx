@@ -34,7 +34,7 @@ const Login: React.FC = () => {
     setLoading(true); //starts the loading...
 
      // Get reCAPTCHA token from the widget
-     const token = window.grecaptcha?.getResponse();
+     const token = grecaptcha.getResponse();
      if (!token) {
        setError("Please complete the CAPTCHA");
        setLoading(false);
@@ -42,10 +42,10 @@ const Login: React.FC = () => {
      }
 
      try {
-      // Send reCAPTCHA token to backend for verification
+      // Send recaptcha token to backend for verification
       const captchaResponse = await axios.post("http://localhost:3001/verify-captcha", { token });
       if (captchaResponse.data.message === "Verification successful") {
-        // If CAPTCHA is verified, proceed with the login
+        // If captcha is verified, proceed with the login
         await login(username, password, rememberMe); // passing rememberMe state to login func
         navigate("/"); // Redirect to home page after successful login
       } else {

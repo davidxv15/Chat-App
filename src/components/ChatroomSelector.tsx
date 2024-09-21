@@ -49,7 +49,7 @@ const ChatroomSelector: React.FC = () => {
     <div className="flex flex-col items-center bg-gray-900">
       <hr />
       <br />
-      <h1 className="text-2xl font-bold mb-4 text-gray-400">Select a Chat Room</h1>
+      <h1 className="text-2xl font-bold mb-4 text-gray-200">Select a Chat Room</h1>
       <div className="grid grid-cols-3 gap-4">
         {rooms.map((room) => (
           <button

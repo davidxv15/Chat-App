@@ -252,7 +252,7 @@ const ChatRoom: React.FC = () => {
           navigate("/login");
           window.location.reload();
         }}
-        className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4 hover:bg-red-400"
+        className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4 hover:bg-red-800"
       >
         Logout
       </button>

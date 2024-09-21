@@ -282,7 +282,7 @@ const ChatRoom: React.FC = () => {
         {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
       </div>
 
-      <div className="input-wrapper bg-blue-500 dark:bg-gray-800">
+      <div className="input-wrapper bg-blue-500 dark:bg-blue-800">
         <button className="emoji-button" onClick={toggleEmojiPicker}>
           {showEmojiPicker ? "❌" : "😀"}
         </button>

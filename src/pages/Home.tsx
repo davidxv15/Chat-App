@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import ChatroomSelector from "../components/ChatroomSelector";
+import Bulletin from "../components/Bulletin";
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ const Home: React.FC = () => {
       >
         Chat!
       </button> */}
+      <Bulletin />
     </div>
   );
 };

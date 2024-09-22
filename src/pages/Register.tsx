@@ -74,7 +74,7 @@ const Register: React.FC = () => {
         {/* Success message */}
         <button
           type="submit"
-          className="bg-blue-500 text-white p-2 rounded-md w-full"
+          className="bg-blue-500 text-white p-1 rounded-md w-full"
           disabled={loading} // Disable button while loading
         >
           {loading ? "Registering..." : "Register"}

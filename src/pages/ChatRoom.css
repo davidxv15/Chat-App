@@ -175,3 +175,7 @@ hr::after {
   position: relative;
   top: -13px;
 }
+
+.g-recaptcha {
+  transform: translateX(-0.4rem);
+}

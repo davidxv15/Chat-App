@@ -101,7 +101,7 @@ const Login: React.FC = () => {
 
         <button
           type="submit"
-          className="bg-blue-600 text-white p-2 rounded-md w-full"
+          className="bg-blue-600 text-white p-2 mt-3 rounded-md w-full"
           disabled={loading} //disables button while loading
         >
           {loading ? "Logging in..." : "Login"}

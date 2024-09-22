@@ -81,7 +81,7 @@ const Register: React.FC = () => {
         </button>
         <button
           onClick={() => navigate("/login")}
-          className="mt-4 text-blue-600 p-1 border border-gray-300 rounded-md w-full"
+          className="mt-4 text-blue-600 p-1 border border-gray-400 rounded-md w-full"
           disabled={loading} // Disable button while loading
         >
           Returning User Login Here

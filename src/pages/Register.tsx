@@ -46,7 +46,7 @@ const Register: React.FC = () => {
       <h1 className="text-2xl text-gray-200 font-bold mb-4">Register</h1>
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-4 rounded-lg shadow-md w-80"
+        className="bg-gray-300 p-4 rounded-lg shadow-md w-80"
       >
         <input
           type="text"

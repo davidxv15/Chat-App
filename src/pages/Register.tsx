@@ -34,20 +34,29 @@ const Register: React.FC = () => {
     return;
   }
 
-    try {
-      await axios.post("http://localhost:3000/api/auth/register", {
+  try {
+    // Send reCAPTCHA token and registration data to the backend
+    const captchaResponse = await axios.post("http://localhost:3001/verify-captcha", { token });
+    
+    if (captchaResponse.data.message === "Verification successful") {
+      // Proceed with registration if CAPTCHA is valid
+      await axios.post("http://localhost:3001/api/auth/register", {
         username,
         password,
       });
       setSuccess("Registration successful! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 2000); // Delay before redirecting to login
-    } catch (error) {
-      console.error("Registration failed:", error);
-      setError("Invalid Username. Try again");
-    } finally {
-      setLoading(false); // ... End loading
+      setTimeout(() => navigate("/login"), 2000); // Redirect to login after 2 seconds
+    } else {
+      setError("CAPTCHA verification failed. Please try again.");
     }
-  };
+  } catch (error) {
+    console.error("Registration failed:", error);
+    setError("Invalid Username. Try again.");
+  } finally {
+    setLoading(false); // End loading
+  }
+};
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">

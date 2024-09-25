@@ -79,6 +79,10 @@ const Register: React.FC = () => {
         >
           {loading ? "Registering..." : "Register"}
         </button>
+
+        {/* reCAPTCHA widget */}
+<div className="g-recaptcha" data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"></div>
+
         <button
           onClick={() => navigate("/login")}
           className="mt-4 text-gray-200 bg-blue-900 p-1 border border-gray-400 rounded-md w-full"

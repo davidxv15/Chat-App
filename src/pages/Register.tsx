@@ -19,6 +19,15 @@ const Register: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
 
+  // loading captcha script, same as in login
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://www.google.com/recaptcha/api.js";
+    script.async = true;
+    script.defer = true;
+    document.body.appendChild(script);
+  }, []);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(""); // Clears previous error message
@@ -31,7 +40,7 @@ const Register: React.FC = () => {
     }
 
     setLoading(true); // Start loading (then the next bit of code...)
-
+    
     // Get the reCAPTCHA token
   const token = grecaptcha.getResponse();
   if (!token) {

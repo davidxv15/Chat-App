@@ -3,6 +3,11 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 
+declare global {
+  interface Window {
+    grecaptcha: any;
+  }
+}
 
 const Register: React.FC = () => {
   const { register } = useAuth();

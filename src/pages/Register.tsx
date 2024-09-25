@@ -12,17 +12,17 @@ const Register: React.FC = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState("");
-
+  
+  //before 'setLoading', check if PWords match
+  if (password !== confirmPassword) {
+    setError("Passwords do not match. Please try again.");
+    return;
+  }
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(""); // Clears previous error message
     setSuccess(""); // Resets success message
 
-    //before 'setLoading', check if PWords match
-    if (password !== confirmPassword) {
-      setError("Passwords do not match. Please try again.");
-      return;
-    }
 
     setLoading(true); // Start loading (then the next bit of code...)
 

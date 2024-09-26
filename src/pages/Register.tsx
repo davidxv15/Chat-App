@@ -84,6 +84,7 @@ const Register: React.FC = () => {
       <form
         onSubmit={handleSubmit}
         className="bg-gray-300 p-4 rounded-lg shadow-md w-80"
+        onKeyDown={handleKeyDown}
       >
         <input
           type="text"

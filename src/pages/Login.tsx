@@ -119,6 +119,7 @@ const Login: React.FC = () => {
 
         <button
           type="submit"
+          ref={submitButtonRef}
           className="bg-blue-600 text-white p-2 mt-3 rounded-md w-full"
           disabled={loading} //disables button while loading
         >

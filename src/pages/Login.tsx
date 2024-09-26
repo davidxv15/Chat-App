@@ -18,6 +18,8 @@ const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
 
+  const submitButtonRef = useRef<HTMLButtonElement>(null);
+
   // Ensure the recaptcha script is loaded
   useEffect(() => {
     const script = document.createElement("script");

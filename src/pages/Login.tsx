@@ -29,23 +29,25 @@ const Login: React.FC = () => {
     document.body.appendChild(script);
   }, []);
 
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(""); //setting to 'nothing' will clear prev errors
     setLoading(true); //starts the loading...
 
-     // Get reCAPTCHA token from the widget
-     const token = window.grecaptcha.getResponse();
-     if (!token) {
-       setError("Please complete the CAPTCHA");
-       setLoading(false);
-       return;
-     }
+    // Get reCAPTCHA token from the widget
+    const token = window.grecaptcha.getResponse();
+    if (!token) {
+      setError("Please complete the CAPTCHA");
+      setLoading(false);
+      return;
+    }
 
-     try {
+    try {
       // Send recaptcha token to backend for verification
-      const captchaResponse = await axios.post("http://localhost:3001/verify-captcha", { token });
+      const captchaResponse = await axios.post(
+        "http://localhost:3001/verify-captcha",
+        { token }
+      );
       if (captchaResponse.data.message === "Verification successful") {
         // If captcha is verified, proceed with the login
         await login(username, password, rememberMe); // passing rememberMe state to login func
@@ -53,7 +55,8 @@ const Login: React.FC = () => {
       } else {
         setError("CAPTCHA failed. Please try again.");
       }
-    } catch (error: any) {  // Specify error as any to satisfy TypeScript
+    } catch (error: any) {
+      // Specify error as any to satisfy TypeScript
       console.error("Login failed:", error);
       setError("Incorrect username, password, or CAPTCHA. Please try again."); // Update error message
     } finally {
@@ -107,10 +110,12 @@ const Login: React.FC = () => {
           </label>
         </div>
 
-
-    {/* reCAPTCHA widget */}
-<div className="g-recaptcha" data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"></div>
-
+        {/* reCAPTCHA widget */}
+        <div
+          className="g-recaptcha"
+          data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"
+          data-callback={onCaptchaComplete}
+        ></div>
 
         <button
           type="submit"
@@ -127,7 +132,11 @@ const Login: React.FC = () => {
       >
         New User? Register Here
       </button>
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      <script
+        src="https://www.google.com/recaptcha/api.js"
+        async
+        defer
+      ></script>
     </div>
   );
 };

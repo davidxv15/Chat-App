@@ -59,12 +59,19 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleSubmit(e as any); // trigger submit on enter key
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
       <h1 className="text-3xl font-bold mb-4 text-gray-200">Login</h1>
       <form
         onSubmit={handleSubmit}
         className="bg-gray-300 p-4 rounded-lg shadow-md w-80"
+        onKeyDown={handleKeyDown} // event to form
       >
         <input
           type="text"

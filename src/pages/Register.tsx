@@ -42,7 +42,7 @@ const Register: React.FC = () => {
     setLoading(true); // Start loading (then the next bit of code...)
     
     // Get the reCAPTCHA token
-  const token = grecaptcha.getResponse();
+  const token = window.grecaptcha.getResponse();
   if (!token) {
     setError("Please complete the CAPTCHA");
     setLoading(false);

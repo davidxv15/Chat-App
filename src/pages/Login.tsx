@@ -35,6 +35,7 @@ const Login: React.FC = () => {
     // Defining the callback function for the CAPTCHA completion
     window.onCaptchaComplete = (token: string) => {
       console.log("CAPTCHA completed, token:", token);
+      setCaptchaToken(token);
       setCaptchaComplete(true); // Set your state or perform other actions
     };
 

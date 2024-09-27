@@ -115,7 +115,7 @@ const Login: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
         />
-        {error && <div className="text-red-500 mb-4">{error}</div>}
+        {error && <div className="text-red-600 mb-4">{error}</div>}
 
         <div className="flex items-center mb-4">
           <label className="flex items-center text-blue-600">

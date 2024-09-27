@@ -137,6 +137,7 @@ const Login: React.FC = () => {
         ></div>
 
         <button
+          ref={loginButtonRef}
           type="submit"
           disabled={!captchaComplete}
           className="bg-blue-600 text-white p-2 mt-3 rounded-md w-full"

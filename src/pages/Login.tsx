@@ -20,7 +20,7 @@ const Login: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [captchaComplete, setCaptchaComplete] = useState(false);
 
-  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  // const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const loginButtonRef = useRef<HTMLButtonElement>(null);
 
 
@@ -35,7 +35,7 @@ const Login: React.FC = () => {
     // Defining the callback function for the CAPTCHA completion
     window.onCaptchaComplete = (token: string) => {
       console.log("CAPTCHA completed, token:", token);
-      setCaptchaToken(token);
+      // setCaptchaToken(token);
       setCaptchaComplete(true); // Set your state or perform other actions
     };
 

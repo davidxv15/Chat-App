@@ -19,9 +19,9 @@ const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [captchaComplete, setCaptchaComplete] = useState(false);
+  const loginButtonRef = useRef<HTMLButtonElement>(null);
 
   // const [captchaToken, setCaptchaToken] = useState<string | null>(null);
-  const loginButtonRef = useRef<HTMLButtonElement>(null);
 
 
   // Ensure the recaptcha script is "loaded"
@@ -85,7 +85,11 @@ const Login: React.FC = () => {
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
-      handleSubmit(e as any); // trigger submit on enter key
+      if (captchaComplete) {
+        loginButtonRef.current?.click(); // Programmatically trigger the click
+      } else {
+        setError("Please complete the CAPTCHA before submitting.");
+      }
     }
   };
 

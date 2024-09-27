@@ -44,6 +44,7 @@ const Login: React.FC = () => {
  // Focus the login button after CAPTCHA completion
  useEffect(() => {
   if (captchaComplete && loginButtonRef.current) {
+    loginButtonRef.current.disabled = false;
     loginButtonRef.current.focus();
     console.log("Login button focused.");
   }

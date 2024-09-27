@@ -24,7 +24,7 @@ const Login: React.FC = () => {
   const loginButtonRef = useRef<HTMLButtonElement>(null);
 
 
-  // Ensure the recaptcha script is loaded
+  // Ensure the recaptcha script is "loaded"
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://www.google.com/recaptcha/api.js";
@@ -40,6 +40,16 @@ const Login: React.FC = () => {
     };
 
   }, []);
+
+ // Focus the login button after CAPTCHA completion
+ useEffect(() => {
+  if (captchaComplete && loginButtonRef.current) {
+    loginButtonRef.current.focus();
+    console.log("Login button focused.");
+  }
+}, [captchaComplete]);
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

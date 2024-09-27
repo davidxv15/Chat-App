@@ -23,7 +23,6 @@ const Login: React.FC = () => {
 
   // const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-
   // Ensure the recaptcha script is "loaded"
   useEffect(() => {
     const script = document.createElement("script");
@@ -43,9 +42,7 @@ const Login: React.FC = () => {
         loginButtonRef.current.focus();
         console.log("Login button focused after CAPTCHA completion.");
       }
-
     };
-
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {

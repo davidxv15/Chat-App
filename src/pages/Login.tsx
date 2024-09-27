@@ -37,6 +37,13 @@ const Login: React.FC = () => {
       console.log("CAPTCHA completed, token:", token);
       // setCaptchaToken(token);
       setCaptchaComplete(true); // Set your state or perform other actions
+
+      // Focus the login button after CAPTCHA is complete
+      if (loginButtonRef.current) {
+        loginButtonRef.current.focus();
+        console.log("Login button focused after CAPTCHA completion.");
+      }
+
     };
 
   }, []);

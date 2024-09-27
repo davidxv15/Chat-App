@@ -93,6 +93,13 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleBlur = () => {
+    // Re-focus the login button if CAPTCHA is complete and the focus leaves it
+    if (captchaComplete && loginButtonRef.current) {
+      loginButtonRef.current.focus();
+    }
+  };
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
@@ -101,6 +108,7 @@ const Login: React.FC = () => {
         onSubmit={handleSubmit}
         className="bg-gray-300 p-4 rounded-lg shadow-md w-80"
         onKeyDown={handleKeyDown} // event to form
+        onBlur={handleBlur} // refocus if lost focus
       >
         <input
           type="text"

@@ -20,6 +20,10 @@ const Login: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [captchaComplete, setCaptchaComplete] = useState(false);
 
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const loginButtonRef = useRef<HTMLButtonElement>(null);
+
+
   // Ensure the recaptcha script is loaded
   useEffect(() => {
     const script = document.createElement("script");

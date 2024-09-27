@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
@@ -6,6 +6,7 @@ import axios from "axios";
 declare global {
   interface Window {
     grecaptcha: any;
+    onCaptchaComplete: (token: string) => void;
   }
 }
 
@@ -17,8 +18,7 @@ const Login: React.FC = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
-
-  const submitButtonRef = useRef<HTMLButtonElement>(null);
+  const [captchaComplete, setCaptchaComplete] = useState(false);
 
   // Ensure the recaptcha script is loaded
   useEffect(() => {
@@ -27,6 +27,13 @@ const Login: React.FC = () => {
     script.async = true;
     script.defer = true;
     document.body.appendChild(script);
+
+    // Defining the callback function for the CAPTCHA completion
+    window.onCaptchaComplete = (token: string) => {
+      console.log("CAPTCHA completed, token:", token);
+      setCaptchaComplete(true); // Set your state or perform other actions
+    };
+
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -70,9 +77,6 @@ const Login: React.FC = () => {
     }
   };
 
-  const onCaptchaComplete = () => {
-    submitButtonRef.current?.focus(); // Focus on the login button after CAPTCHA is complete
-  };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
@@ -114,14 +118,14 @@ const Login: React.FC = () => {
         <div
           className="g-recaptcha"
           data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"
-          data-callback={onCaptchaComplete}
+          data-callback="onCaptchaComplete"
         ></div>
 
         <button
           type="submit"
-          ref={submitButtonRef}
+          disabled={!captchaComplete}
           className="bg-blue-600 text-white p-2 mt-3 rounded-md w-full"
-          disabled={loading} //disables button while loading
+          // disabled={loading} //disables button while loading
         >
           {loading ? "Logging in..." : "Login"}
         </button>

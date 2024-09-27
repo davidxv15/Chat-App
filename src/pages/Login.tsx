@@ -48,17 +48,6 @@ const Login: React.FC = () => {
 
   }, []);
 
- // Focus the login button after CAPTCHA completion
- useEffect(() => {
-  if (captchaComplete && loginButtonRef.current) {
-    loginButtonRef.current.disabled = false;
-    loginButtonRef.current.focus();
-    console.log("Login button focused.");
-  }
-}, [captchaComplete]);
-
-
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(""); //setting to 'nothing' will clear prev errors

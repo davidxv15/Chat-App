@@ -7,7 +7,7 @@ import SoundToggle from "../components/SoundToggle";
 import TypingIndicator from "../components/TypingIndicator";
 import EmojiPicker from "emoji-picker-react";
 import DarkModeToggle from "../components/DarkModeToggle";
-import ActiveUsersList from "../components/ActiveUsers";
+import ActiveUsers from "../components/ActiveUsers";
 
 interface Message {
   timestamp: string;
@@ -229,7 +229,7 @@ const ChatRoom: React.FC = () => {
           : "General"}{" "}
         Chat
       </h1>
-
+      <ActiveUsers room={room} />
       <div className="flex items-center space-x-2">
         <SoundToggle
           soundEnabled={soundEnabled}

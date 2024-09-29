@@ -230,7 +230,7 @@ const ChatRoom: React.FC = () => {
           : "General"}{" "}
         Chat
       </h1>
-      <ActiveUsers room={room} />
+      <ActiveUsers room={roomName} />
       <div className="flex items-center space-x-2">
         <SoundToggle
           soundEnabled={soundEnabled}

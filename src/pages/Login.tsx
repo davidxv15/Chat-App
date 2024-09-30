@@ -123,7 +123,7 @@ const Login: React.FC = () => {
         {error && <div className="text-red-600 mb-4">{error}</div>}
 
         <div className="flex items-center mb-4">
-          <label className="flex items-center text-blue-600">
+          <label className="flex items-center text-blue-600 border">
             <input
               type="checkbox"
               checked={rememberMe}

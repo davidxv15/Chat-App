@@ -36,7 +36,7 @@ const ChatRoom: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    const savedSoundPref = localStorage.getItem('soundEnabled');
+    const savedSoundPref = localStorage.getItem("soundEnabled");
     console.log("Loaded sound preference from localStorage:", savedSoundPref); // Check what's loaded
     if (savedSoundPref !== null) {
       setSoundEnabled(JSON.parse(savedSoundPref)); // Parsed and set
@@ -44,20 +44,20 @@ const ChatRoom: React.FC = () => {
   }, []); // Only load on mount, no need to add soundEnabled to this dependency array
 
   useEffect(() => {
-  if (socket && roomName) {
-    const sendJoinMessage = () => {
-      //check if websocket is open first
-      if (socket.readyState === WebSocket.OPEN) {
-        socket.send(
-          JSON.stringify({
-            type: "join",
-            room: roomName,
-            username: user?.username,
-          })
-        );
-        console.log(`Joined room: ${roomName} as ${user?.username}`);
-      }
-    };
+    if (socket && roomName) {
+      const sendJoinMessage = () => {
+        //check if websocket is open first
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send(
+            JSON.stringify({
+              type: "join",
+              room: roomName,
+              username: user?.username,
+            })
+          );
+          console.log(`Joined room: ${roomName} as ${user?.username}`);
+        }
+      };
 
       // If the WebSocket is still connecting, wait for it to open before sending the join message
       if (socket.readyState === WebSocket.CONNECTING) {
@@ -130,7 +130,6 @@ const ChatRoom: React.FC = () => {
         );
       }
     };
-    
 
     socket.addEventListener("message", handleMessage);
 
@@ -188,7 +187,6 @@ const ChatRoom: React.FC = () => {
       );
     }
   };
-  
 
   const onEmojiClick = (emojiObject: any) => {
     setMessage((prevMessage) => prevMessage + emojiObject.emoji);

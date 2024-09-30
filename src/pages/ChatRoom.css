@@ -180,6 +180,10 @@ hr::after {
   transform: translateX(-0.39rem);
 }
 
+.Active-users {
+  text-decoration: underline;
+}
+
 .active-users-list {
   position: absolute;
   /* color: rgb(196, 193, 193); */

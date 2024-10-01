@@ -27,7 +27,7 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
       <h3 className="Active-users">Active Users:</h3>
       <ul className="">
         {activeUsers.map(user => (
-          <li  className="" key={user}>{user}</li>
+          <li key={user} className="">{user}</li>
         ))}
       </ul>
     </div>

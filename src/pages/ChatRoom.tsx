@@ -59,6 +59,19 @@ const ChatRoom: React.FC = () => {
         }
       };
 
+      const sendLeaveMessage = () => {
+        if (socket.readyState === WebSocket.OPEN) {
+          socket.send(
+            JSON.stringify({
+              type: "leave",
+              room: roomName,
+              username: user?.username,
+            })
+          );
+          console.log(`Left room: ${roomName} as ${user?.username}`);
+        }
+      };
+
       // If the WebSocket is still connecting, wait for it to open before sending the join message
       if (socket.readyState === WebSocket.CONNECTING) {
         socket.addEventListener("open", sendJoinMessage);

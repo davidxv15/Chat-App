@@ -80,6 +80,7 @@ const ChatRoom: React.FC = () => {
       }
 
       return () => {
+        sendLeaveMessage(); // Send leave message when component unmounts
         socket.removeEventListener("open", sendJoinMessage); // 'Cleanup' event listener on unmount
       };
     }

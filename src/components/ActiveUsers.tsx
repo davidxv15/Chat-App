@@ -8,15 +8,17 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
   useEffect(() => {
     if (!socket) return;
 
-    socket.onmessage = (event: MessageEvent) => {
+    const handleUserListUpdate = (event: MessageEvent) => {
       const data = JSON.parse(event.data);
       if (data.type === "userListUpdate" && data.room === room) {
         setActiveUsers(data.users);
       }
     };
 
+    socket.addEventListener("message", handleUserListUpdate);
+
     return () => {
-      socket.onmessage = null;
+      socket.removeEventListener("message", handleUserListUpdate);
     };
   }, [socket, room]);
 

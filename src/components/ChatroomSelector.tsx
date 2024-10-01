@@ -55,7 +55,7 @@ const ChatroomSelector: React.FC = () => {
           <button
             key={room}
             onClick={() => handleRoomSelection(room)}
-            className="bg-blue-800 text-gray-200 py-2 px-4 rounded hover:bg-blue-700"
+            className="bg-blue-800 text-xl text-gray-200 py-2 px-4 rounded hover:bg-blue-700"
           >
             {room}
           </button>

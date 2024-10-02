@@ -13,7 +13,7 @@
 }
 
 .toggle-checkbox:checked {
-  background-color: #0a0a0a;
+  background-color: #33a024;
 }
 
 .toggle-checkbox::before {
@@ -23,7 +23,7 @@
   left: 2px;
   width: 16px;
   height: 16px;
-  background-color: rgb(171, 171, 171);
+  background-color: rgb(249, 249, 249);
   border-radius: 50%;
   transition: transform 0.3s;
 }
@@ -38,12 +38,12 @@
 
 /* Dark mode styles */
 .dark .toggle-checkbox {
-  background-color: #555; /* Background color in dark mode */
+  background-color: #555; /* bg color in dark mode */
 }
 
 /* Dark mode checked state */
 .dark .toggle-checkbox:checked {
-  background-color: #119173; /* A blue color for dark mode */
+  background-color: #119173; /* toggle bg color for dark mode */
 }
 
 /* Chat message and content */

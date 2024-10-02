@@ -38,7 +38,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled
         type="checkbox"
         checked={soundEnabled}
         onChange={handleToggle}
-        className="toggle-checkbox"
+        className="toggle-checkbox dark:bg-gray-600"
       />
     </label>
   );

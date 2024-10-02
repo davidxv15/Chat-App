@@ -23,7 +23,7 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
   }, [socket, room]);
 
   return (
-    <div className="active-users-list text-gray-100 bg-gray-800 px-2 py-2">
+    <div className="active-users-list text-gray-100 bg-gray-800 px-2 py-2 absolute top-2 left-4">
       <h3 className="Active-users">Active Users:</h3>
       <ul className="">
         {activeUsers.map(user => (

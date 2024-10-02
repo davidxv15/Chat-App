@@ -205,5 +205,6 @@ hr::after {
 }
 
 .home-button {
-  top: 6rem;
+  position: relative;
+  top: 2rem;
 }

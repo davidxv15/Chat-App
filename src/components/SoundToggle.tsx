@@ -32,7 +32,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled
       {soundEnabled ? (
         <SpeakerWaveIcon className="h-6 w-6 text-blue-500 dark:text-blue-800" /> 
       ) : (
-        <SpeakerXMarkIcon className="h-6 w-6 text-red-700" /> 
+        <SpeakerXMarkIcon className="h-6 w-6 text-red-600 dark:text-red-800" /> 
       )}
       <input
         type="checkbox"

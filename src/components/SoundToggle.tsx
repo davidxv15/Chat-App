@@ -28,7 +28,7 @@ const SoundToggle: React.FC<SoundToggleProps> = ({ soundEnabled, setSoundEnabled
   };
 
   return (
-    <label className="flex items-center space-x-2">
+    <label className="flex items-center space-x-2 absolute top-14 right-14">
       {soundEnabled ? (
         <SpeakerWaveIcon className="h-6 w-6 text-blue-800" /> 
       ) : (

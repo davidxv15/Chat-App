@@ -189,12 +189,14 @@ hr::after {
   /* position: absolute; */
   /* color: rgb(196, 193, 193); */
   top: 3.5rem;
+  font-size: 1rem;
   /* background: rgba(255, 255, 255, 0.8); */
-  padding: 10px;
+  /* padding: 10px; */
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 8);
   z-index: 99;
   opacity: 0.33;
+  max-width: 25%;
 }
 
 .active-users-list ul {
@@ -204,6 +206,7 @@ hr::after {
 
 .active-users-list li {
   margin-bottom: 5px;
+  font-size: .8rem;
 }
 
 .home-button {

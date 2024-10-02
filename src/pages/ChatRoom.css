@@ -188,7 +188,7 @@ hr::after {
 .active-users-list {
   /* position: absolute; */
   /* color: rgb(196, 193, 193); */
-  top: 3.5rem;
+  top: 1rem;
   font-size: 1rem;
   /* background: rgba(255, 255, 255, 0.8); */
   /* padding: 10px; */

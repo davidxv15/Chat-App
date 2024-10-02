@@ -203,3 +203,7 @@ hr::after {
 .active-users-list li {
   margin-bottom: 5px;
 }
+
+.home-button {
+  top: 6rem;
+}

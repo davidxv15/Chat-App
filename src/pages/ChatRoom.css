@@ -211,6 +211,7 @@ hr::after {
 
 .home-button {
   /* position: relative; */
-  top: 5.5rem;
+  /* top: 5.5rem; */
+  opacity: .8;
   z-index: 1;
 }

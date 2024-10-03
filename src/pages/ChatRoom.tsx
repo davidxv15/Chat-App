@@ -234,7 +234,8 @@ const ChatRoom: React.FC = () => {
   }
 
   return (
-    <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4">
+    <div className="sticky-header  sticky top-0">
+    <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0">
       <h1 className="text-3xl font-bold dark:text-gray-400 flex justify-center items-center">
         {" "}
         {roomName
@@ -256,7 +257,7 @@ const ChatRoom: React.FC = () => {
 
       <button
         onClick={() => navigate("/home")}
-        className="home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white"
+        className="home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky"
       >
         Home
       </button>
@@ -270,7 +271,6 @@ const ChatRoom: React.FC = () => {
         Logout
       </button>
 
-      {/* destructure 'msg' into individual spans, as "msg.____", allowing them as CSS selectors */}
       <div
         className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
         ref={chatContainerRef}
@@ -325,6 +325,7 @@ const ChatRoom: React.FC = () => {
           Send
         </button>
       </div>
+    </div>
     </div>
   );
 };

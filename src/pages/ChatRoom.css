@@ -186,7 +186,7 @@ hr::after {
 }
 
 .active-users-list {
-  /* position: absolute; */
+  position: sticky;
   /* color: rgb(196, 193, 193); */
   top: 1rem;
   font-size: 1rem;

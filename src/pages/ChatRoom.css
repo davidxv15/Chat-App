@@ -195,7 +195,8 @@ hr::after {
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 8);
   z-index: 99;
-  opacity: 0.33;
+  /* opacity: 0.6; */
+  backdrop-filter: blur(50px);
   max-width: 25%;
 }
 

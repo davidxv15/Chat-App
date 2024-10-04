@@ -250,7 +250,7 @@ const ChatRoom: React.FC = () => {
   }
 
   return (
-    <div className="sticky-header  sticky top-0">
+    <div className="sticky-header sticky">
     <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0">
       <h1 className="text-3xl font-bold dark:text-gray-400 flex justify-center items-center">
         {" "}
@@ -273,7 +273,7 @@ const ChatRoom: React.FC = () => {
 
       <button
         onClick={() => navigate("/home")}
-        className="home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky"
+        className="home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky transition-all"
       >
         Home
       </button>

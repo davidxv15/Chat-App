@@ -42,7 +42,7 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
   }, [socket, room]);
 
   return (
-    <div className={`active-users-list hover:scale-125 bg-gray-800 bg-opacity-80 text-white px-2 py-0 sticky  dark:bg-opacity-5 backdrop-blur-sm dark:text-yellow-100 transition-all duration-500 ease-in-out ${isScrolled ? 'transform translate-y-[1rem]' : ''}`}>
+    <div className={`active-users-list hover:scale-125 bg-gray-800 bg-opacity-80 text-white px-2 py-0 sticky  dark:bg-opacity-5 backdrop-blur-sm dark:text-yellow-100 transition-all duration-500 ease-in-out ${isScrolled ? 'transform translate-y-[4rem]' : ''}`}>
       <h3 className="Active-users opacity-60">Online</h3>
       <ul className="">
         {activeUsers.map(user => (

@@ -71,6 +71,8 @@
 
 .message-content {
   color: #e2e0e0;
+  white-space: normal; 
+  overflow-wrap: break-word;
 }
 
 /* Chat box styling */

@@ -3,6 +3,7 @@ import { useWebSocket } from "../context/WebSocketContext";
 
 const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
   const [activeUsers, setActiveUsers] = useState<string[]>([]);
+  const [isScrolled, setIsScrolled] = useState(false);  
   const { socket } = useWebSocket(); 
 
   useEffect(() => {

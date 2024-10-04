@@ -211,21 +211,7 @@ hr::after {
 
 .home-button {
   /* position: relative; */
-  /* top: 5.5rem;
+  top: 5.5rem;
   opacity: .8;
-  z-index: 1; */
-  position: absolute;
-  top: 10px; /* initial position */
-  right: 20px;
-  width: 100px;
-  height: 40px;
-  transition: all 0.5s ease-in-out; /* Smooth transitions */
-}
-
-.home-button.shrink {
-  width: 60px;
-  height: 30px;
-  top: auto; /* Remove the top position */
-  right: 10px;
-  bottom: 60px; /* Move above the Send button */
+  z-index: 1;
 }

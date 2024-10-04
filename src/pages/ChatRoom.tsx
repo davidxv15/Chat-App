@@ -224,7 +224,15 @@ const ChatRoom: React.FC = () => {
     }
   };
 
-  
+  // Scroll event listener
+  useEffect(() => {
+    const chatContainer = chatContainerRef.current;
+    if (chatContainer) {
+      chatContainer.addEventListener("scroll", handleScroll);
+      return () => chatContainer.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
 
   const toggleEmojiPicker = () => {
     setShowEmojiPicker((prevState) => !prevState);

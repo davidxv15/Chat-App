@@ -188,7 +188,7 @@ hr::after {
 }
 
 .active-users-list {
-  position: absolute;
+  /* position: absolute; */
   /* color: rgb(196, 193, 193); */
   top: 1rem;
   font-size: 1rem;
@@ -200,6 +200,7 @@ hr::after {
   /* opacity: 0.6; */
   backdrop-filter: blur(50px);
   max-width: 25%;
+  transform: translateY(-2rem)
 }
 
 .active-users-list ul {

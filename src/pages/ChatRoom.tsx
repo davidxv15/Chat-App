@@ -30,6 +30,7 @@ const ChatRoom: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const lastMessageRef = useRef<HTMLDivElement>(null);
@@ -201,6 +202,21 @@ const ChatRoom: React.FC = () => {
       );
     }
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY; // Detects how far the page has scrolled
+      const threshold = 100; // Adjust this threshold based on where you want the change to happen
+      if (scrollPosition > threshold) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const onEmojiClick = (emojiObject: any) => {
     setMessage((prevMessage) => prevMessage + emojiObject.emoji);

@@ -23,7 +23,7 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
   }, [socket, room]);
 
   return (
-    <div className="active-users-list hover:scale-125 text-gray-200 bg-gray-800 px-2 py-1 sticky">
+    <div className="active-users-list hover:scale-125 text-orange-200 bg-gray-800 px-2 py-1">
       <h3 className="Active-users">Online</h3>
       <ul className="">
         {activeUsers.map(user => (

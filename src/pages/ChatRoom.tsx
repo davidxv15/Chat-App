@@ -206,7 +206,7 @@ const ChatRoom: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY; // Detects how far the page has scrolled
-      const threshold = 80; // Adjust this threshold based on where you want the change to happen
+      const threshold = 70; // Adjust this threshold based on where you want the change to happen
       if (scrollPosition > threshold) {
         setIsScrolled(true);
       } else {

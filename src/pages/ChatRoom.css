@@ -200,7 +200,7 @@ hr::after {
   /* opacity: 0.6; */
   backdrop-filter: blur(50px);
   max-width: 25%;
-  /* transform: translateY(-2rem); */
+  transform: translateY(-1rem);
 }
 
 .active-users-list ul {

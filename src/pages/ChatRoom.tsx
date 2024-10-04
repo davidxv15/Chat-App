@@ -30,12 +30,10 @@ const ChatRoom: React.FC = () => {
   const [isTyping, setIsTyping] = useState(false);
   const [typingUser, setTypingUser] = useState("");
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [isScrolledToBottom, setIsScrolledToBottom ] = useState(false);
 
   const chatContainerRef = useRef<HTMLDivElement>(null);
   const lastMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
-  const homeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const savedSoundPref = localStorage.getItem("soundEnabled");
@@ -213,27 +211,6 @@ const ChatRoom: React.FC = () => {
     }, 200); // short delay for focus restoration after emoji selection
   };
 
-  // Function to check scroll position and adjust the Home button
-  const handleScroll = () => {
-    const chatContainer = chatContainerRef.current;
-    if (chatContainer) {
-      const isAtBottom =
-        chatContainer.scrollHeight - chatContainer.scrollTop === chatContainer.clientHeight;
-
-      setIsScrolledToBottom(!isAtBottom); // If not at the bottom, shrink the button
-    }
-  };
-
-  // Scroll event listener
-  useEffect(() => {
-    const chatContainer = chatContainerRef.current;
-    if (chatContainer) {
-      chatContainer.addEventListener("scroll", handleScroll);
-      return () => chatContainer.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
-
-
   const toggleEmojiPicker = () => {
     setShowEmojiPicker((prevState) => !prevState);
     inputRef.current?.focus();
@@ -257,7 +234,7 @@ const ChatRoom: React.FC = () => {
   }
 
   return (
-    <div className="sticky-header sticky">
+    <div className="sticky-header  sticky top-0">
     <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0">
       <h1 className="text-3xl font-bold dark:text-gray-400 flex justify-center items-center">
         {" "}

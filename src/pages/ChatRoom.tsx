@@ -206,7 +206,7 @@ const ChatRoom: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY; // Detects how far the page has scrolled
-      const threshold = 100; // Adjust this threshold based on where you want the change to happen
+      const threshold = 40; // Adjust this threshold based on where you want the change to happen
       if (scrollPosition > threshold) {
         setIsScrolled(true);
       } else {
@@ -273,7 +273,7 @@ const ChatRoom: React.FC = () => {
 
       <button
         onClick={() => navigate("/home")}
-        className={`home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky transition-all ${isScrolled ? 'w-40 mx-auto' : 'w-auto'}`}
+        className={`home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky transition-all ${isScrolled ? 'w-35 mx-auto' : 'w-auto'}`}
       >
         Home
       </button>

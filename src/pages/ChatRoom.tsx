@@ -273,7 +273,7 @@ const ChatRoom: React.FC = () => {
 
       <button
         onClick={() => navigate("/home")}
-        className="home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky transition-all"
+        className={`home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky transition-all ${isScrolled ? 'w-40' : 'w-auto'}`}
       >
         Home
       </button>

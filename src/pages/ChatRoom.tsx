@@ -288,11 +288,11 @@ const ChatRoom: React.FC = () => {
       </button>
 
       <div
-        className="flex-1 bg-white p-4 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
+        className="flex-1 bg-white p-4 pt-0 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
         ref={chatContainerRef}
       >
         {messages.map((msg, index) => (
-          <div
+          <div // edit msgs
             key={index}
             className="message mb-2 p-2 bg-gray-600 rounded"
             ref={index === messages.length - 1 ? lastMessageRef : null}

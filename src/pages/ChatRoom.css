@@ -49,9 +49,9 @@
 /* Chat message and content */
 .message {
   font-size: 14px;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   position: relative;
-  top: 2rem;
+  top: .5rem;
   padding-right: 50px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }

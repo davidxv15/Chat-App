@@ -214,8 +214,8 @@ const ChatRoom: React.FC = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const onEmojiClick = (emojiObject: any) => {
@@ -251,97 +251,101 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="sticky-header sticky">
-    <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0">
-      <h1 className="text-3xl font-bold dark:text-gray-400 flex justify-center items-center">
-        {" "}
-        {roomName
-          ? roomName.charAt(0).toUpperCase() + roomName.slice(1)
-          : "General"}{" "}
-        Chat
-      </h1>
-      <ActiveUsers room={roomName} />
-      <div className="flex items-center space-x-2">
-        <SoundToggle
-          soundEnabled={soundEnabled}
-          setSoundEnabled={setSoundEnabled}
-        />
-        <DarkModeToggle />
-      </div>
-      {/* <div className="flex flex-col min- bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-2">
+      <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0">
+        <h1 className="text-3xl font-bold dark:text-gray-400 flex justify-center items-center">
+          {" "}
+          {roomName
+            ? roomName.charAt(0).toUpperCase() + roomName.slice(1)
+            : "General"}{" "}
+          Chat
+        </h1>
+        <ActiveUsers room={roomName} />
+        <div className="flex items-center space-x-2">
+          <SoundToggle
+            soundEnabled={soundEnabled}
+            setSoundEnabled={setSoundEnabled}
+          />
+          <DarkModeToggle />
+        </div>
+        {/* <div className="flex flex-col min- bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-2">
     <ActiveUsersList roomName={roomName!} />
   </div> */}
 
-      <button
-        onClick={() => navigate("/home")}
-        className={`home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky transition-all duration-600 ease-in-out ${isScrolled ? 'w-36 mx-auto' : 'w-full mx-auto'}`}
-      >
-        Home
-      </button>
-      <button
-        onClick={() => {
-          navigate("/login");
-          window.location.reload();
-        }}
-        className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4 hover:bg-red-800 dark:hover:bg-red-600 dark:hover:text-white"
-      >
-        Logout
-      </button>
-
-      <div
-        className="flex-1 bg-white p-4 pt-0 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
-        ref={chatContainerRef}
-      >
-        {messages.map((msg, index) => (
-          <div // edit msgs
-            key={index}
-            className="message mb-2 p-2 bg-gray-600 rounded"
-            ref={index === messages.length - 1 ? lastMessageRef : null}
-          >
-            <span className="timestamp">{msg.timestamp}</span>
-            <span className="username">{msg.username}</span> :{" "}
-            <span className="message-content">{msg.message}</span>
-          </div>
-        ))}
-
-        <TypingIndicator isTyping={isTyping} username={typingUser} />
-      </div>
-
-      {/* Emoji Picker */}
-      <div className={`emoji-picker-wrapper ${showEmojiPicker ? "show" : ""}`}>
-        {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
-      </div>
-
-      <div className="input-wrapper bg-blue-500 dark:bg-blue-800">
-        <button className="emoji-button" onClick={toggleEmojiPicker}>
-          {showEmojiPicker ? "❌" : "😀"}
-        </button>
-        {showEmojiPicker && (
-          <div className="emoji-picker-wrapper">
-            <EmojiPicker onEmojiClick={onEmojiClick} />
-          </div>
-        )}
-
-        {/* Input and Send Button */}
-        <input
-          type="text"
-          className="flex-1 p-2 rounded-md text-black dark:bg-gray-800 dark:text-white"
-          placeholder="Type your message..."
-          value={message}
-          ref={inputRef}
-          onChange={(e) => {
-            setMessage(e.target.value);
-            handleTyping();
-          }}
-          onKeyDown={handleKeyDown} // Custom behavior when emoji picker is open
-        />
         <button
-          onClick={sendMessage}
-          className="ml-2 bg-blue-500 text-white p-2 rounded-md border hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-500 dark:hover:text-white"
+          onClick={() => navigate("/home")}
+          className={`home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky transition-all duration-600 ease-in-out ${
+            isScrolled ? "w-36 mx-auto" : "w-full mx-auto"
+          }`}
         >
-          Send
+          Home
         </button>
+        <button
+          onClick={() => {
+            navigate("/login");
+            window.location.reload();
+          }}
+          className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4 hover:bg-red-800 dark:hover:bg-red-600 dark:hover:text-white"
+        >
+          Logout
+        </button>
+
+        <div
+          className="flex-1 bg-white p-4 pt-0 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
+          ref={chatContainerRef}
+        >
+          {messages.map((msg, index) => (
+            <div // edit msgs
+              key={index}
+              className="message mb-2 p-2 bg-gray-600 rounded"
+              ref={index === messages.length - 1 ? lastMessageRef : null}
+            >
+              <span className="timestamp">{msg.timestamp}</span>
+              <span className="username">{msg.username}</span> :{" "}
+              <span className="message-content">{msg.message}</span>
+            </div>
+          ))}
+
+          <TypingIndicator isTyping={isTyping} username={typingUser} />
+        </div>
+
+        {/* Emoji Picker */}
+        <div
+          className={`emoji-picker-wrapper ${showEmojiPicker ? "show" : ""}`}
+        >
+          {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+        </div>
+
+        <div className="input-wrapper bg-blue-500 dark:bg-blue-800">
+          <button className="emoji-button" onClick={toggleEmojiPicker}>
+            {showEmojiPicker ? "❌" : "😀"}
+          </button>
+          {showEmojiPicker && (
+            <div className="emoji-picker-wrapper">
+              <EmojiPicker onEmojiClick={onEmojiClick} />
+            </div>
+          )}
+
+          {/* Input and Send Button */}
+          <input
+            type="text"
+            className="flex-1 p-2 rounded-md text-black dark:bg-gray-800 dark:text-white"
+            placeholder="Type your message..."
+            value={message}
+            ref={inputRef}
+            onChange={(e) => {
+              setMessage(e.target.value);
+              handleTyping();
+            }}
+            onKeyDown={handleKeyDown} // Custom behavior when emoji picker is open
+          />
+          <button
+            onClick={sendMessage}
+            className="ml-2 bg-blue-500 text-white p-2 rounded-md border hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-500 dark:hover:text-white"
+          >
+            Send
+          </button>
+        </div>
       </div>
-    </div>
     </div>
   );
 };

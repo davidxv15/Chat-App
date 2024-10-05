@@ -33,7 +33,7 @@
 }
 .dark .toggle-checkbox:checked::before {
   transform: translateX(20px);
-  background-color:#c5c5c5;
+  background-color: #c5c5c5;
 }
 
 /* Dark mode styles */
@@ -51,7 +51,7 @@
   font-size: 14px;
   /* margin-bottom: 10px; */
   position: relative;
-  top: .5rem;
+  top: 0.5rem;
   padding-right: 50px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -71,7 +71,7 @@
 
 .message-content {
   color: #e2e0e0;
-  white-space: normal; 
+  white-space: normal;
   overflow-wrap: break-word;
 }
 
@@ -173,7 +173,7 @@ hr {
 
 hr::after {
   background: #ae4545;
-  content: '§';
+  content: "§";
   padding: 0 4px;
   position: relative;
   top: -13px;
@@ -210,12 +210,12 @@ hr::after {
 
 .active-users-list li {
   margin-bottom: 5px;
-  font-size: .8rem;
+  font-size: 0.8rem;
 }
 
 .home-button {
   /* position: relative; */
   top: 5.5rem;
-  opacity: .8;
+  opacity: 0.8;
   z-index: 1;
 }

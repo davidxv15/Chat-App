@@ -268,7 +268,8 @@ const ChatRoom: React.FC = () => {
             : "General"}{" "}
           Chat
         </h1>
-        <ActiveUsers room={roomName} />
+        <ActiveUsers room={roomName || 'defaultRoom'} />
+
         <div className="flex items-center space-x-2">
           <SoundToggle
             soundEnabled={soundEnabled}
@@ -290,7 +291,6 @@ const ChatRoom: React.FC = () => {
         </button>
         <button
           onClick={handleLogout}
-
           className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4 hover:bg-red-800 dark:hover:bg-red-600 dark:hover:text-white"
         >
           Logout

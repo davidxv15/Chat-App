@@ -232,10 +232,19 @@ const ChatRoom: React.FC = () => {
     inputRef.current?.focus();
   };
 
+  // Ensures socket is cleaned up when user logs out
   const handleLogout = () => {
-    logout(); //will clear user session
+    if (socket && roomName && user) {
+      socket.send(JSON.stringify({
+        type: "leave",
+        room: roomName,
+        username: user.username,
+      }));
+    }
+
+    logout(); // Log out the user
     navigate("/login");
-    window.location.reload();
+    window.location.reload(); // Refresh to ensure state cleanup
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

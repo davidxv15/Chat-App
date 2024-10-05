@@ -139,12 +139,14 @@ button {
   max-height: 200px;
   display: flex;
   flex-direction: column;
+  background-color: #1a202c;
 }
 
 /* Emoji search bar styling */
 .emoji-picker-react .emoji-picker-react__search {
   flex-shrink: 0;
   padding: 10px;
+  background-color: #1a202c; 
   /* border-bottom: 1px solid #e0e0e0; */
 }
 

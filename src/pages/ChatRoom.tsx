@@ -347,7 +347,7 @@ const ChatRoom: React.FC = () => {
           />
           <button
             onClick={sendMessage}
-            className="ml-2 bg-blue-500 text-white p-2 rounded-md border hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-500 dark:hover:text-white"
+            className="ml-2 bg-blue-500 text-white p-2 rounded-md border border-gray-300 dark:border-gray-800 hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-500 dark:hover:text-white"
           >
             Send
           </button>

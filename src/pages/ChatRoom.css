@@ -98,7 +98,8 @@
 
 .emoji-picker-wrapper.show {
   display: block;
-  background-color: #b74e4e;
+  background-color: #080808;
+  max-height: 448px;
 }
 
 /* Input and Send button wrapper */

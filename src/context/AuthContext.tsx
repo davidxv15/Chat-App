@@ -83,9 +83,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     sessionStorage.removeItem("token");
     localStorage.removeItem("username");
     sessionStorage.removeItem("username");
-    delete axios.defaults.headers.common["Authorization"];
-    navigate('/login'); // redirects to login after logout
-  };
+     // strike messages from sessionStorage on log out
+  Object.keys(sessionStorage).forEach((key) => {
+    if (key.startsWith("messages-")) {
+      sessionStorage.removeItem(key);
+    }
+  });
+
+  delete axios.defaults.headers.common["Authorization"];
+  navigate("/login");
+};
 
   const startInactivityTimer = () => {
     clearTimeout(inactivityTimeout);

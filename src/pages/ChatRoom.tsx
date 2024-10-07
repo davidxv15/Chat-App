@@ -37,6 +37,14 @@ const ChatRoom: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const storedMessages = sessionStorage.getItem(`messages-${roomName}`);
+    if (storedMessages) {
+      setMessages(JSON.parse(storedMessages));
+    }
+  }, [roomName]);
+  
+
+  useEffect(() => {
     const savedSoundPref = localStorage.getItem("soundEnabled");
     console.log("Loaded sound preference from localStorage:", savedSoundPref); // Check what's loaded
     if (savedSoundPref !== null) {

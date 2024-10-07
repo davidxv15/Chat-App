@@ -7,7 +7,7 @@ const Bulletin: React.FC = () => {
       <p className="text-gray-400 p-2">
         Visit our sponsors! Advertise here!
       </p>
-      <p className="contact">Contact </p>
+      <p className="contact text-white">Contact </p>
     </div>
   );
 };

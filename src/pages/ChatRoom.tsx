@@ -110,18 +110,26 @@ const ChatRoom: React.FC = () => {
         console.log("Message received on client:", data);
 
         if (data.message && data.username && data.room === roomName) {
-          // Update the messages in the correct room
-          setMessages((prevMessages) => [
-            ...prevMessages,
-            {
-              timestamp: new Date().toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              }),
-              username: data.username,
-              message: data.message,
-            },
-          ]);
+          const newMessage = {
+            timestamp: new Date().toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+            username: data.username,
+            message: data.message,
+          };
+  
+          setMessages((prevMessages) => {
+            const updatedMessages = [...prevMessages, newMessage];
+  
+            // Store updated messages in sessionStorage
+            sessionStorage.setItem(
+              `messages-${roomName}`,
+              JSON.stringify(updatedMessages)
+            );
+  
+            return updatedMessages;
+          });
 
           // Play sound if enabled
           if (soundEnabled) {

@@ -126,7 +126,7 @@ const ChatRoom: React.FC = () => {
             username: data.username,
             message: data.message,
           };
-  
+          //update msgs state on new msg
           setMessages((prevMessages) => {
             const updatedMessages = [...prevMessages, newMessage];
   

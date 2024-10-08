@@ -246,18 +246,26 @@ const ChatRoom: React.FC = () => {
   };
 
   // Ensures socket is cleaned up when user logs out
-  const handleLogout = () => {
-    // Clear all room messages from sessionStorage
-    Object.keys(sessionStorage).forEach((key) => {
-      if (key.startsWith("messages-")) {
-        sessionStorage.removeItem(key);
-      }
-    });
+  const handleLogout = async () => {
+    try {
+      // Send a request to the backend to delete the messages
+      await axios.delete(`http://localhost:3001/api/messages/${user?.username}`);
   
-    logout(); // Your existing logout logic
-    navigate("/login");
-    window.location.reload();
+      // Clear all room messages from sessionStorage
+      Object.keys(sessionStorage).forEach((key) => {
+        if (key.startsWith("messages-")) {
+          sessionStorage.removeItem(key);
+        }
+      });
+  
+      logout(); // Your existing logout logic
+      navigate("/login");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error deleting messages on logout:", error);
+    }
   };
+  
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {

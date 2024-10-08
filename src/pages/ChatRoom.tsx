@@ -250,17 +250,16 @@ const ChatRoom: React.FC = () => {
 
   // Ensures socket is cleaned up when user logs out
   const handleLogout = () => {
-    if (socket && roomName && user) {
-      socket.send(JSON.stringify({
-        type: "leave",
-        room: roomName,
-        username: user.username,
-      }));
-    }
-
-    logout(); // Log out the user
+    // Clear all room messages from sessionStorage
+    Object.keys(sessionStorage).forEach((key) => {
+      if (key.startsWith("messages-")) {
+        sessionStorage.removeItem(key);
+      }
+    });
+  
+    logout(); // Your existing logout logic
     navigate("/login");
-    window.location.reload(); // Refresh to ensure state cleanup
+    window.location.reload();
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

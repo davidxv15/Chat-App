@@ -116,7 +116,7 @@ const ChatRoom: React.FC = () => {
       try {
         const data = JSON.parse(event.data);
         console.log("Message received on client:", data);
-
+        // only process valid msg data
         if (data.message && data.username && data.room === roomName) {
           const newMessage = {
             timestamp: new Date().toLocaleTimeString([], {

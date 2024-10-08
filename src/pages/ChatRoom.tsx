@@ -96,6 +96,16 @@ const ChatRoom: React.FC = () => {
     }
   }, [socket, roomName, user?.username]);
 
+  const fetchMessages = async (roomName: string) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+      return [];
+    }
+  };
+
   useEffect(() => {
     if (loading) return; // will only check if loading is done
     console.log("User in ChatRoom:", user);

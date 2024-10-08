@@ -96,15 +96,20 @@ const ChatRoom: React.FC = () => {
     }
   }, [socket, roomName, user?.username]);
 
-  const fetchMessages = async (roomName: string) => {
-    try {
-      const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching messages:", error);
-      return [];
+  useEffect(() => {
+    const fetchMessages = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
+        setMessages(response.data);
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+      }
+    };
+  
+    if (roomName) {
+      fetchMessages(); // Fetch messages for the room on mount
     }
-  };
+  }, [roomName]);
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done

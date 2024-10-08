@@ -186,10 +186,7 @@ const ChatRoom: React.FC = () => {
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
       console.log("Sending message:", message);
-      const timestamp = new Date().toLocaleTimeString([], {
-        hour: "2-digit",
-        minute: "2-digit",
-      });
+      const timestamp = new Date().toISOString(); 
       const messageData = JSON.stringify({
         type: "message",
         room: roomName,

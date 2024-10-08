@@ -37,11 +37,35 @@ const ChatRoom: React.FC = () => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    const storedMessages = sessionStorage.getItem(`messages-${roomName}`);
-    if (storedMessages) {
-      setMessages(JSON.parse(storedMessages));
+
+  // Fetch messages for a room from the backend
+  const fetchMessages = async (roomName: string) => {
+    try {
+      const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching messages:", error);
+      return [];
     }
+  };
+
+
+  useEffect(() => {
+    const loadMessages = async () => {
+      const storedMessages = sessionStorage.getItem(`messages-${roomName}`);
+      if (storedMessages) {
+        setMessages(JSON.parse(storedMessages));
+      } else if (roomName) {
+        // Fetch from the backend if no messages are found in sessionStorage
+        const fetchedMessages = await fetchMessages(roomName);
+        setMessages(fetchedMessages);
+        
+        // Store them in sessionStorage for future use
+        sessionStorage.setItem(`messages-${roomName}`, JSON.stringify(fetchedMessages));
+      }
+    };
+  
+    loadMessages(); // Call the function
   }, [roomName]);
   
 

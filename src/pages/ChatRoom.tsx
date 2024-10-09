@@ -145,6 +145,27 @@ const ChatRoom: React.FC = () => {
       try {
         const data = JSON.parse(event.data);
         console.log("Message received on client:", data);
+
+        if (data.type === "userLoggedOut" && data.username) {
+          // Remove the messages of the logged-out user
+          setMessages((prevMessages) => 
+            prevMessages.filter((msg) => msg.username !== data.username)
+          );
+  
+          // Clear the sessionStorage for that user's messages
+          const storedMessages = sessionStorage.getItem(`messages-${roomName}`);
+          if (storedMessages) {
+            const parsedMessages = JSON.parse(storedMessages);
+            const filteredMessages = parsedMessages.filter(
+              (msg) => msg.username !== data.username
+            );
+            sessionStorage.setItem(
+              `messages-${roomName}`,
+              JSON.stringify(filteredMessages)
+            );
+          }
+        }
+
         // only process valid msg data
         if (data.message && data.username && data.room === roomName) {
           const newMessage = {
@@ -287,7 +308,7 @@ const ChatRoom: React.FC = () => {
         }
       });
   
-      logout(); // Your existing logout logic
+      logout(); //existing logout logic
       navigate("/login");
       window.location.reload();
     } catch (error) {

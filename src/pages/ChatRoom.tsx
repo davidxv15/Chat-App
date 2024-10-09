@@ -41,38 +41,30 @@ const ChatRoom: React.FC = () => {
   // Fetch messages for a room from the backend
   useEffect(() => {
     const loadMessages = async () => {
-      // ensure use of correct name consistently
       const storedMessages = sessionStorage.getItem(`messages-${roomName}`);
-      
       if (storedMessages) {
         setMessages(JSON.parse(storedMessages));
       } else if (roomName) {
         // Fetch from the backend if no messages are found in sessionStorage
-        const fetchedMessages = await fetchMessages(roomName);
-        setMessages(fetchedMessages);
-        
-        // Store them in sessionStorage for future use
-        sessionStorage.setItem(`messages-${roomName}`, JSON.stringify(fetchedMessages));
+        try {
+          const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
+          const fetchedMessages = response.data;
+          setMessages(fetchedMessages);
+
+          // Store fetched messages in sessionStorage for future use
+          sessionStorage.setItem(`messages-${roomName}`, JSON.stringify(fetchedMessages));
+        } catch (error) {
+          console.error("Error fetching messages:", error);
+        }
       }
     };
-  
-    const fetchMessages = async (roomName: string) => {
-      try {
-        const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
-        return response.data; // Ensure to return fetched data
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-        return []; // Return an empty array in case of error
-      }
-    };
-  
+
     if (roomName) {
-      loadMessages(); // Call the function on mount
+      loadMessages();
     }
   }, [roomName]);
   
   
-
   useEffect(() => {
     const savedSoundPref = localStorage.getItem("soundEnabled");
     console.log("Loaded sound preference from localStorage:", savedSoundPref); // Check what's loaded
@@ -157,7 +149,7 @@ const ChatRoom: React.FC = () => {
           if (storedMessages) {
             const parsedMessages = JSON.parse(storedMessages);
             const filteredMessages = parsedMessages.filter(
-              (msg) => msg.username !== data.username
+              (msg: { username: any; }) => msg.username !== data.username
             );
             sessionStorage.setItem(
               `messages-${roomName}`,

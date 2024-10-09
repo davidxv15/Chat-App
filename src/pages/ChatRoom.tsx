@@ -39,20 +39,11 @@ const ChatRoom: React.FC = () => {
 
 
   // Fetch messages for a room from the backend
-  const fetchMessages = async (roomName: string) => {
-    try {
-      const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
-      return response.data;
-    } catch (error) {
-      console.error("Error fetching messages:", error);
-      return [];
-    }
-  };
-
-
   useEffect(() => {
     const loadMessages = async () => {
+      // ensure use of correct name consistently
       const storedMessages = sessionStorage.getItem(`messages-${roomName}`);
+      
       if (storedMessages) {
         setMessages(JSON.parse(storedMessages));
       } else if (roomName) {
@@ -65,8 +56,21 @@ const ChatRoom: React.FC = () => {
       }
     };
   
-    loadMessages(); // Call the function
+    const fetchMessages = async (roomName: string) => {
+      try {
+        const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
+        return response.data; // Ensure to return fetched data
+      } catch (error) {
+        console.error("Error fetching messages:", error);
+        return []; // Return an empty array in case of error
+      }
+    };
+  
+    if (roomName) {
+      loadMessages(); // Call the function on mount
+    }
   }, [roomName]);
+  
   
 
   useEffect(() => {
@@ -119,21 +123,6 @@ const ChatRoom: React.FC = () => {
       };
     }
   }, [socket, roomName, user?.username]);
-
-  useEffect(() => {
-    const fetchMessages = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
-        setMessages(response.data);
-      } catch (error) {
-        console.error("Error fetching messages:", error);
-      }
-    };
-  
-    if (roomName) {
-      fetchMessages(); // Fetch messages for the room on mount
-    }
-  }, [roomName]);
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done

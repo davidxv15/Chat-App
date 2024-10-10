@@ -336,9 +336,11 @@ useEffect(() => {
 
 // Also call handleLogout on WebSocket closure or timeout
 useEffect(() => {
-  socket.onclose = () => {
-    handleLogout();
-  };
+  if (socket) {
+    socket.onclose = () => {
+      handleLogout();
+    };
+  }
 }, [socket]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

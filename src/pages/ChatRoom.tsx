@@ -300,13 +300,27 @@ const ChatRoom: React.FC = () => {
         }
       });
   
-      logout(); //existing logout logic
-      navigate("/login");
-      window.location.reload();
-    } catch (error) {
-      console.error("Error deleting messages on logout:", error);
+    
+    // Clear user authentication
+    setUser(null);
+    setToken(null);
+    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
+    localStorage.removeItem("username");
+    sessionStorage.removeItem("username");
+
+    // Remove WebSocket connection if needed
+    if (socket) {
+      socket.close();
     }
-  };
+
+    // Redirect to login
+    navigate("/login");
+    window.location.reload();
+  } catch (error) {
+    console.error("Error logging out:", error);
+  }
+};
   
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

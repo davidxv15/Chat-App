@@ -321,7 +321,26 @@ const ChatRoom: React.FC = () => {
     console.error("Error logging out:", error);
   }
 };
-  
+
+useEffect(() => {
+  const checkLogoutConditions = () => {
+    if (!user || !token || socket.readyState === WebSocket.CLOSED) {
+      handleLogout();
+    }
+  };
+
+  window.addEventListener("beforeunload", checkLogoutConditions); // Detects when user navigates away
+  return () => {
+    window.removeEventListener("beforeunload", checkLogoutConditions);
+  };
+}, [user, token, socket]);
+
+// Also call handleLogout on WebSocket closure or timeout
+useEffect(() => {
+  socket.onclose = () => {
+    handleLogout();
+  };
+}, [socket]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {

@@ -323,7 +323,7 @@ const ChatRoom: React.FC = () => {
 
 useEffect(() => {
   const checkLogoutConditions = () => {
-    if (!user || !token || socket.readyState === WebSocket.CLOSED) {
+    if (!user || !token || (socket && socket.readyState === WebSocket.CLOSED)) {
       handleLogout();
     }
   };

@@ -289,6 +289,8 @@ const ChatRoom: React.FC = () => {
 
   // Ensures socket is cleaned up when user logs out
   const handleLogout = async () => {
+  const { setUser, setToken } = useAuth(); // Ensure you use these functions from AuthContext
+  const { socket } = useWebSocket(); // Access socket from your WebSocketContext
     try {
       // Send a request to the backend to delete the messages
       await axios.delete(`http://localhost:3001/api/messages/${user?.username}`);

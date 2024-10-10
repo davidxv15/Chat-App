@@ -300,7 +300,6 @@ const ChatRoom: React.FC = () => {
         }
       });
   
-    
     // Clear user authentication
     setUser(null);
     setToken(null);

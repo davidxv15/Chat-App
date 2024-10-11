@@ -116,6 +116,8 @@ const ChatRoom: React.FC = () => {
     }
   }, [socket, roomName, user?.username]);
 
+  
+
   useEffect(() => {
     if (loading) return; // will only check if loading is done
     console.log("User in ChatRoom:", user);

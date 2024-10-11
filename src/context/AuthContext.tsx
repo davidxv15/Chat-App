@@ -13,6 +13,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { socket } = useWebSocket();
   let inactivityTimeout: NodeJS.Timeout;
 
   useEffect(() => {

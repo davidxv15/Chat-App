@@ -353,6 +353,30 @@ useEffect(() => {
 };
 
 useEffect(() => {
+  const handleTabClose = () => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      // Ensure the 'leave' event is sent when the tab is closed
+      socket.send(
+        JSON.stringify({
+          type: "leave",
+          room: roomName,
+          username: user?.username,
+        })
+      );
+      handleLogout(); // Trigger full logout logic
+    }
+  };
+
+  // Listen for the tab/window being closed
+  window.addEventListener("beforeunload", handleTabClose);
+
+  return () => {
+    window.removeEventListener("beforeunload", handleTabClose);
+  };
+}, [socket, roomName, user?.username]);  // Ensure it's triggered by any changes to socket or user state
+
+
+useEffect(() => {
   const checkLogoutConditions = () => {
     if (!user || !token || (socket && socket.readyState === WebSocket.CLOSED)) {
       handleLogout();

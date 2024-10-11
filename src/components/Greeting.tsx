@@ -10,12 +10,13 @@ const Greeting: React.FC = () => {
     left: '120px',
     height: '1rem',
     backgroundColor: '#f1f1f1',
-    padding: '10px',
+    padding: '5px',
     borderRadius: '8px',
     fontSize: '12px',
     fontWeight: 'bold',
     color: '#333',
     textAlign: 'right',
+    verticalAlign: 'sub'
   };
 
   return (

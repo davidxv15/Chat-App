@@ -16,6 +16,47 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const { socket } = useWebSocket();
   let inactivityTimeout: NodeJS.Timeout;
 
+  const handleLogout = async () => {
+    try {
+      // Notify WebSocket that the user is leaving the room
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send(
+          JSON.stringify({
+            type: "leave",
+            room: "roomName", // Ensure roomName is passed or available
+            username: user?.username,
+          })
+        );
+      }
+
+      // Perform cleanup
+      setUser(null);
+      setToken(null);
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+      localStorage.removeItem("username");
+      sessionStorage.removeItem("username");
+
+      // Clear all room messages from sessionStorage
+      Object.keys(sessionStorage).forEach((key) => {
+        if (key.startsWith("messages-")) {
+          sessionStorage.removeItem(key);
+        }
+      });
+
+      // Close WebSocket if needed
+      if (socket) {
+        socket.close();
+      }
+
+      // Navigate to login screen
+      navigate("/login");
+      window.location.reload(); // Optional: force page reload
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
+  };
+
   useEffect(() => {
     const savedToken = localStorage.getItem("token") || sessionStorage.getItem("token");
     console.log("Token on load: ", savedToken);
@@ -137,7 +178,7 @@ const startInactivityTimer = () => {
 
   return (
     <AuthContext.Provider
-      value={{ user, token, setUser, setToken, login, register, logout, loading }}
+      value={{ user, token, setUser, setToken, handleLogout, login, register, logout, loading }}
     >
       {children}
     </AuthContext.Provider>

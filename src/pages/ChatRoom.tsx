@@ -121,23 +121,23 @@ const ChatRoom: React.FC = () => {
   }, [socket, roomName, user?.username]);
 
   // New WebSocket closure handling effect
-  useEffect(() => {
-    if (socket) {
-      socket.onclose = () => {
-        // Ensure the user is removed from the active users list when WebSocket closes
-        if (socket.readyState === WebSocket.CLOSED) {
-          socket.send(
-            JSON.stringify({
-              type: "leave",
-              room: roomName,
-              username: user?.username,
-            })
-          );
-          handleLogout();
-        }
-      };
-    }
-  }, [socket, roomName, user?.username]); // Add necessary dependencies
+  // useEffect(() => {
+  //   if (socket) {
+  //     socket.onclose = () => {
+  //       // Ensure the user is removed from the active users list when WebSocket closes
+  //       if (socket.readyState === WebSocket.CLOSED) {
+  //         socket.send(
+  //           JSON.stringify({
+  //             type: "leave",
+  //             room: roomName,
+  //             username: user?.username,
+  //           })
+  //         );
+  //         handleLogout();
+  //       }
+  //     };
+  //   }
+  // }, [socket, roomName, user?.username]); // Add necessary dependencies
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done

@@ -16,7 +16,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const { socket } = useWebSocket();
   let inactivityTimeout: NodeJS.Timeout;
 
-  const handleLogout = async () => {
+  const handleLogout = async (roomName: string) => {
     try {
       // Notify WebSocket that the user is leaving the room
       if (socket && socket.readyState === WebSocket.OPEN) {

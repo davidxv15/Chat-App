@@ -129,8 +129,8 @@ useEffect(() => {
             username: user?.username,
           })
         );
+        handleLogout();
       }
-      handleLogout();
     };
   }
 }, [socket, roomName, user?.username]);  // Add necessary dependencies

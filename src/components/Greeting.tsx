@@ -6,12 +6,12 @@ const Greeting: React.FC = () => {
 
   const greetingStyle = {
     position: 'absolute' as 'absolute',
-    top: '20px',
-    right: '20px',
+    top: '.5rem',
+    right: '120px',
     backgroundColor: '#f1f1f1',
     padding: '10px',
     borderRadius: '8px',
-    fontSize: '16px',
+    fontSize: '12px',
     fontWeight: 'bold',
     color: '#333',
     textAlign: 'right',

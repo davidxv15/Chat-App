@@ -8,7 +8,7 @@ import TypingIndicator from "../components/TypingIndicator";
 import EmojiPicker from "emoji-picker-react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import ActiveUsers from "../components/ActiveUsers";
-import axios from 'axios';
+import axios from "axios";
 
 interface Message {
   timestamp: string;
@@ -18,7 +18,7 @@ interface Message {
 
 const ChatRoom: React.FC = () => {
   const { room } = useParams<{ room: string }>(); // get room name from url
-  // const { handleLogout, startInactivityTimer } = useAuth(); 
+  // const { handleLogout, startInactivityTimer } = useAuth();
   const { user, token, loading, logout, setUser, setToken } = useAuth();
   const { socket, initializeWebSocket } = useWebSocket();
   const { roomName } = useParams<{ roomName: string }>();
@@ -38,7 +38,6 @@ const ChatRoom: React.FC = () => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-
   // Fetch messages for a room from the backend
   useEffect(() => {
     const loadMessages = async () => {
@@ -48,12 +47,17 @@ const ChatRoom: React.FC = () => {
       } else if (roomName) {
         // Fetch from the backend if no messages are found in sessionStorage
         try {
-          const response = await axios.get(`http://localhost:3001/api/messages/${roomName}`);
+          const response = await axios.get(
+            `http://localhost:3001/api/messages/${roomName}`
+          );
           const fetchedMessages = response.data;
           setMessages(fetchedMessages);
 
           // Store fetched messages in sessionStorage for future use
-          sessionStorage.setItem(`messages-${roomName}`, JSON.stringify(fetchedMessages));
+          sessionStorage.setItem(
+            `messages-${roomName}`,
+            JSON.stringify(fetchedMessages)
+          );
         } catch (error) {
           console.error("Error fetching messages:", error);
         }
@@ -64,8 +68,7 @@ const ChatRoom: React.FC = () => {
       loadMessages();
     }
   }, [roomName]);
-  
-  
+
   useEffect(() => {
     const savedSoundPref = localStorage.getItem("soundEnabled");
     console.log("Loaded sound preference from localStorage:", savedSoundPref); // Check what's loaded
@@ -118,24 +121,23 @@ const ChatRoom: React.FC = () => {
   }, [socket, roomName, user?.username]);
 
   // New WebSocket closure handling effect
-useEffect(() => {
-  if (socket) {
-    socket.onclose = () => {
-      // Ensure the user is removed from the active users list when WebSocket closes
-      if (socket.readyState === WebSocket.CLOSED) {
-        socket.send(
-          JSON.stringify({
-            type: "leave",
-            room: roomName,
-            username: user?.username,
-          })
-        );
-        handleLogout();
-      }
-    };
-  }
-}, [socket, roomName, user?.username]);  // Add necessary dependencies
-
+  useEffect(() => {
+    if (socket) {
+      socket.onclose = () => {
+        // Ensure the user is removed from the active users list when WebSocket closes
+        if (socket.readyState === WebSocket.CLOSED) {
+          socket.send(
+            JSON.stringify({
+              type: "leave",
+              room: roomName,
+              username: user?.username,
+            })
+          );
+          handleLogout();
+        }
+      };
+    }
+  }, [socket, roomName, user?.username]); // Add necessary dependencies
 
   useEffect(() => {
     if (loading) return; // will only check if loading is done
@@ -161,16 +163,16 @@ useEffect(() => {
 
         if (data.type === "userLoggedOut" && data.username) {
           // Remove the messages of the logged-out user
-          setMessages((prevMessages) => 
+          setMessages((prevMessages) =>
             prevMessages.filter((msg) => msg.username !== data.username)
           );
-  
+
           // Clear the sessionStorage for that user's messages
           const storedMessages = sessionStorage.getItem(`messages-${roomName}`);
           if (storedMessages) {
             const parsedMessages = JSON.parse(storedMessages);
             const filteredMessages = parsedMessages.filter(
-              (msg: { username: any; }) => msg.username !== data.username
+              (msg: { username: any }) => msg.username !== data.username
             );
             sessionStorage.setItem(
               `messages-${roomName}`,
@@ -192,13 +194,13 @@ useEffect(() => {
           //update msgs state on new msg
           setMessages((prevMessages) => {
             const updatedMessages = [...prevMessages, newMessage];
-  
+
             // Store updated messages in sessionStorage
             sessionStorage.setItem(
               `messages-${roomName}`,
               JSON.stringify(updatedMessages)
             );
-  
+
             return updatedMessages;
           });
 
@@ -249,7 +251,7 @@ useEffect(() => {
   const sendMessage = () => {
     if (socket && socket.readyState === WebSocket.OPEN && message) {
       console.log("Sending message:", message);
-      const timestamp = new Date().toISOString(); 
+      const timestamp = new Date().toISOString();
       const messageData = JSON.stringify({
         type: "message",
         room: roomName,
@@ -321,83 +323,88 @@ useEffect(() => {
           })
         );
       }
-  
+
       // Send a request to the backend to delete the messages
-      await axios.delete(`http://localhost:3001/api/messages/${user?.username}`);
-  
+      await axios.delete(
+        `http://localhost:3001/api/messages/${user?.username}`
+      );
+
       // Clear all room messages from sessionStorage
       Object.keys(sessionStorage).forEach((key) => {
         if (key.startsWith("messages-")) {
           sessionStorage.removeItem(key);
         }
       });
-  
-    // Clear user authentication
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-    localStorage.removeItem("username");
-    sessionStorage.removeItem("username");
 
-    // Remove WebSocket connection if needed
-    if (socket) {
-      socket.close();
-    }
+      // Clear user authentication
+      setUser(null);
+      setToken(null);
+      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
+      localStorage.removeItem("username");
+      sessionStorage.removeItem("username");
 
-    // Redirect to login
-    navigate("/login");
-    window.location.reload();
-  } catch (error) {
-    console.error("Error logging out:", error);
-  }
-};
+      // Remove WebSocket connection if needed
+      if (socket) {
+        socket.close();
+      }
 
-useEffect(() => {
-  const handleTabClose = () => {
-    if (socket && socket.readyState === WebSocket.OPEN) {
-      // Ensure the 'leave' event is sent when the tab is closed
-      socket.send(
-        JSON.stringify({
-          type: "leave",
-          room: roomName,
-          username: user?.username,
-        })
-      );
-      handleLogout(); // Trigger full logout logic
+      // Redirect to login
+      navigate("/login");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error logging out:", error);
     }
   };
 
-  // Listen for the tab/window being closed
-  window.addEventListener("beforeunload", handleTabClose);
-
-  return () => {
-    window.removeEventListener("beforeunload", handleTabClose);
-  };
-}, [socket, roomName, user?.username]);  // Ensure it's triggered by any changes to socket or user state
-
-
-useEffect(() => {
-  const checkLogoutConditions = () => {
-    if (!user || !token || (socket && socket.readyState === WebSocket.CLOSED)) {
-      handleLogout();
-    }
-  };
-
-  window.addEventListener("beforeunload", checkLogoutConditions); // Detects when user navigates away
-  return () => {
-    window.removeEventListener("beforeunload", checkLogoutConditions);
-  };
-}, [user, token, socket]);
-
-// Also call handleLogout on WebSocket closure or timeout
-useEffect(() => {
-  if (socket) {
-    socket.onclose = () => {
-      handleLogout();
+  useEffect(() => {
+    const handleTabClose = () => {
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        // Ensure the 'leave' event is sent when the tab is closed
+        socket.send(
+          JSON.stringify({
+            type: "leave",
+            room: roomName,
+            username: user?.username,
+          })
+        );
+        handleLogout(); // Trigger full logout logic
+      }
     };
-  }
-}, [socket]);
+
+    // Listen for the tab/window being closed
+    window.addEventListener("beforeunload", handleTabClose);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleTabClose);
+    };
+  }, [socket, roomName, user?.username]); // Ensure it's triggered by any changes to socket or user state
+
+  useEffect(() => {
+    const checkLogoutConditions = () => {
+      if (
+        !user ||
+        !token ||
+        (socket && socket.readyState === WebSocket.CLOSED)
+      ) {
+        handleLogout();
+      }
+    };
+
+    window.addEventListener("beforeunload", checkLogoutConditions); // Detects when user navigates away
+    return () => {
+      window.removeEventListener("beforeunload", checkLogoutConditions);
+    };
+  }, [user, token, socket]);
+
+  // Also call handleLogout on WebSocket closure or timeout
+  useEffect(() => {
+    if (socket) {
+      socket.onclose = () => {
+        handleLogout();
+      };
+    }
+  }, [socket]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -420,7 +427,7 @@ useEffect(() => {
             : "General"}{" "}
           Chat
         </h1>
-        <ActiveUsers room={roomName || 'defaultRoom'} />
+        <ActiveUsers room={roomName || "defaultRoom"} />
 
         <div className="flex items-center space-x-2">
           <SoundToggle

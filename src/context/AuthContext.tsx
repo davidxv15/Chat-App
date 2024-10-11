@@ -94,13 +94,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   navigate("/login");
 };
 
-  const startInactivityTimer = () => {
-    clearTimeout(inactivityTimeout);
-    inactivityTimeout = setTimeout(() => {
-      logout();
-      alert("You have been logged out due to inactivity.");
-    }, 30 * 60 * 1000); // 30 minutes inactivity timeout
-  };
+const startInactivityTimer = () => {
+  clearTimeout(inactivityTimeout);
+  inactivityTimeout = setTimeout(() => {
+    // handleLogout, as it has full 'cleanup' and removal of DB & DOM data
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      socket.send(
+        JSON.stringify({
+          type: "leave",
+          room: roomName,
+          username: user?.username,
+        })
+      );
+    }
+    handleLogout(); // Call the full logout logic
+    alert("You have been logged out due to inactivity.");
+  }, 30 * 60 * 1000); // 30 minutes inactivity timeout
+};
 
   useEffect(() => {
     const resetTimer = () => {

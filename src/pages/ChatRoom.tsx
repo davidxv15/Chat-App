@@ -18,7 +18,8 @@ interface Message {
 
 const ChatRoom: React.FC = () => {
   const { room } = useParams<{ room: string }>(); // get room name from url
-  const { user, token, loading, logout, handleLogout, setUser, setToken } = useAuth();
+  // const { handleLogout, startInactivityTimer } = useAuth(); 
+  const { user, token, loading, logout, setUser, setToken } = useAuth();
   const { socket, initializeWebSocket } = useWebSocket();
   const { roomName } = useParams<{ roomName: string }>();
   const navigate = useNavigate();
@@ -241,7 +242,7 @@ useEffect(() => {
 
   useEffect(() => {
     if (lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      lastMessageRef.current.scrollIntoView({ behavior: "auto" });
     }
   }, [messages]);
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
 import { useWebSocket } from './WebSocketContext';
+import { useParams } from 'react-router-dom';
 
 const AuthContext = createContext<any>(null);
 
@@ -14,10 +15,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const { socket } = useWebSocket();
+  const { roomName } = useParams<{ roomName: string }>();
   let inactivityTimeout: NodeJS.Timeout;
 
    // Consolidated logout function
-   const logout = async (roomName?: string) => {
+   const logout = async () => {
     try {
       // Notify WebSocket that the user is leaving the room
       if (socket && socket.readyState === WebSocket.OPEN && roomName) {
@@ -110,7 +112,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       sessionStorage.setItem("username", username);
     }
     setUser({ username });
-    startInactivityTimer();
+    
+    // Call inactivity timer only if roomName exists
+    if (roomName) {
+      startInactivityTimer(roomName);
+    }
   };
 
   const register = async (username: string, password: string) => {
@@ -143,7 +149,7 @@ const startInactivityTimer = (roomName: string) => {
 
   inactivityTimeout = setTimeout(() => {
     // Logout, as it has full 'cleanup' and removal of DB & DOM data
-    if (socket && socket.readyState === WebSocket.OPEN && user?.username && roomName) {
+    if (socket && socket.readyState === WebSocket.OPEN) {
       socket.send(
         JSON.stringify({
           type: "leave",
@@ -157,13 +163,17 @@ const startInactivityTimer = (roomName: string) => {
   }, 30 * 60 * 1000); // 30 minutes inactivity timeout
 };
 
-  useEffect(() => {
-    const resetTimer = () => {
-      startInactivityTimer();
-    };
+useEffect(() => {
+  const resetTimer = () => {
+    // Only reset timer if roomName exists
+    if (roomName) {
+      startInactivityTimer(roomName);
+    }
+  };
+
 
      const handleError = () => {
-    navigate('/error');
+     navigate('/error');
      }
 
 
@@ -176,7 +186,7 @@ const startInactivityTimer = (roomName: string) => {
       window.removeEventListener('keypress', resetTimer);
       window.removeEventListener('touchstart', resetTimer);
     };
-  }, []);
+  }, [roomName]);
 
   return (
     <AuthContext.Provider

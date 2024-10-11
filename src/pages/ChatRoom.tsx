@@ -290,6 +290,9 @@ const ChatRoom: React.FC = () => {
   // Ensures socket is cleaned up when user logs out
   const handleLogout = async () => {
     try {
+
+
+      
       // Send a request to the backend to delete the messages
       await axios.delete(`http://localhost:3001/api/messages/${user?.username}`);
   

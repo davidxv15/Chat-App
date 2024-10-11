@@ -290,9 +290,17 @@ const ChatRoom: React.FC = () => {
   // Ensures socket is cleaned up when user logs out
   const handleLogout = async () => {
     try {
-
-
-      
+      // Notify WebSocket that the user is leaving the room
+      if (socket && socket.readyState === WebSocket.OPEN) {
+        socket.send(
+          JSON.stringify({
+            type: "leave",
+            room: roomName,
+            username: user?.username,
+          })
+        );
+      }
+  
       // Send a request to the backend to delete the messages
       await axios.delete(`http://localhost:3001/api/messages/${user?.username}`);
   

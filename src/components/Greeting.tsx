@@ -7,7 +7,7 @@ const Greeting: React.FC = () => {
   const greetingStyle = {
     position: 'absolute' as 'absolute',
     top: '.5rem',
-    left: '120px',
+    left: '20px',
     height: '1rem',
     backgroundColor: '#f1f1f1',
     padding: '5px',
@@ -16,7 +16,8 @@ const Greeting: React.FC = () => {
     fontWeight: 'bold',
     color: '#333',
     textAlign: 'right',
-    verticalAlign: 'sub'
+    verticalAlign: 'sub',
+    lineHeight: '5px'
   };
 
   return (

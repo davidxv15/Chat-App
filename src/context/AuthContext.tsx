@@ -16,14 +16,15 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const { socket } = useWebSocket();
   let inactivityTimeout: NodeJS.Timeout;
 
-  const handleLogout = async (roomName: string) => {
+   // Consolidated logout function
+   const logout = async (roomName?: string) => {
     try {
       // Notify WebSocket that the user is leaving the room
-      if (socket && socket.readyState === WebSocket.OPEN) {
+      if (socket && socket.readyState === WebSocket.OPEN && roomName) {
         socket.send(
           JSON.stringify({
             type: "leave",
-            room: "roomName", // Ensure roomName is passed or available
+            room: roomName,
             username: user?.username,
           })
         );
@@ -119,29 +120,30 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem("token");
-    sessionStorage.removeItem("token");
-    localStorage.removeItem("username");
-    sessionStorage.removeItem("username");
-     // strike messages from sessionStorage on log out
-  Object.keys(sessionStorage).forEach((key) => {
-    if (key.startsWith("messages-")) {
-      sessionStorage.removeItem(key);
-    }
-  });
+//   const logout = () => {
+//     setUser(null);
+//     setToken(null);
+//     localStorage.removeItem("token");
+//     sessionStorage.removeItem("token");
+//     localStorage.removeItem("username");
+//     sessionStorage.removeItem("username");
+//      // strike messages from sessionStorage on log out
+//   Object.keys(sessionStorage).forEach((key) => {
+//     if (key.startsWith("messages-")) {
+//       sessionStorage.removeItem(key);
+//     }
+//   });
 
-  delete axios.defaults.headers.common["Authorization"];
-  navigate("/login");
-};
+//   delete axios.defaults.headers.common["Authorization"];
+//   navigate("/login");
+// };
 
-const startInactivityTimer = () => {
+const startInactivityTimer = (roomName: string) => {
   clearTimeout(inactivityTimeout);
+
   inactivityTimeout = setTimeout(() => {
-    // handleLogout, as it has full 'cleanup' and removal of DB & DOM data
-    if (socket && socket.readyState === WebSocket.OPEN) {
+    // Logout, as it has full 'cleanup' and removal of DB & DOM data
+    if (socket && socket.readyState === WebSocket.OPEN && user?.username && roomName) {
       socket.send(
         JSON.stringify({
           type: "leave",
@@ -150,7 +152,7 @@ const startInactivityTimer = () => {
         })
       );
     }
-    handleLogout(); // Call the full logout logic
+    logout(); // Call the full logout logic
     alert("You have been logged out due to inactivity.");
   }, 30 * 60 * 1000); // 30 minutes inactivity timeout
 };
@@ -160,9 +162,9 @@ const startInactivityTimer = () => {
       startInactivityTimer();
     };
 
-  const handleError = () => {
+     const handleError = () => {
     navigate('/error');
-  }
+     }
 
 
     window.addEventListener('mousemove', resetTimer);
@@ -178,7 +180,7 @@ const startInactivityTimer = () => {
 
   return (
     <AuthContext.Provider
-      value={{ user, token, setUser, setToken, handleLogout, login, register, logout, loading }}
+      value={{ user, token, setUser, setToken, login, register, logout, loading }}
     >
       {children}
     </AuthContext.Provider>

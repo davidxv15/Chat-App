@@ -21,8 +21,8 @@ import "./index.css";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Router>
-      <AuthProvider>
         <WebSocketProvider>
+      <AuthProvider>
           <Routes>
             <Route path="/" element={<App />}>
               <Route index element={<Navigate to="/home" />} />
@@ -38,8 +38,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             </Route>
             <Route path="/error" element={<ErrorPage />} />
           </Routes>
-        </WebSocketProvider>
       </AuthProvider>
+        </WebSocketProvider>
     </Router>
   </React.StrictMode>
 );

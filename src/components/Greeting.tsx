@@ -9,16 +9,17 @@ const Greeting: React.FC = () => {
     top: '.5rem',
     left: '20px',
     height: '1rem',
-    backgroundColor: '#f1f1f1',
+    color: '#f1f1f1',
+    backgroundColor: '#000',
     padding: '5px',
     borderRadius: '8px',
     fontSize: '12px',
     fontWeight: 'bold',
-    color: '#333',
     textAlign: 'right',
     verticalAlign: 'sub',
     lineHeight: '5px'
   };
+  
 
   return (
     <div style={greetingStyle}>

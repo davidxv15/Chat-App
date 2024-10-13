@@ -12,11 +12,12 @@ const Greeting: React.FC = () => {
         left: "1rem",
         height: "1rem",
         color: "#f1f1f1",
-        backgroundColor: "#4B5563",
-        padding: "10px",
+        // backgroundColor: "#4B5563",
+        padding: "5px",
         borderRadius: "8px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         zIndex: 1000,
+        verticalAlign: "sub",
         lineHeight: "5px"
       }}
     >

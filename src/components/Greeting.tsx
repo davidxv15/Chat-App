@@ -8,7 +8,7 @@ const Greeting: React.FC = () => {
     <div
       style={{
         position: "absolute",
-        top: "10px",
+        top: ".5rem",
         left: "10px",
         backgroundColor: "#f0f0f0",
         padding: "10px",

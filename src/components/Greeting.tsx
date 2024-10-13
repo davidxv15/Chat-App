@@ -17,6 +17,7 @@ const Greeting: React.FC = () => {
         borderRadius: "8px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         zIndex: 1000,
+        lineHeight: "5px"
       }}
     >
       {user?.username ? (

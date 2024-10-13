@@ -11,7 +11,7 @@ const Greeting: React.FC = () => {
         top: ".5rem",
         left: "1rem",
         height: "1rem",
-        color: "#f1f1f1",
+        color: "#9CA3AF",
         // backgroundColor: "#4B5563",
         padding: "5px",
         borderRadius: "8px",

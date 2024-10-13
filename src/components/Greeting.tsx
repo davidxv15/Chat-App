@@ -1,29 +1,27 @@
-import React from 'react';
-import { useAuth } from '../context/AuthContext'; // Assuming your AuthContext is in this path
+import React from "react";
+import { useAuth } from "../context/AuthContext"; // Adjust the import path as necessary
 
 const Greeting: React.FC = () => {
-  const { user } = useAuth(); // Getting the username from your AuthContext
-
-  const greetingStyle = {
-    position: 'absolute' as 'absolute',
-    top: '.5rem',
-    left: '20px',
-    height: '1rem',
-    color: '#f1f1f1',
-    backgroundColor: '#000',
-    padding: '5px',
-    borderRadius: '8px',
-    fontSize: '12px',
-    fontWeight: 'bold',
-    textAlign: 'right',
-    verticalAlign: 'sub',
-    lineHeight: '5px'
-  };
-  
+  const { user } = useAuth();
 
   return (
-    <div style={greetingStyle}>
-      {user?.username ? `Hello, ${user.username}!` : 'Hello!'}
+    <div
+      style={{
+        position: "absolute",
+        top: "10px",
+        right: "10px",
+        backgroundColor: "#f0f0f0",
+        padding: "10px",
+        borderRadius: "8px",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        zIndex: 1000,
+      }}
+    >
+      {user?.username ? (
+        <span>{`Hello, ${user.username}!`}</span>
+      ) : (
+        <span>Hello, Guest!</span>
+      )}
     </div>
   );
 };

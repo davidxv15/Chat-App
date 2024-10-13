@@ -9,7 +9,7 @@ const Greeting: React.FC = () => {
       style={{
         position: "absolute",
         top: ".5rem",
-        left: "10px",
+        left: "1rem",
         backgroundColor: "#f0f0f0",
         padding: "10px",
         borderRadius: "8px",

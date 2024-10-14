@@ -5,7 +5,7 @@ const Greeting: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <div
+    <div className=""
       style={{
         position: "absolute",
         top: ".5rem",

@@ -42,6 +42,7 @@ const ChatRoom: React.FC = () => {
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
+
   // Fetch messages for a room from the backend
   useEffect(() => {
     const loadMessages = async () => {
@@ -502,6 +503,7 @@ const ChatRoom: React.FC = () => {
             type="text"
             className="flex-1 p-2 rounded-md text-black dark:bg-gray-800 dark:text-white"
             placeholder="Type your message..."
+            aria-label="Message input"
             value={message}
             ref={inputRef}
             onChange={(e) => {

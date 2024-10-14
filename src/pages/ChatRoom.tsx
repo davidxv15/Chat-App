@@ -39,6 +39,9 @@ const ChatRoom: React.FC = () => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
   // Fetch messages for a room from the backend
   useEffect(() => {
     const loadMessages = async () => {

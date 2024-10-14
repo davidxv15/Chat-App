@@ -14,7 +14,7 @@ const Greeting: React.FC = () => {
         height: "1rem",
         // color: "#9CA3AF",
         // fontWeight: "bold",
-        // backgroundColor: "#4B5563",
+        backgroundColor: "#E5E7EB",
         padding: "5px",
         borderRadius: "8px",
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",

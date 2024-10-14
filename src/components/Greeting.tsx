@@ -6,7 +6,7 @@ const Greeting: React.FC = () => {
 
   return (
     <div 
-    className="text-yellow-700 dark:text-gray-400"
+    className="text-gray-600 dark:text-gray-400"
       style={{
         position: "absolute",
         top: ".5rem",

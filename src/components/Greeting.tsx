@@ -5,13 +5,14 @@ const Greeting: React.FC = () => {
   const { user } = useAuth();
 
   return (
-    <div className=""
+    <div 
+    className="text-yellow-700 dark:text-gray-400"
       style={{
         position: "absolute",
         top: ".5rem",
         left: "1rem",
         height: "1rem",
-        color: "#9CA3AF",
+        // color: "#9CA3AF",
         // fontWeight: "bold",
         // backgroundColor: "#4B5563",
         padding: "5px",

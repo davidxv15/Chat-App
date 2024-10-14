@@ -504,6 +504,7 @@ const ChatRoom: React.FC = () => {
             className="flex-1 p-2 rounded-md text-black dark:bg-gray-800 dark:text-white"
             placeholder="Type your message..."
             aria-label="Message input"
+            aria-required="true"
             value={message}
             ref={inputRef}
             onChange={(e) => {

@@ -17,7 +17,7 @@ const Greeting: React.FC = () => {
         // backgroundColor: "#E5E7EB",
         padding: "5px",
         borderRadius: "8px",
-        // boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         zIndex: 1000,
         verticalAlign: "sub",
         lineHeight: "5px"

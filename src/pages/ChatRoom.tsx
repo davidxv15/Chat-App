@@ -433,7 +433,7 @@ const ChatRoom: React.FC = () => {
             : "General"}{" "}
           Chat
         </h1>
-        <ActiveUsers room={roomName || "defaultRoom"} />
+        <ActiveUsers room={roomName || "defaultRoom"} aria-label="Active users" />
 
         <Greeting />
 

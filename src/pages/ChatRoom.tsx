@@ -424,8 +424,9 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="sticky-header sticky">
-      <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0">
-        <h1 className="text-3xl text-gray-800 font-bold dark:text-gray-400 flex justify-center items-center">
+      <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0"
+      role="main" aria-labelledby="chat-title">
+        <h1 id="chat-title" className="text-3xl text-gray-800 font-bold dark:text-gray-400 flex justify-center items-center">
           {" "}
           {roomName
             ? roomName.charAt(0).toUpperCase() + roomName.slice(1)

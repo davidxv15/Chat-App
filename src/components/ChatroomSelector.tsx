@@ -46,16 +46,26 @@ const ChatroomSelector: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-gray-900">
-      <hr />
-      <br />
-      <h1 className="text-2xl font-bold mb-4 text-gray-200">Select a Chat Room</h1>
-      <div className="grid grid-cols-3 gap-4">
+    <div className="flex flex-col items-center bg-gray-900"
+    role="main" 
+    aria-labelledby="chat-room-selection-title"
+    >
+      <hr aria-hidden="true" />
+      <br aria-hidden="true" />
+      <h1 
+      id="chat-room-selection-title" 
+      className="text-2xl font-bold mb-4 text-gray-200">Select a Chat Room</h1>
+      <div 
+      className="grid grid-cols-3 gap-4"
+      role="group" 
+      aria-label="Chat Room Selection"
+      >
         {rooms.map((room) => (
           <button
             key={room}
             onClick={() => handleRoomSelection(room)}
             className="bg-blue-800 text-xl text-gray-200 py-2 px-4 rounded hover:bg-blue-700"
+            aria-label={`Join ${room} chat room`}
           >
             {room}
           </button>

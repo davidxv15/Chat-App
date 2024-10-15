@@ -424,16 +424,25 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="sticky-header sticky">
-      <div className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0"
-      role="main" aria-labelledby="chat-title">
-        <h1 id="chat-title" className="text-3xl text-gray-800 font-bold dark:text-gray-400 flex justify-center items-center">
+      <div
+        className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0"
+        role="main"
+        aria-labelledby="chat-title"
+      >
+        <h1
+          id="chat-title"
+          className="text-3xl text-gray-800 font-bold dark:text-gray-400 flex justify-center items-center"
+        >
           {" "}
           {roomName
             ? roomName.charAt(0).toUpperCase() + roomName.slice(1)
             : "General"}{" "}
           Chat
         </h1>
-        <ActiveUsers room={roomName || "defaultRoom"} aria-label="Active users" />
+        <ActiveUsers
+          room={roomName || "defaultRoom"}
+          aria-label="Active users"
+        />
 
         <Greeting />
 
@@ -443,8 +452,7 @@ const ChatRoom: React.FC = () => {
             setSoundEnabled={setSoundEnabled}
             aria-label="Toggle notification sounds"
           />
-          <DarkModeToggle 
-          aria-label="Toggle dark mode"/>
+          <DarkModeToggle aria-label="Toggle dark mode" />
         </div>
         {/* <div className="flex flex-col min- bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-2">
     <ActiveUsersList roomName={roomName!} />
@@ -480,14 +488,18 @@ const ChatRoom: React.FC = () => {
               className="message mb-2 p-2 bg-gray-600 rounded"
               ref={index === messages.length - 1 ? lastMessageRef : null}
             >
-              <span className="timestamp" aria-hidden="true">{msg.timestamp}</span>
+              <span className="timestamp" aria-hidden="true">
+                {msg.timestamp}
+              </span>
               <span className="username">{msg.username}</span> :{" "}
               <span className="message-content">{msg.message}</span>
             </div>
           ))}
 
-          <TypingIndicator isTyping={isTyping} username={typingUser} 
-          aria-label={`${user?.username} is typing`}
+          <TypingIndicator
+            isTyping={isTyping}
+            username={typingUser}
+            aria-label={`${user?.username} is typing`}
           />
         </div>
 
@@ -499,9 +511,15 @@ const ChatRoom: React.FC = () => {
         </div>
 
         <div className="input-wrapper bg-blue-500 dark:bg-blue-800">
-          <button className="emoji-button" onClick={toggleEmojiPicker}>
+          <button 
+          className="emoji-button" 
+          onClick={toggleEmojiPicker}
+          aria-label={showEmojiPicker ? "Close emoji picker" : "Open emoji picker"}
+          aria-expanded={showEmojiPicker}
+          aria-controls="emoji-picker">
             {showEmojiPicker ? "❌" : "😀"}
           </button>
+          
           {showEmojiPicker && (
             <div className="emoji-picker-wrapper">
               <EmojiPicker onEmojiClick={onEmojiClick} />

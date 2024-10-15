@@ -452,6 +452,7 @@ const ChatRoom: React.FC = () => {
 
         <button
           onClick={() => navigate("/home")}
+          aria-label="Home button to chatroom selection"
           className={`home-button font-bold bg-blue-500 text-white px-4 py-1 text-2xl rounded-md hover:bg-blue-800 dark:bg-blue-800 dark:text-gray-400 dark:hover:bg-blue-600 dark:hover:text-white sticky transition-all duration-500 ease-in-out ${
             isScrolled ? "w-36 mx-auto" : "w-full mx-auto"
           }`}

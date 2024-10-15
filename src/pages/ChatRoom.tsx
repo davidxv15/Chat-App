@@ -441,8 +441,10 @@ const ChatRoom: React.FC = () => {
           <SoundToggle
             soundEnabled={soundEnabled}
             setSoundEnabled={setSoundEnabled}
+            aria-label="Toggle notification sounds"
           />
-          <DarkModeToggle />
+          <DarkModeToggle 
+          aria-label="Toggle dark mode"/>
         </div>
         {/* <div className="flex flex-col min- bg-gray-200 dark:bg-gray-900 dark:text-gray-400 p-2">
     <ActiveUsersList roomName={roomName!} />

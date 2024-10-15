@@ -99,13 +99,14 @@ const Login: React.FC = () => {
   }, [captchaComplete]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900"
-    role="main" 
-    aria-labelledby="login-title"
+    <div
+      className="flex flex-col items-center justify-center min-h-screen bg-gray-900"
+      role="main"
+      aria-labelledby="login-title"
     >
-      <h1 
-      id="login-title" 
-      className="text-3xl font-bold mb-4 text-gray-200">Login</h1>
+      <h1 id="login-title" className="text-3xl font-bold mb-4 text-gray-200">
+        Login
+      </h1>
 
       <form
         onSubmit={handleSubmit}
@@ -120,7 +121,7 @@ const Login: React.FC = () => {
           onChange={(e) => setUsername(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
           aria-label="Enter your username"
-        aria-required="true"
+          aria-required="true"
         />
         <input
           type="password"
@@ -129,9 +130,13 @@ const Login: React.FC = () => {
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
           aria-label="Enter your password"
-        aria-required="true"
+          aria-required="true"
         />
-        {error && <div className="text-red-600 mb-4" role="alert" aria-live="assertive">{error}</div>}
+        {error && (
+          <div className="text-red-600 mb-4" role="alert" aria-live="assertive">
+            {error}
+          </div>
+        )}
 
         <div className="flex items-center mb-4">
           <label className="flex items-center text-blue-600">
@@ -152,11 +157,12 @@ const Login: React.FC = () => {
           data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"
           data-callback="onCaptchaComplete"
           role="group"
-        aria-labelledby="captcha-info"
+          aria-labelledby="captcha-info"
         ></div>
         <div id="captcha-info" className="sr-only">
-        This site is protected by reCAPTCHA, and the Google Privacy Policy and Terms of Service apply.
-      </div>
+          This site is protected by reCAPTCHA, and the Google Privacy Policy and
+          Terms of Service apply.
+        </div>
 
         <button
           ref={loginButtonRef}
@@ -165,7 +171,7 @@ const Login: React.FC = () => {
           className="bg-blue-600 text-white p-2 mt-3 rounded-md w-full"
           // disabled={loading} //disables button while loading
           aria-busy={loading}
-        aria-label={loading ? "Logging in..." : "Login"}
+          aria-label={loading ? "Logging in..." : "Login"}
         >
           {loading ? "Logging in..." : "Login"}
         </button>

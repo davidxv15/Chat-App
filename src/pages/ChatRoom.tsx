@@ -472,7 +472,6 @@ const ChatRoom: React.FC = () => {
           aria-live="polite"
           aria-relevant="additions text"
           role="log"
-
         >
           {messages.map((msg, index) => (
             <div // edit msgs
@@ -480,7 +479,7 @@ const ChatRoom: React.FC = () => {
               className="message mb-2 p-2 bg-gray-600 rounded"
               ref={index === messages.length - 1 ? lastMessageRef : null}
             >
-              <span className="timestamp">{msg.timestamp}</span>
+              <span className="timestamp" aria-hidden="true">{msg.timestamp}</span>
               <span className="username">{msg.username}</span> :{" "}
               <span className="message-content">{msg.message}</span>
             </div>

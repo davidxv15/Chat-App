@@ -519,9 +519,14 @@ const ChatRoom: React.FC = () => {
           aria-controls="emoji-picker">
             {showEmojiPicker ? "❌" : "😀"}
           </button>
-          
+
           {showEmojiPicker && (
-            <div className="emoji-picker-wrapper">
+            <div className="emoji-picker-wrapper"
+            id=""
+            role="dialog"
+            aria-label="Emoji picker"
+            aria-live="polite"
+            >
               <EmojiPicker onEmojiClick={onEmojiClick} />
             </div>
           )}

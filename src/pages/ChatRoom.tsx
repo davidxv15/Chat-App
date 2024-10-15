@@ -507,26 +507,35 @@ const ChatRoom: React.FC = () => {
         {/* Emoji Picker */}
         <div
           className={`emoji-picker-wrapper ${showEmojiPicker ? "show" : ""}`}
+          id="emoji-picker"
+          role="dialog"
+          aria-label="Emoji picker"
+          aria-live="polite"
+          aria-expanded={showEmojiPicker}
         >
           {showEmojiPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
         </div>
 
         <div className="input-wrapper bg-blue-500 dark:bg-blue-800">
-          <button 
-          className="emoji-button" 
-          onClick={toggleEmojiPicker}
-          aria-label={showEmojiPicker ? "Close emoji picker" : "Open emoji picker"}
-          aria-expanded={showEmojiPicker}
-          aria-controls="emoji-picker">
+          <button
+            className="emoji-button"
+            onClick={toggleEmojiPicker}
+            aria-label={
+              showEmojiPicker ? "Close emoji picker" : "Open emoji picker"
+            }
+            aria-expanded={showEmojiPicker}
+            aria-controls="emoji-picker"
+          >
             {showEmojiPicker ? "❌" : "😀"}
           </button>
 
           {showEmojiPicker && (
-            <div className="emoji-picker-wrapper"
-            id=""
-            role="dialog"
-            aria-label="Emoji picker"
-            aria-live="polite"
+            <div
+              className="emoji-picker-wrapper"
+              id=""
+              role="dialog"
+              aria-label="Emoji picker"
+              aria-live="polite"
             >
               <EmojiPicker onEmojiClick={onEmojiClick} />
             </div>

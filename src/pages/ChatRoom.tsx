@@ -485,7 +485,9 @@ const ChatRoom: React.FC = () => {
             </div>
           ))}
 
-          <TypingIndicator isTyping={isTyping} username={typingUser} />
+          <TypingIndicator isTyping={isTyping} username={typingUser} 
+          aria-label={`${user?.username} is typing`}
+          />
         </div>
 
         {/* Emoji Picker */}

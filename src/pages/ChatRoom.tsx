@@ -469,6 +469,10 @@ const ChatRoom: React.FC = () => {
         <div
           className="flex-1 bg-white p-4 pt-0 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
           ref={chatContainerRef}
+          aria-live="polite"
+          aria-relevant="additions text"
+          role="log"
+
         >
           {messages.map((msg, index) => (
             <div // edit msgs

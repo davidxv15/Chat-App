@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useWebSocket } from "../context/WebSocketContext"; 
+import { useWebSocket } from "../context/WebSocketContext";
 
 const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
   const [activeUsers, setActiveUsers] = useState<string[]>([]);
-  const [isScrolled, setIsScrolled] = useState(false);  
-  const { socket } = useWebSocket(); 
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { socket } = useWebSocket();
 
   // Scroll detection logic
   useEffect(() => {
@@ -42,11 +42,23 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
   }, [socket, room]);
 
   return (
-    <div className={`active-users-list hover:scale-125 bg-gray-800 bg-opacity-80 text-white px-2 pl-4 py-0 sticky  dark:bg-opacity-5 backdrop-blur-sm dark:text-gray-100 transition-all duration-500 ease-in-out ${isScrolled ? 'transform translate-y-[4.5rem]' : ''}`}>
-      <h3 className="Active-users opacity-60">Online</h3>
-      <ul className="">
-        {activeUsers.map(user => (
-          <li key={user} className="opacity-60">{user}</li>
+    <div
+      role="region"
+      aria-labelledby="active-users-title"
+      className={`active-users-list hover:scale-125 bg-gray-800 bg-opacity-80 text-white px-2 pl-4 py-0 sticky  dark:bg-opacity-5 backdrop-blur-sm dark:text-gray-100 transition-all duration-500 ease-in-out ${
+        isScrolled ? "transform translate-y-[4.5rem]" : ""
+      }`}
+    >
+      <h3 id="active-users-title" className="Active-users opacity-60">
+        Online
+      </h3>
+      <ul role="list" aria-label="List of active users" className="">
+        {activeUsers.map((user) => (
+          <li key={user} className="opacity-60"
+          role="listitem"
+          >
+            {user}
+          </li>
         ))}
       </ul>
     </div>

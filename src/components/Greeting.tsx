@@ -6,12 +6,12 @@ const Greeting: React.FC = () => {
 
   return (
     <div 
-    className="text-gray-600 dark:text-gray-400 dark:bg-gray-900"
+    className="bg-gray-800 bg-opacity-80 text-gray-300 dark:text-gray-400 dark:bg-gray-900"
       style={{
         position: "absolute",
         top: ".5rem",
         left: "1rem",
-        height: "1rem",
+        height: "1.2rem",
         // color: "#9CA3AF",
         // fontWeight: "bold",
         // backgroundColor: "#E5E7EB",

@@ -40,37 +40,40 @@ const Register: React.FC = () => {
     }
 
     setLoading(true); // Start loading (then the next bit of code...)
-    
-    // Get the reCAPTCHA token
-  const token = window.grecaptcha.getResponse();
-  if (!token) {
-    setError("Please complete the CAPTCHA");
-    setLoading(false);
-    return;
-  }
 
-  try {
-    // Send reCAPTCHA token and registration data to the backend
-    const captchaResponse = await axios.post("http://localhost:3001/verify-captcha", { token });
-    
-    if (captchaResponse.data.message === "Verification successful") {
-      // Proceed with registration if CAPTCHA is valid
-      await axios.post("http://localhost:3001/api/auth/register", {
-        username,
-        password,
-      });
-      setSuccess("Registration successful! Redirecting to login...");
-      setTimeout(() => navigate("/login"), 2000); // Redirect to login after 2 seconds
-    } else {
-      setError("CAPTCHA verification failed. Please try again.");
+    // Get the reCAPTCHA token
+    const token = window.grecaptcha.getResponse();
+    if (!token) {
+      setError("Please complete the CAPTCHA");
+      setLoading(false);
+      return;
     }
-  } catch (error) {
-    console.error("Registration failed:", error);
-    setError("Invalid Username. Try again.");
-  } finally {
-    setLoading(false); // End loading
-  }
-};
+
+    try {
+      // Send reCAPTCHA token and registration data to the backend
+      const captchaResponse = await axios.post(
+        "http://localhost:3001/verify-captcha",
+        { token }
+      );
+
+      if (captchaResponse.data.message === "Verification successful") {
+        // Proceed with registration if CAPTCHA is valid
+        await axios.post("http://localhost:3001/api/auth/register", {
+          username,
+          password,
+        });
+        setSuccess("Registration successful! Redirecting to login...");
+        setTimeout(() => navigate("/login"), 2000); // Redirect to login after 2 seconds
+      } else {
+        setError("CAPTCHA verification failed. Please try again.");
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+      setError("Invalid Username. Try again.");
+    } finally {
+      setLoading(false); // End loading
+    }
+  };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
@@ -79,12 +82,21 @@ const Register: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
-      <h1 className="text-2xl text-gray-200 font-bold mb-4">Register</h1>
+    <div
+      className="flex flex-col items-center justify-center min-h-screen bg-gray-900"
+      role="main"
+      aria-labelledby="register-title"
+    >
+      <h1 id="register-title" className="text-2xl text-gray-200 font-bold mb-4">
+        Register
+      </h1>
+
       <form
         onSubmit={handleSubmit}
         className="bg-gray-300 p-4 rounded-lg shadow-md w-80"
         onKeyDown={handleKeyDown}
+        aria-labelledby="register-title"
+        aria-describedby="recaptcha-info"
       >
         <input
           type="text"
@@ -92,6 +104,8 @@ const Register: React.FC = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
+          aria-label="Enter your username"
+          aria-required="true"
         />
         <input
           type="password"
@@ -99,6 +113,8 @@ const Register: React.FC = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
+          aria-label="Enter your password"
+          aria-required="true"
         />
         <input
           type="password"
@@ -106,30 +122,54 @@ const Register: React.FC = () => {
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
+          aria-label="Confirm your password"
+          aria-required="true"
         />
-        {error && <div className="text-red-500 mb-4">{error}</div>}
-        {success && <div className="text-green-500 mb-4">{success}</div>}{" "}
+        {error && (
+          <div className="text-red-500 mb-4" role="alert">
+            {error}
+          </div>
+        )}
+        {success && (
+          <div className="text-green-500 mb-4" role="status" aria-live="polite">
+            {success}
+          </div>
+        )}{" "}
         {/* Success message */}
         <button
           type="submit"
           className="bg-blue-500 text-white p-1 rounded-md w-full"
           disabled={loading} // Disable button while loading
+          aria-busy={loading}
+          aria-label={loading ? "Registering..." : "Register"}
         >
           {loading ? "Registering..." : "Register"}
         </button>
-
         {/* reCAPTCHA widget */}
-<div className="g-recaptcha" data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"></div>
-
+        <div
+          className="g-recaptcha"
+          data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"
+          role="group"
+          aria-labelledby="recaptcha-info"
+        ></div>
+        <div id="recaptcha-info" className="sr-only">
+        This site is protected by reCAPTCHA, and the Google Privacy Policy and Terms of Service apply.
+      </div>
         <button
           onClick={() => navigate("/login")}
           className="mt-4 text-gray-200 bg-blue-900 p-1 border border-gray-400 rounded-md w-full"
           disabled={loading} // Disable button while loading
+          aria-busy={loading}
+        aria-label="Login if you are a returning user"
         >
           Returning User Login Here
         </button>
       </form>
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+      <script
+        src="https://www.google.com/recaptcha/api.js"
+        async
+        defer
+      ></script>
     </div>
   );
 };

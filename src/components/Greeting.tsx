@@ -20,7 +20,7 @@ const Greeting: React.FC = () => {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         zIndex: 1000,
         verticalAlign: "sub",
-        lineHeight: "5px"
+        lineHeight: ".45rem"
       }}
     >
       {user?.username ? (

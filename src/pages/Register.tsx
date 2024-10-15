@@ -153,14 +153,15 @@ const Register: React.FC = () => {
           aria-labelledby="recaptcha-info"
         ></div>
         <div id="recaptcha-info" className="sr-only">
-        This site is protected by reCAPTCHA, and the Google Privacy Policy and Terms of Service apply.
-      </div>
+          This site is protected by reCAPTCHA, and the Google Privacy Policy and
+          Terms of Service apply.
+        </div>
         <button
           onClick={() => navigate("/login")}
           className="mt-4 text-gray-200 bg-blue-900 p-1 border border-gray-400 rounded-md w-full"
           disabled={loading} // Disable button while loading
           aria-busy={loading}
-        aria-label="Login if you are a returning user"
+          aria-label="Login if you are a returning user"
         >
           Returning User Login Here
         </button>

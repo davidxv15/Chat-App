@@ -99,12 +99,19 @@ const Login: React.FC = () => {
   }, [captchaComplete]);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900">
-      <h1 className="text-3xl font-bold mb-4 text-gray-200">Login</h1>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900"
+    role="main" 
+    aria-labelledby="login-title"
+    >
+      <h1 
+      id="login-title" 
+      className="text-3xl font-bold mb-4 text-gray-200">Login</h1>
+
       <form
         onSubmit={handleSubmit}
         className="bg-gray-300 p-4 rounded-lg shadow-md w-80"
         onKeyDown={handleKeyDown} // event to form
+        aria-labelledby="login-title"
       >
         <input
           type="text"
@@ -112,6 +119,8 @@ const Login: React.FC = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
+          aria-label="Enter your username"
+        aria-required="true"
         />
         <input
           type="password"
@@ -119,8 +128,10 @@ const Login: React.FC = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           className="mb-4 p-2 border border-gray-300 rounded-md w-full"
+          aria-label="Enter your password"
+        aria-required="true"
         />
-        {error && <div className="text-red-600 mb-4">{error}</div>}
+        {error && <div className="text-red-600 mb-4" role="alert" aria-live="assertive">{error}</div>}
 
         <div className="flex items-center mb-4">
           <label className="flex items-center text-blue-600">
@@ -129,6 +140,7 @@ const Login: React.FC = () => {
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
               className="mr-2"
+              aria-checked={rememberMe}
             />
             Remember Me
           </label>
@@ -139,7 +151,12 @@ const Login: React.FC = () => {
           className="g-recaptcha"
           data-sitekey="6Ld83EgqAAAAANhjqTjjd1wEBnvlKA74udb2_TPY"
           data-callback="onCaptchaComplete"
+          role="group"
+        aria-labelledby="captcha-info"
         ></div>
+        <div id="captcha-info" className="sr-only">
+        This site is protected by reCAPTCHA, and the Google Privacy Policy and Terms of Service apply.
+      </div>
 
         <button
           ref={loginButtonRef}
@@ -147,14 +164,18 @@ const Login: React.FC = () => {
           disabled={!captchaComplete}
           className="bg-blue-600 text-white p-2 mt-3 rounded-md w-full"
           // disabled={loading} //disables button while loading
+          aria-busy={loading}
+        aria-label={loading ? "Logging in..." : "Login"}
         >
           {loading ? "Logging in..." : "Login"}
         </button>
       </form>
+
       <button
         onClick={() => navigate("/register")}
         className="mt-4 text-blue-600 p-1"
         disabled={loading} //disables button while loading
+        aria-label="Navigate to register page"
       >
         New User? Register Here
       </button>

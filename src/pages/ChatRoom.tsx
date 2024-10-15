@@ -487,6 +487,7 @@ const ChatRoom: React.FC = () => {
               key={index}
               className="message mb-2 p-2 bg-gray-600 rounded"
               ref={index === messages.length - 1 ? lastMessageRef : null}
+              aria-label={`Message from ${msg.username} at ${msg.timestamp}`}
             >
               <span className="timestamp" aria-hidden="true">
                 {msg.timestamp}

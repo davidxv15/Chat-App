@@ -444,7 +444,7 @@ const ChatRoom: React.FC = () => {
           aria-label="Active users"
         />
 
-        <Greeting />
+        <Greeting aria-label={`Greeting message for ${user?.username}`} />
 
         <div className="flex items-center space-x-2">
           <SoundToggle

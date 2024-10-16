@@ -62,6 +62,8 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
     };
   }, []);
 
+  if (!showWarning) return null;
+
   return (
     showWarning && (
       <div

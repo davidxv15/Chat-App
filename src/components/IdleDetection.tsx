@@ -20,6 +20,7 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
 
   const resetTimer = () => {
     if (timeoutId.current) clearTimeout(timeoutId.current);
+    if (countdownIntervalId.current) clearInterval(countdownIntervalId.current);
     setShowWarning(false);
     startIdleTimer();
   };

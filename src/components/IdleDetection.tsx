@@ -9,7 +9,7 @@ interface IdleDetectionProps {
 
 const IdleDetection: React.FC<IdleDetectionProps> = ({
     timeout = 240 * 60 * 1000, // 4 hours
-    warningTime = 230 * 60 * 1000 // 3 hours and 50 minutes
+    warningTime = 10 * 60 * 1000 // 10 minutes warning
 }) => {
   const { logout } = useAuth();
   const { roomName } = useParams<{ roomName: string }>();

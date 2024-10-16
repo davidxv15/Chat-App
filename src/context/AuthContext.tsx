@@ -4,6 +4,7 @@ import { jwtDecode } from "jwt-decode";
 import { useNavigate } from 'react-router-dom';
 import { useWebSocket } from './WebSocketContext';
 import { useParams } from 'react-router-dom';
+import IdleDetection from "../components/IdleDetection";
 
 const AuthContext = createContext<any>(null);
 

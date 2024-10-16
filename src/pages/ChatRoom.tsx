@@ -426,7 +426,7 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="sticky-header sticky">
-      <IdleDetection timeout={240 * 60 * 1000} warningTime={230 * 60 * 1000} />
+      <IdleDetection timeout={240 * 60 * 1000} warningTime={10 * 60 * 1000} />
       <div
         className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0"
         role="main"

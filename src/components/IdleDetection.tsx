@@ -14,6 +14,7 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
   const { logout } = useAuth();
   const { roomName } = useParams<{ roomName: string }>();
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
+  const countdownIntervalId = useRef<NodeJS.Timeout | null>(null);
   const [showWarning, setShowWarning] = useState(false);
   const [countdown, setCountdown] = useState(warningTime / 1000); // Countdown in seconds
 
@@ -42,7 +43,7 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
       if (remainingTime <= 0) {
         clearInterval(countdownInterval); // Clear countdown interval
         logout(); // Log the user out
-        alert(`You have been logged out from ${roomName} due to inactivity.`);
+        alert(`You have been logged out from ${roomName} due to inactivity. Log in again.`);
       }
     }, 1000);
   };
@@ -72,7 +73,7 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
         role="dialog"
         aria-labelledby="warning-title"
         aria-describedby="warning-description"
-        className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
+        className="fixed inset-0 flex items-center justify-center bg-black z-50"
       >
         <div className="bg-white p-6 rounded-md shadow-md text-center">
           <h2 id="warning-title" className="text-2xl font-bold mb-2">

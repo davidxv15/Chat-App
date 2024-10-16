@@ -63,6 +63,7 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
       window.removeEventListener('keypress', handleUserActivity);
       window.removeEventListener('touchstart', handleUserActivity);
       if (timeoutId.current) clearTimeout(timeoutId.current);
+      if (countdownIntervalId.current) clearInterval(countdownIntervalId.current); // Cleanup
     };
   }, []);
 

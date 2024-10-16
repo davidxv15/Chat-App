@@ -9,6 +9,7 @@ import EmojiPicker from "emoji-picker-react";
 import DarkModeToggle from "../components/DarkModeToggle";
 import ActiveUsers from "../components/ActiveUsers";
 import Greeting from "../components/Greeting";
+import IdleDetection from "../components/IdleDetection";
 import axios from "axios";
 
 interface Message {

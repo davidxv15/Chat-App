@@ -24,10 +24,12 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
   };
 
   const startIdleTimer = () => {
+    console.log('Idle timer started');
     timeoutId.current = setTimeout(() => {
+      console.log('Showing warning modal');
       setShowWarning(true);
       startWarningCountdown();
-    }, timeout - warningTime); // Trigger warning before actual logout
+    }, timeout - warningTime);
   };
 
   const startWarningCountdown = () => {

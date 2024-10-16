@@ -14,7 +14,7 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
   const { logout } = useAuth();
   const { roomName } = useParams<{ roomName: string }>();
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
-  const countdownIntervalId = useRef<NodeJS.Timeout | null>(null);
+  const countdownIntervalId = useRef<number | null>(null); 
   const [showWarning, setShowWarning] = useState(false);
   const [countdown, setCountdown] = useState(warningTime / 1000); // Countdown in seconds
 

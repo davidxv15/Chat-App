@@ -190,9 +190,10 @@ const ChatRoom: React.FC = () => {
         // only process valid msg data
         if (data.message && data.username && data.room === roomName) {
           const newMessage = {
-            timestamp: new Date().toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
+            timestamp: new Date().toLocaleTimeString('en-US', {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true
             }),
             username: data.username,
             message: data.message,

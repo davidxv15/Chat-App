@@ -193,6 +193,8 @@ useEffect(() => {
     <AuthContext.Provider
       value={{ user, token, setUser, setToken, login, register, logout, loading }}
     >
+      {/* IdleDetection */}
+    {roomName && <IdleDetection timeout={240 * 60 * 1000} roomName={roomName} />}
       {children}
     </AuthContext.Provider>
   );

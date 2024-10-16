@@ -8,8 +8,8 @@ interface IdleDetectionProps {
 }
 
 const IdleDetection: React.FC<IdleDetectionProps> = ({
-  timeout = 240 * 60 * 1000, // 4 hours
-  warningTime = 300 * 1000 // 5 minute warning
+  timeout = 6 * 60 * 1000, // 4 hours
+  warningTime = 1 * 60 * 1000 // 5 minute warning
 }) => {
   const { logout } = useAuth();
   const { roomName } = useParams<{ roomName: string }>();
@@ -31,15 +31,15 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
   };
 
   const startWarningCountdown = () => {
-    let remainingTime = warningTime / 1000; // Seconds
-
+    let remainingTime = warningTime / 1000; // In seconds
+  
     const countdownInterval = setInterval(() => {
+      setCountdown((prev) => prev - 1); // Use state update function
+  
       remainingTime -= 1;
-      setCountdown(remainingTime);
-
       if (remainingTime <= 0) {
-        clearInterval(countdownInterval);
-        logout(); // Trigger logout if countdown reaches 0
+        clearInterval(countdownInterval); // Clear countdown interval
+        logout(); // Log the user out
         alert(`You have been logged out from ${roomName} due to inactivity.`);
       }
     }, 1000);

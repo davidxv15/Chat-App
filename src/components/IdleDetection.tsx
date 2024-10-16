@@ -35,17 +35,24 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
   };
 
   const startWarningCountdown = () => {
-    countdownIntervalId.current = setInterval(() => {
+    let remainingTime = warningTime / 1000;
+  
+    countdownIntervalId.current = window.setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
-          clearInterval(countdownIntervalId.current); // Stop countdown
+          if (countdownIntervalId.current !== null) {
+            clearInterval(countdownIntervalId.current); // Stop countdown
+          }
           logout(); // Log the user out
           alert(`You have been logged out from ${roomName} due to inactivity.`);
         }
         return prev - 1;
       });
+  
+      remainingTime -= 1;
     }, 1000);
   };
+  
 
   useEffect(() => {
     startIdleTimer();

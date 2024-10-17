@@ -2,7 +2,7 @@
 
 * {
   font-family: "Poppins", 'Times New Roman', Times, serif;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 .toggle-checkbox {
@@ -191,6 +191,7 @@ hr::after {
 
 .g-recaptcha {
   transform: translateX(-0.39rem);
+  width: 6rem;
 }
 
 .Active-users {

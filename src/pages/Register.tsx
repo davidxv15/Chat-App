@@ -87,7 +87,7 @@ const Register: React.FC = () => {
       role="main"
       aria-labelledby="register-title"
     >
-      <h1 id="register-title" className="text-2xl text-gray-200 font-bold mb-4">
+      <h1 id="register-title" className="text-4xl text-gray-200 font-bold mb-4">
         Register
       </h1>
 

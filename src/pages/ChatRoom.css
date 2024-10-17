@@ -191,7 +191,7 @@ hr::after {
 
 .g-recaptcha {
   transform: translateX(-0.39rem);
-  width: 6rem;
+  /* transform: scale(0.96); */
 }
 
 .Active-users {

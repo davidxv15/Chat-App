@@ -104,7 +104,7 @@ const Login: React.FC = () => {
       role="main"
       aria-labelledby="login-title"
     >
-      <h1 id="login-title" className="text-3xl font-bold mb-4 text-gray-200">
+      <h1 id="login-title" className="text-4xl font-bold mb-4 text-gray-200">
         Login
       </h1>
 

@@ -11,7 +11,7 @@ const Greeting: React.FC = () => {
         position: "absolute",
         top: ".5rem",
         left: "1rem",
-        height: "1.2rem",
+        height: "1.4rem",
         // color: "#9CA3AF",
         // fontWeight: "bold",
         // backgroundColor: "#E5E7EB",
@@ -20,7 +20,7 @@ const Greeting: React.FC = () => {
         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
         zIndex: 1000,
         verticalAlign: "sub",
-        lineHeight: ".45rem",
+        lineHeight: ".68rem",
       }}
       role="status"
       aria-live="polite"

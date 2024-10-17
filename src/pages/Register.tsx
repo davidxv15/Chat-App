@@ -138,7 +138,7 @@ const Register: React.FC = () => {
         {/* Success message */}
         <button
           type="submit"
-          className="bg-blue-500 text-white p-1 rounded-md w-full mb-4"
+          className="bg-blue-600 text-white p-1 rounded-md w-full mb-4"
           disabled={loading} // Disable button while loading
           aria-busy={loading}
           aria-label={loading ? "Registering..." : "Register"}

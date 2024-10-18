@@ -32,7 +32,7 @@ const Bulletin: React.FC = () => {
       {quote ? "Quote of the Day" : "Your Ad Here!"}
       </h2>
       <p id="bulletin-description" className="text-gray-400 p-2">
-        Visit our sponsors! Advertise here!
+      {quote ? `"${quote.text}" - ${quote.author}` : "Visit our sponsors! Advertise here!"}
       </p>
       <p
         className="contact text-white"

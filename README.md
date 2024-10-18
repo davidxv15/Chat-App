@@ -3,18 +3,22 @@
 How to Use the App?
 
 **Sign Up:**
+
 If you do not have an account, use the "Register" button to create an account. You will need to provide a username and password to get started.
 
 **Login:**
+
 Once you have an account, log in by clicking on the "Login" button. After logging in, you'll be directed to the chat room selection page.
 
 **Select a Chat Room:**
+
 Choose a chat room from the list to join. Different rooms are available (e.g., General, Movies, Tech), and each room functions independently, so your conversations are unique to each room.
 
 **Chat:**
+
 Once inside a room, simply start typing in the message input area at the bottom of the chat window and press "Send." Your message will appear in the chat in real time. You'll also see other users typing and sending messages.
 
-Additional Features:
+### Additional Features:
 
 Typing Indicator: See when others are typing a message in real time.
 Active User List: See who is currently active in the chat room.
@@ -70,6 +74,7 @@ How to Run Locally:
 Clone the repository.
 Run npm install to install dependencies.
 Start the development server with npm run dev.
-Open http://localhost:3000 in your browser to view the app.
+Open http://localhost:3003 in your browser to view the app.
 Deployment:
-This app will be deployed using [Heroku/AWS]. Upon deployment, you will be able to access it through the provided URL. Stay tuned for the live link!
+This app will be deployed using [Heroku/AWS]. Upon deployment, you will be able to access it through the provided URL. 
+Stay tuned for the live link!

@@ -29,7 +29,7 @@ const Bulletin: React.FC = () => {
       aria-describedby="bulletin-description"
     >
       <h2 className="text-2xl font-bold text-blue-600" id="bulletin-title">
-        Your Ad Here!
+      {quote ? "Quote of the Day" : "Your Ad Here!"}
       </h2>
       <p id="bulletin-description" className="text-gray-400 p-2">
         Visit our sponsors! Advertise here!

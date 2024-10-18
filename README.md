@@ -20,10 +20,10 @@ Once inside a room, simply start typing in the message input area at the bottom 
 
 ### Additional Features:
 
-Typing Indicator: See when others are typing a message in real time.
-Active User List: See who is currently active in the chat room.
-Sound and Dark Mode Toggle: Adjust your settings using the toggles for sound notifications and dark mode.
-Emoji Picker: Add emojis to your messages using the emoji picker button.
+Typing Indicator: See when others are typing a message in real time.  
+Active User List: See who is currently active in the chat room.  
+Sound and Dark Mode Toggle: Adjust your settings using the toggles for sound notifications and dark mode.  
+Emoji Picker: Add emojis to your messages using the emoji picker button.  
 Inactivity Timer:
 If you're inactive for a prolonged period, you'll receive a warning before being automatically logged out. Stay active to avoid being logged out automatically.
 

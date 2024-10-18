@@ -2,16 +2,16 @@
 
 How to Use the App?
 
-## Sign Up:
+**Sign Up:**
 If you do not have an account, use the "Register" button to create an account. You will need to provide a username and password to get started.
 
-## Login:
+**Login:**
 Once you have an account, log in by clicking on the "Login" button. After logging in, you'll be directed to the chat room selection page.
 
-## Select a Chat Room:
+**Select a Chat Room:**
 Choose a chat room from the list to join. Different rooms are available (e.g., General, Movies, Tech), and each room functions independently, so your conversations are unique to each room.
 
-## Chat:
+**Chat:**
 Once inside a room, simply start typing in the message input area at the bottom of the chat window and press "Send." Your message will appear in the chat in real time. You'll also see other users typing and sending messages.
 
 Additional Features:

@@ -10,7 +10,7 @@ const Bulletin: React.FC = () => {
 
   // Fetch the JSON file on component mount
   useEffect(() => {
-    fetch('/assets/Quotes.json')
+    fetch('/Quotes.json')
       .then((response) => response.json())
       .then((data) => {
         const quotes = data.quotes;

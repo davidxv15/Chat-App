@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useWebSocket } from "../context/WebSocketContext";
+import Bulletin from "./Bulletin";
 import Contact from "./Contact";
 
 const ChatroomSelector: React.FC = () => {
@@ -72,6 +73,7 @@ const ChatroomSelector: React.FC = () => {
           </button>
         ))}
       </div>
+      <Bulletin />
       <Contact /> 
     </div>
   );

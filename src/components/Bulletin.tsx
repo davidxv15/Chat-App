@@ -34,13 +34,16 @@ const Bulletin: React.FC = () => {
       <p id="bulletin-description" className="text-gray-400 p-2">
       {quote ? `"${quote.text}" - ${quote.author}` : "Visit our sponsors! Advertise here!"}
       </p>
-      <p
+      {/* <p
         className="contact text-white"
         aria-label="Contact for advertisement inquiries"
       >
-        Contact{" "}
-      </p>
+        Contact <a href="https://www.linkedin.com/in/david-velasquez-az/">David Velasquez</a>
+        {" "}
+      </p> */}
     </div>
+
+    
   );
 };
 

@@ -28,7 +28,6 @@ const Home: React.FC = () => {
       >
         Chat!
       </button> */}
-      <Bulletin />
     </div>
   );
 };

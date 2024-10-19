@@ -79,3 +79,5 @@ Open http://localhost:3003 in your browser to view the app.
 Deployment:
 This app will be deployed using [Heroku/AWS]. Upon deployment, you will be able to access it through the provided URL. 
 Stay tuned for the live link!
+
+![Screenshot 2024-10-18 at 10 43 47 PM](https://github.com/user-attachments/assets/5fbc34f7-87d7-4160-b7f5-f4ca9ee7ad81)

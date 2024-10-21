@@ -1,47 +1,34 @@
 import React from 'react';
-
+import { FaLinkedin, FaEnvelope } from 'react-icons/fa'; 
 const Contact: React.FC = () => {
   return (
-    <div className="bg-gray-800 text-gray-100 p-6 rounded-lg shadow-lg mt-6 w-full max-w-lg mx-auto text-center">
-      <h2 className="text-2xl font-bold text-blue-500 mb-4">Get in Touch</h2>
-      <div className="mb-4">
-        <p className="font-semibold mb-2">LinkedIn:</p>
-        <a
-          href="https://www.linkedin.com/in/****************/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-400 hover:underline text-lg"
-        >
-          /****************/
-        </a>
-      </div>
-      <div className="mb-4">
-        <p className="font-semibold mb-2">Email:</p>
-        <a
-          href="mailto:**************"
-          className="text-blue-400 hover:underline text-lg"
-        >
-          ****************
-        </a>
-      </div>
-      {/* Uncomment and replace with your website if you want to include it */}
-      {/* <div className="mb-4">
-        <p className="font-semibold mb-2">Website:</p>
-        <a
-          href="https://www.your-website.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-blue-400 hover:underline text-lg"
-        >
-          www.your-website.com
-        </a>
-      </div> */}
-      <div className="mt-6">
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
-        >
-          Contact Me
-        </button>
+    <div className="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 p-4 shadow-lg">
+      <div className="max-w-screen-xl mx-auto flex justify-between items-center">
+        <div className="text-lg font-semibold">
+          {/* Optionally add a title or leave it blank for pure icons */}
+          Connect with me:
+        </div>
+        <div className="flex space-x-6">
+          {/* LinkedIn Icon */}
+          <a 
+            href="https://www.linkedin.com/in/**************" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            aria-label="LinkedIn"
+            className="hover:text-blue-400 transition duration-300"
+          >
+            <FaLinkedin size={28} />
+          </a>
+
+          {/* Email Icon */}
+          <a 
+            href="mailto:***************" 
+            aria-label="Email"
+            className="hover:text-red-400 transition duration-300"
+          >
+            <FaEnvelope size={28} />
+          </a>
+        </div>
       </div>
     </div>
   );

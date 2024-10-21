@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
+
 const Contact: React.FC = () => {
   return (
     <div className="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 p-4 shadow-lg">

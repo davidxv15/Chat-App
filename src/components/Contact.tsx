@@ -7,7 +7,7 @@ const Contact: React.FC = () => {
       <div className="max-w-screen-xl mx-auto flex justify-between items-center">
         <div className="text-lg font-semibold">
           {/* Optionally add a title or leave it blank for pure icons */}
-          Connect with me:
+          Connect:
         </div>
         <div className="flex space-x-6">
           {/* LinkedIn Icon */}

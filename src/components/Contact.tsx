@@ -12,7 +12,7 @@ const Contact: React.FC = () => {
         <div className="flex space-x-6">
           {/* LinkedIn Icon */}
           <a 
-            href="https://www.linkedin.com/in/**************" 
+            href="https://www.linkedin.com/in/david-velasquez-az/" 
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="LinkedIn"

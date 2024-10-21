@@ -28,7 +28,7 @@ const Bulletin: React.FC = () => {
       aria-labelledby="bulletin-title"
       aria-describedby="bulletin-description"
     >
-      <h2 className="text-2xl font-bold text-blue-600" id="bulletin-title">
+      <h2 className="text-2xl font-bold text-blue-500" id="bulletin-title">
       {quote ? "Quote of the Day" : "Your Ad Here!"}
       </h2>
       <p id="bulletin-description" className="text-gray-400 p-2">

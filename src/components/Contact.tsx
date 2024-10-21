@@ -2,107 +2,43 @@ import React from 'react';
 
 const Contact: React.FC = () => {
   return (
-    <div
-      style={{
-        backgroundColor: '#1E293B', // Dark gray background
-        color: '#F8FAFC', // Light text color
-        padding: '1rem', // Reduced padding
-        borderRadius: '0.5rem',
-        boxShadow: '0 5px 10px rgba(0, 0, 0, 0.1)', // Smaller shadow
-        marginTop: '1rem', // Smaller top margin
-        width: '100%',
-        maxWidth: '500px', // Reduced max width for sleek look
-        textAlign: 'center',
-      }}
-    >
-      <h2
-        style={{
-          fontSize: '1.5rem', // Slightly smaller font for compact design
-          fontWeight: 'bold',
-          marginBottom: '0.75rem', // Reduced margin
-          color: '#3B82F6', // Blue for title
-        }}
-      >
-        Get in Touch
-      </h2>
-
-      <div style={{ marginBottom: '0.75rem' }}> {/* Reduced spacing */}
-        <p style={{ marginBottom: '0.25rem' }}> {/* Smaller margin */}
-          <strong>LinkedIn:</strong>
-        </p>
+    <div className="bg-gray-800 text-gray-100 p-6 rounded-lg shadow-lg mt-6 w-full max-w-lg mx-auto text-center">
+      <h2 className="text-2xl font-bold text-blue-500 mb-4">Get in Touch</h2>
+      <div className="mb-4">
+        <p className="font-semibold mb-2">LinkedIn:</p>
         <a
-          href="https://www.linkedin.com/in/david-velasquez-az/"
+          href="https://www.linkedin.com/in/****************/"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            color: '#3B82F6',
-            textDecoration: 'none',
-            fontSize: '1.125rem', // Slightly smaller font size
-            fontWeight: '500',
-          }}
+          className="text-blue-400 hover:underline text-lg"
         >
-          /david-velasquez-az/
+          /****************/
         </a>
       </div>
-
-      <div style={{ marginBottom: '0.75rem' }}>
-        <p style={{ marginBottom: '0.25rem' }}>
-          <strong>Email:</strong>
-        </p>
+      <div className="mb-4">
+        <p className="font-semibold mb-2">Email:</p>
         <a
-          href="mailto:davidxvaz@gmail.com"
-          style={{
-            color: '#3B82F6',
-            textDecoration: 'none',
-            fontSize: '1.125rem',
-            fontWeight: '500',
-          }}
+          href="mailto:**************"
+          className="text-blue-400 hover:underline text-lg"
         >
-          davidxvaz@gmail.com
+          ****************
         </a>
       </div>
-
-      {/* You can uncomment the Website section when ready */}
-      {/* 
-      <div style={{ marginBottom: '0.75rem' }}>
-        <p style={{ marginBottom: '0.25rem' }}>
-          <strong>Website:</strong>
-        </p>
+      {/* Uncomment and replace with your website if you want to include it */}
+      {/* <div className="mb-4">
+        <p className="font-semibold mb-2">Website:</p>
         <a
           href="https://www.your-website.com"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            color: '#3B82F6',
-            textDecoration: 'none',
-            fontSize: '1.125rem',
-            fontWeight: '500',
-          }}
+          className="text-blue-400 hover:underline text-lg"
         >
           www.your-website.com
         </a>
-      </div>
-      */}
-
-      <div style={{ marginTop: '1.5rem' }}> {/* Reduced margin */}
+      </div> */}
+      <div className="mt-6">
         <button
-          style={{
-            padding: '0.5rem 1.5rem', // Smaller padding
-            backgroundColor: '#3B82F6',
-            color: '#F8FAFC',
-            border: 'none',
-            borderRadius: '0.25rem',
-            cursor: 'pointer',
-            fontSize: '1rem',
-            transition: 'background-color 0.3s ease',
-          }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.backgroundColor = '#2563EB')
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.backgroundColor = '#3B82F6')
-          }
-          onClick={() => alert('This could link to a booking or contact form!')} 
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition duration-300"
         >
           Contact Me
         </button>

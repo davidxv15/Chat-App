@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
             target="_blank" 
             rel="noopener noreferrer"
             aria-label="LinkedIn"
-            className="hover:text-blue-400 transition duration-300"
+            className="hover:text-blue-500 transition duration-300"
           >
             <FaLinkedin size={28} />
           </a>

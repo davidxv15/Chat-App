@@ -3,7 +3,7 @@ import { FaLinkedin, FaEnvelope } from 'react-icons/fa';
 
 const Contact: React.FC = () => {
   return (
-    <div className="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 p-4 shadow-lg">
+    <div className="fixed bottom-0 left-0 w-full bg-gray-900 text-gray-200 p-4 shadow-lg opacity-50">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center">
         <div className="text-lg font-semibold">
           {/* Optionally add a title or leave it blank for pure icons */}

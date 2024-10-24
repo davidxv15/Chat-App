@@ -434,12 +434,13 @@ const ChatRoom: React.FC = () => {
       >
         <h1
           id="chat-title"
-          className="text-3xl text-gray-800 font-bold dark:text-gray-400 flex justify-center items-center"
+          className="text-2xl text-gray-800 font-bold dark:text-gray-400 flex justify-center items-center"
         >
           {" "}
           {roomName
             ? roomName.charAt(0).toUpperCase() + roomName.slice(1)
             : "General"}{" "}
+            {/* <br /> */}
           Chat
         </h1>
         <ActiveUsers

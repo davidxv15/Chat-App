@@ -1,133 +1,132 @@
 {
-    "quotes": [
-      {
-        "author": "Albert Einstein",
-        "text": "Life is like riding a bicycle. To keep your balance, you must keep moving."
-      },
-      {
-        "author": "Maya Angelou",
-        "text": "You will face many defeats in life, but never let yourself be defeated."
-      },
-      {
-        "author": "Nelson Mandela",
-        "text": "It always seems impossible until it’s done."
-      },
-      {
-        "author":"A.A. Milne",
-        "text": "People say nothing is impossible, but I do nothing every day."
-      },
-      {
-        "author": "Jack Handey",
-        "text": "Before you criticize someone, you should walk a mile in their shoes. That way when you criticize them, you are a mile away from them and you have their shoes."
-      },
-      {
-        "author": "Amy Poehler",
-        "text": "There's power in looking silly and not caring that you do."
-      },
-      {
-        "author": "Dolly Parton",
-        "text": "The way I see it, if you want the rainbow, you gotta put up with the rain."
-      },
-      {
-        "author": "Martin Luther King, Jr.",
-        "text": "If I cannot do great things, I can do small things in a great way."
-      },
-      {
-        "author": "Amelia Earhart",
-        "text": "The most difficult thing is the decision to act; the rest is merely tenacity."
-      },
-      {
-        "author": "Jimmy Dean",
-        "text": "I can't change the direction of the wind, but I can adjust my sails to always reach my destination."
-      },
-      {
-        "author": "Muhammad Ali",
-        "text": "If my mind can conceive it, if my heart can believe it, then I can achieve it."
-      },
-      {
-        "author": "Theodore Roosevelt",
-        "text": "Believe you can and you're halfway there."
-      },
-      {
-        "author": "Fred Rogers",
-        "text": "There’s no person in the whole world like you, and I like you just the way you are."
-      },
-      {
-        "author": "Wayne Gretzky",
-        "text": "You miss 100% of the shots you don’t take."
-      },
-      {
-        "author": "Franklin Delano Roosevelt",
-        "text": "The only limit to our realization of tomorrow is our doubts of today."
-      },
-      {
-        "author": "Winston Churchill",
-        "text": "Success is not final, failure is not fatal: It is the courage to continue that counts."
-      },
-      {
-        "author": "Confucius",
-        "text": "It does not matter how slowly you go as long as you do not stop."
-      },
-      {
-        "author": "Aristotle",
-        "text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit."
-      },
-      {
-        "author": "Yoda, Grand Master of the Jedi Order",
-        "text": "Do or do not. There is no try."
-      },
-      {
-        "author": "Chuck Palahniuk",
-        "text": "What we don't understand we can make mean anything."
-      },
-      {
-        "author": "Babe Ruth",
-        "text": "It's hard to beat a person who never gives up"
-      },
-      {
-        "author": "Estée Lauder",
-        "text": "I never dreamed about success. I worked for it."
-      },
-      {
-        "author": "Kobe Bryant",
-        "text": "Everyting negative - pressure, challenges - is all an opportunity for me to rise."
-      },
-      {
-        "author": "George Eliot",
-        "text": "t is never too late to be what you might have been."
-      },
-      {
-        "author": "Plato",
-        "text": "Be kind, for everyone you meet is fighting a hard battle."
-      },
-      {
-        "author": "Oscar Wilde",
-        "text": "Be yourself; everyone else is already taken."
-      },
-      {
-        "author": "Pablo Picasso",
-        "text": "Everything you can imagine is real."
-      },
-      {
-        "author": "George Bernard Shaw",
-        "text": "Life isn't about finding yourself. Life is about creating yourself."
-      },
-      {
-        "author": "Maya Angelou",
-        "text": "If you don’t like something, change it. If you can’t change it, change your attitude."
-      },
-      {
-        "author": "Walt Whtiman",
-        "text": "Keep your face always toward the sunshine―and shadows will fall behind you."
-      },
-      {
-        "author": "T.S. Eliot",
-        "text": "Only those who will risk going too far can possibly find out how far one can go."
-      },
-      {
-        "author": "",
-        "text": ""
-      }
-    ]
-  }
-  
+  "quotes": [
+    {
+      "author": "Albert Einstein",
+      "text": "Life is like riding a bicycle. To keep your balance, you must keep moving."
+    },
+    {
+      "author": "Maya Angelou",
+      "text": "You will face many defeats in life, but never let yourself be defeated."
+    },
+    {
+      "author": "Nelson Mandela",
+      "text": "It always seems impossible until it’s done."
+    },
+    {
+      "author": "A.A. Milne",
+      "text": "People say nothing is impossible, but I do nothing every day."
+    },
+    {
+      "author": "Jack Handey",
+      "text": "Before you criticize someone, you should walk a mile in their shoes. That way when you criticize them, you are a mile away from them and you have their shoes."
+    },
+    {
+      "author": "Amy Poehler",
+      "text": "There's power in looking silly and not caring that you do."
+    },
+    {
+      "author": "Dolly Parton",
+      "text": "The way I see it, if you want the rainbow, you gotta put up with the rain."
+    },
+    {
+      "author": "Martin Luther King, Jr.",
+      "text": "If I cannot do great things, I can do small things in a great way."
+    },
+    {
+      "author": "Amelia Earhart",
+      "text": "The most difficult thing is the decision to act; the rest is merely tenacity."
+    },
+    {
+      "author": "Jimmy Dean",
+      "text": "I can't change the direction of the wind, but I can adjust my sails to always reach my destination."
+    },
+    {
+      "author": "Muhammad Ali",
+      "text": "If my mind can conceive it, if my heart can believe it, then I can achieve it."
+    },
+    {
+      "author": "Theodore Roosevelt",
+      "text": "Believe you can and you're halfway there."
+    },
+    {
+      "author": "Fred Rogers",
+      "text": "There’s no person in the whole world like you, and I like you just the way you are."
+    },
+    {
+      "author": "Wayne Gretzky",
+      "text": "You miss 100% of the shots you don’t take."
+    },
+    {
+      "author": "Franklin Delano Roosevelt",
+      "text": "The only limit to our realization of tomorrow is our doubts of today."
+    },
+    {
+      "author": "Winston Churchill",
+      "text": "Success is not final, failure is not fatal: It is the courage to continue that counts."
+    },
+    {
+      "author": "Confucius",
+      "text": "It does not matter how slowly you go as long as you do not stop."
+    },
+    {
+      "author": "Aristotle",
+      "text": "We are what we repeatedly do. Excellence, then, is not an act, but a habit."
+    },
+    {
+      "author": "Yoda, Grand Master of the Jedi Order",
+      "text": "Do or do not. There is no try."
+    },
+    {
+      "author": "Chuck Palahniuk",
+      "text": "What we don't understand we can make mean anything."
+    },
+    {
+      "author": "Babe Ruth",
+      "text": "It's hard to beat a person who never gives up"
+    },
+    {
+      "author": "Estée Lauder",
+      "text": "I never dreamed about success. I worked for it."
+    },
+    {
+      "author": "Kobe Bryant",
+      "text": "Everyting negative - pressure, challenges - is all an opportunity for me to rise."
+    },
+    {
+      "author": "George Eliot",
+      "text": "t is never too late to be what you might have been."
+    },
+    {
+      "author": "Plato",
+      "text": "Be kind, for everyone you meet is fighting a hard battle."
+    },
+    {
+      "author": "Oscar Wilde",
+      "text": "Be yourself; everyone else is already taken."
+    },
+    {
+      "author": "Pablo Picasso",
+      "text": "Everything you can imagine is real."
+    },
+    {
+      "author": "George Bernard Shaw",
+      "text": "Life isn't about finding yourself. Life is about creating yourself."
+    },
+    {
+      "author": "Maya Angelou",
+      "text": "If you don’t like something, change it. If you can’t change it, change your attitude."
+    },
+    {
+      "author": "Walt Whtiman",
+      "text": "Keep your face always toward the sunshine―and shadows will fall behind you."
+    },
+    {
+      "author": "T.S. Eliot",
+      "text": "Only those who will risk going too far can possibly find out how far one can go."
+    },
+    {
+      "author": "",
+      "text": ""
+    }
+  ]
+}

@@ -52,7 +52,7 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
       <h3 id="active-users-title" className="Active-users opacity-60">
         Online
       </h3>
-      <ul role="list" aria-label="List of active users" className="">
+      <ul role="list" aria-label="List of active users." className="">
         {activeUsers.map((user) => (
           <li key={user} className="opacity-60"
           role="listitem"

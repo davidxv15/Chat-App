@@ -56,7 +56,7 @@ const ChatroomSelector: React.FC = () => {
       <br aria-hidden="true" />
       <h1 
       id="chat-room-selection-title" 
-      className="text-2xl mb-4 text-gray-200">Select a Chat Room</h1>
+      className="text-2xl mb-2 text-gray-200 pt-0">Select a Chat Room</h1>
       <div 
       className="grid grid-cols-3 gap-4"
       role="group" 

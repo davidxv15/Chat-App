@@ -6,7 +6,7 @@ const Contact: React.FC = () => {
     <div className="fixed bottom-0 left-0 w-full bg-transparent text-gray-200 p-1 shadow-lg opacity-80">
       <div className="max-w-screen-xl mx-auto flex justify-between items-center">
         <div className="text-lg font-semibold">
-          {/* Optionally add a title or leave it blank for pure icons */}
+          {/*  add title or leave it blank for pure icons */}
           Connect:
         </div>
         <div className="flex space-x-6">

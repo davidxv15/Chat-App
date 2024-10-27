@@ -23,12 +23,12 @@ const Bulletin: React.FC = () => {
 
   return (
     <div
-      className="bulletin rounded bg-gray-800 text-center px-14 py-4 mb-4 mt-4 border border-gray-600"
+      className="bulletin rounded bg-gray-800 text-center px-14 py-4 mb-2 mt-4 border border-gray-600"
       role="complementary"
       aria-labelledby="bulletin-title"
       aria-describedby="bulletin-description"
     >
-      <h2 className="text-2xl font-bold text-blue-500" id="bulletin-title">
+      <h2 className="text-2xl font-bold text-blue-500 pt-0" id="bulletin-title">
       {quote ? "Quote of the Day" : "Your Ad Here!"}
       </h2>
       <p id="bulletin-description" className="text-gray-400 p-2">

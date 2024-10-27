@@ -9,7 +9,7 @@ const Contact: React.FC = () => {
           {/*  add title or leave it blank for pure icons */}
           Connect:
         </div>
-        <div className="flex space-x-6">
+        <div className="flex space-x-7">
           {/* LinkedIn Icon */}
           <a 
             href="https://www.linkedin.com/in/david-velasquez-az/" 

@@ -81,4 +81,7 @@ This app will be deployed using [Heroku/AWS]. Upon deployment, you will be able 
 Stay tuned for the live link!
 <img width="463" alt="Screenshot 2024-10-27 at 10 43 32 PM" src="https://github.com/user-attachments/assets/a7531890-a77b-4478-9b86-81b070ee55df">
 
+<img width="481" alt="Screenshot 2024-10-27 at 10 43 45 PM" src="https://github.com/user-attachments/assets/7bc1ad96-8e12-4007-8eb7-5fc402499710">
+
+
 <img width="548" alt="Screenshot 2024-10-27 at 10 34 00 PM" src="https://github.com/user-attachments/assets/ff27278d-7626-4483-a243-117f39aae395">

@@ -79,7 +79,11 @@ Open http://localhost:3003 in your browser to view the app.
 Deployment:
 This app will be deployed using [Heroku/AWS]. Upon deployment, you will be able to access it through the provided URL. 
 Stay tuned for the live link!
+<img width="463" alt="Screenshot 2024-10-27 at 10 43 32 PM" src="https://github.com/user-attachments/assets/a7531890-a77b-4478-9b86-81b070ee55df">
 
-![Screenshot 2024-10-18 at 10 43 47 PM](https://github.com/user-attachments/assets/5fbc34f7-87d7-4160-b7f5-f4ca9ee7ad81)
+<img width="481" alt="Screenshot 2024-10-27 at 10 43 45 PM" src="https://github.com/user-attachments/assets/7bc1ad96-8e12-4007-8eb7-5fc402499710">
 
-<img width="630" alt="Screenshot 2024-10-18 at 11 16 17 PM" src="https://github.com/user-attachments/assets/3627b6d6-2e8e-403c-8047-6fb3569e08da">
+
+<img width="548" alt="Screenshot 2024-10-27 at 10 34 00 PM" src="https://github.com/user-attachments/assets/ff27278d-7626-4483-a243-117f39aae395">
+
+<img width="693" alt="Screenshot 2024-10-27 at 10 42 36 PM" src="https://github.com/user-attachments/assets/764d3b43-f18b-4796-b08b-dda8b46a514e">

@@ -8,7 +8,7 @@ const Contact: React.FC = () => {
         <div className="text-lg">
           {/* Connect: */}
         </div>
-        <div className="flex space-x-2 pl-2 mb-4">
+        <div className="flex space-x-2 pl-2 mb-2">
           {/* LinkedIn Icon */}
           <a 
             href="https://www.linkedin.com/in/david-velasquez-az/" 

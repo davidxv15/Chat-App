@@ -80,3 +80,4 @@ Deployment:
 This app will be deployed using [Heroku/AWS]. Upon deployment, you will be able to access it through the provided URL. 
 Stay tuned for the live link!
 
+<img width="548" alt="Screenshot 2024-10-27 at 10 34 00 PM" src="https://github.com/user-attachments/assets/ff27278d-7626-4483-a243-117f39aae395">

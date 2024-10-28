@@ -23,7 +23,7 @@ const Bulletin: React.FC = () => {
 
   return (
     <div
-      className="bulletin rounded bg-gray-800 text-center px-14 py-4 mb-2 mt-4 border border-gray-600"
+      className="bulletin rounded bg-gray-800 text-center px-6 py-4 mb-2 mt-4 border border-gray-600"
       role="complementary"
       aria-labelledby="bulletin-title"
       aria-describedby="bulletin-description"

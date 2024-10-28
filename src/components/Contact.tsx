@@ -6,7 +6,7 @@ const Contact: React.FC = () => {
     <div className="fixed bottom-0 left-0 w-full bg-transparent text-gray-200 p-2 shadow-lg opacity-80">
       <div className="max-w-screen-xl mx-2 flex justify-between items-center">
         <div className="text-lg">
-          Connect:
+          {/* Connect: */}
         </div>
         <div className="flex space-x-2 pl-2">
           {/* LinkedIn Icon */}

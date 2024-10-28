@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
             aria-label="LinkedIn"
             className="hover:text-blue-500 transition duration-300"
           >
-            <FaLinkedin size={28} />
+            <FaLinkedin size={26} />
           </a>
 
           {/* Email Icon */}
@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
             aria-label="Email"
             className="hover:text-red-400 transition duration-300"
           >
-            <FaEnvelope size={28} />
+            <FaEnvelope size={26} />
           </a>
         </div>
       </div>

@@ -48,7 +48,7 @@ const ChatroomSelector: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center bg-gray-900 pb-6"
+    <div className="flex flex-col items-center bg-gray-900 pb-6 full-screen-page"
     role="main" 
     aria-labelledby="chat-room-selection-title"
     >

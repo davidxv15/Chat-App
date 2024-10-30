@@ -10,16 +10,15 @@ const Bulletin: React.FC = () => {
 
   // Fetch the JSON file on component mount
   useEffect(() => {
-    fetch('/Quotes.json')
+    fetch("/Quotes.json")
       .then((response) => response.json())
       .then((data) => {
         const quotes = data.quotes;
         const randomIndex = Math.floor(Math.random() * quotes.length);
         setQuote(quotes[randomIndex]);
       })
-      .catch((error) => console.error('Error loading quotes:', error));
+      .catch((error) => console.error("Error loading quotes:", error));
   }, []);
-
 
   return (
     <div
@@ -28,11 +27,16 @@ const Bulletin: React.FC = () => {
       aria-labelledby="bulletin-title"
       aria-describedby="bulletin-description"
     >
-      <h2 className="text-2xl font-bold text-blue-500 pt-0 pb-2" id="bulletin-title">
-      {quote ? "Quote of the Day" : "Your Ad Here!"}
+      <h2
+        className="text-2xl font-bold text-blue-500 pt-0 pb-2"
+        id="bulletin-title"
+      >
+        {quote ? "Quote of the Day" : "Your Ad Here!"}
       </h2>
       <p id="bulletin-description" className="text-gray-400 p-2">
-      {quote ? `"${quote.text}" - ${quote.author}` : "Visit our sponsors! Advertise here!"}
+        {quote
+          ? `"${quote.text}" - ${quote.author}`
+          : "Visit our sponsors! Advertise here!"}
       </p>
       {/* <p
         className="contact text-white"
@@ -42,8 +46,6 @@ const Bulletin: React.FC = () => {
         {" "}
       </p> */}
     </div>
-
-    
   );
 };
 

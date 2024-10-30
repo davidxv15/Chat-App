@@ -24,7 +24,7 @@ const Contact: React.FC = () => {
           <a 
             href="mailto:davidxvaz@gmail.com" 
             aria-label="Email"
-            className="hover:text-red-400 transition duration-300"
+            className="hover:text-green-600 transition duration-300"
           >
             <FaEnvelope size={26} />
           </a>

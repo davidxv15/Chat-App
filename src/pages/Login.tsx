@@ -100,7 +100,7 @@ const Login: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-gray-900"
+      className="flex flex-col items-center justify-center min-h-screen bg-gray-900 full-screen-page"
       role="main"
       aria-labelledby="login-title"
     >

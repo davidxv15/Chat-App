@@ -226,6 +226,7 @@ hr::after {
 
 .dark-button {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 8);
+  transform: translateY(.3rem);
 }
 
 .home-button {

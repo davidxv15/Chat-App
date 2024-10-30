@@ -11,7 +11,7 @@ const Greeting: React.FC = () => {
         position: "absolute",
         top: ".5rem",
         left: "1rem",
-        height: "1.4rem",
+        height: "1.3rem",
         // color: "#9CA3AF",
         // fontWeight: "bold",
         // backgroundColor: "#E5E7EB",

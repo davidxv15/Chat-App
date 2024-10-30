@@ -6,12 +6,12 @@ const NotFound: React.FC = () => {
 
   return (
     <div
-      className="flex flex-col items-center justify-center min-h-screen bg-gray-800"
+      className="flex flex-col items-center justify-center min-h-screen bg-gray-800 full-screen-page"
       role="main"
       aria-labelledby="not-found-title"
     >
       <h1
-        className="text-4xl font-bold mb-4 text-gray-200"
+        className="text-4xl font-bold mb-4 text-gray-200 items-center justify-content"
         id="not-found-title"
       >
         404 - Page Not Found

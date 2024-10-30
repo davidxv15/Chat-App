@@ -1,4 +1,4 @@
-# Real-Time Chat Application in React + TypeScript + Vite
+# Real-Time Chat Application in TypeScript + Vite
 
 How to Use the App?
 

@@ -194,6 +194,13 @@ hr::after {
   transform: translateX(-0.46rem);
 }
 
+@media (max-width: 640px) {
+  .g-recaptcha {
+    transform: scale(0.85); /* Further scale down if needed */
+    transform-origin: left; /* Adjust based on alignment preference */
+  }
+}
+
 .Active-users {
   text-decoration: underline;
 }

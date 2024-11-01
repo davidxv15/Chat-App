@@ -9,7 +9,7 @@ const ChatroomSelector: React.FC = () => {
   const { socket } = useWebSocket();
   const [roomUsers, setRoomUsers] = useState<{ [roomName: string]: string[] }>({});
 
-  const rooms = ["General",  "Tech", "Movies", "Music", "Art", "Food","Sports", "HR"];
+  const rooms = ["General", "Tech", "Art", "Film", "Music", "Food","Sports", "HR"];
 
    //for user list updates to each room
    useEffect(() => {

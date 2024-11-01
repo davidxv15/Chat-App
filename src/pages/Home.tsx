@@ -19,7 +19,7 @@ const Home: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-900 p-4 top-2">
-      <h1 className="text-3xl font-bold text-gray-200">Welcome to Real-Time Chat</h1>
+      <h1 className="text-3xl font-bold text-gray-200 italic-slant">Welcome to Real-Time Chat</h1>
       <ChatroomSelector />
       {/* <button
         onClick={goToChat}

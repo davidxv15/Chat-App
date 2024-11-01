@@ -255,3 +255,8 @@ hr::after {
   padding: 0;
   overflow-x: hidden; 
 }
+
+.italic-slant {
+  font-style: italic;
+  transform: skew(-10deg); /* Adjust the angle as needed */
+}

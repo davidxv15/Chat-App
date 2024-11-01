@@ -196,7 +196,7 @@ hr::after {
 
 @media (max-width: 640px) {
   .g-recaptcha {
-    
+    transform: none;
   }
 }
 

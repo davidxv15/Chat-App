@@ -54,9 +54,7 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
       </h3>
       <ul role="list" aria-label="List of active users" className="">
         {activeUsers.map((user) => (
-          <li key={user} className="opacity-60"
-          role="listitem"
-          >
+          <li key={user} className="opacity-60" role="listitem">
             {user}
           </li>
         ))}

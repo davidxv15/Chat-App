@@ -480,7 +480,7 @@ const ChatRoom: React.FC = () => {
         </button>
 
         <div
-          className="flex-1 bg-white p-2 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
+          className="flex-1 bg-white p-2 pt-1 rounded-lg shadow-md overflow-y-auto dark:bg-gray-800"
           ref={chatContainerRef}
           aria-live="polite"
           aria-relevant="additions text"

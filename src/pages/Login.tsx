@@ -61,7 +61,7 @@ const Login: React.FC = () => {
     try {
       // Send recaptcha token to backend for verification
       const captchaResponse = await axios.post(
-        "http://localhost:3001/verify-captcha",
+        `${import.meta.env.VITE_API_URL}/verify-captcha`,
         { token }
       );
       if (captchaResponse.data.message === "Verification successful") {

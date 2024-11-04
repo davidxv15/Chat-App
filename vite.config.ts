@@ -6,8 +6,7 @@ export default defineConfig({
   server: {
     port: 3003, // Frontend port
     proxy: {
-      "/api": import.meta.env.VITE_API_URL, // proxy API requests to backend on port 3001
-
+      "/api": process.env.VITE_API_URL || "http://localhost:3001", // Fallback to localhost if VITE_API_URL is undefined
   },
 },
   plugins: [react()],

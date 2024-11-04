@@ -121,7 +121,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const register = async (username: string, password: string) => {
-    await axios.post("http://localhost:3000/api/auth/register", {
+    await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, {
       username,
       password,
     });

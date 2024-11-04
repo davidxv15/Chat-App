@@ -15,8 +15,10 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
       socket.close(); // closes any existing connection before opening new one
     }
 
-    console.log('Attempting to establish WebSocket connection...');
-    const ws = new WebSocket(`${import.meta.env.VITE_WS_URL}?token=${token}`);
+    const wsUrl = `${import.meta.env.VITE_WS_URL}?token=${token}`;
+  console.log("Attempting to establish WebSocket connection at", wsUrl);
+
+  const ws = new WebSocket(wsUrl);
 
     ws.onopen = () => {
       console.log('WebSocket connection established');

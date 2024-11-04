@@ -16,7 +16,7 @@ export const WebSocketProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     }
 
     console.log('Attempting to establish WebSocket connection...');
-    const ws = new WebSocket(`ws://localhost:3001/ws?token=${token}`);
+    const ws = new WebSocket(`${import.meta.env.VITE_WS_URL}?token=${token}`);
 
     ws.onopen = () => {
       console.log('WebSocket connection established');

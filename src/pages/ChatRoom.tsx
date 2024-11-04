@@ -334,7 +334,7 @@ const ChatRoom: React.FC = () => {
 
       // Send a request to the backend to delete the messages
       await axios.delete(
-        `http://localhost:3001/api/messages/${user?.username}`
+        `${import.meta.env.VITE_API_URL}/messages/${user?.username}`
       );
 
       // Clear all room messages from sessionStorage

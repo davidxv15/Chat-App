@@ -91,7 +91,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [navigate]);
 
   const login = async (username: string, password: string, rememberMe: boolean) => {
-    const { data } = await axios.post("http://localhost:3001/api/auth/login", {
+    const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/auth/login`, {
       username,
       password,
     });

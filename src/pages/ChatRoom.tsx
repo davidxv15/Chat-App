@@ -54,7 +54,8 @@ const ChatRoom: React.FC = () => {
         // Fetch from the backend if no messages are found in sessionStorage
         try {
           const response = await axios.get(
-            `http://localhost:3001/api/messages/${roomName}`
+            `${import.meta.env.VITE_API_URL}/messages/${roomName}`
+
           );
           const fetchedMessages = response.data;
           setMessages(fetchedMessages);

@@ -52,7 +52,7 @@ const Register: React.FC = () => {
     try {
       // Send reCAPTCHA token and registration data to the backend
       const captchaResponse = await axios.post(
-        "http://localhost:3001/verify-captcha",
+        `${import.meta.env.VITE_API_URL}/verify-captcha`,
         { token }
       );
 

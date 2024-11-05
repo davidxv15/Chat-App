@@ -3,26 +3,22 @@
 How to Use the App?
 
 **Sign Up:**
-
 If you do not have an account, use the "Register" button to create an account. You will need to provide a username and password to get started.
 
 **Login:**
-
 Once you have an account, log in by clicking on the "Login" button. After logging in, you'll be directed to the chat room selection page.
 
 **Select a Chat Room:**
-
 Choose a chat room from the list to join. Different rooms are available (e.g., General, Movies, Tech), and each room functions independently, so your conversations are unique to each room.
 
 **Chat:**
-
 Once inside a room, simply start typing in the message input area at the bottom of the chat window and/or select an Emoji from the emoji library, then press "Send" or hit 'Enter' key. Your message will appear in the chat in real time. You'll also see other users typing and sending messages.
 
 ### Additional Features:
 
 Typing Indicator: See when others are typing a message in real time.  
 Active User List: See who is currently active in the chat room.  
-Sound and Dark Mode Toggle: Adjust your settings using the toggles for sound notifications and dark mode.  
+Dark Mode and Sound Toggle: Adjust your settings using the toggles for sound notifications and dark mode.  
 Emoji Picker: Add emojis to your messages using the emoji picker button.  
 Inactivity Timer:
 If you're inactive for a prolonged period, you'll receive a warning before being automatically logged out. Stay active to avoid being logged out automatically.

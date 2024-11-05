@@ -105,7 +105,7 @@ const Login: React.FC = () => {
       aria-labelledby="login-title"
     >
       <h1 id="login-title" className="text-4xl font-bold mb-4 text-gray-200 italic-slant">
-        Login
+        LOGIN
       </h1>
 
       <form

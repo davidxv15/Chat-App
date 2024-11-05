@@ -47,8 +47,7 @@ Other:
 JWT: Used for user authentication and secure session handling.  
 Bcrypt: Ensures secure password storage.  
 CAPTCHA: Protects against spam registrations.  
-Custom JSON: Displays rotating quotes in the bulletin section for a dynamic user experience.  
-
+Custom JSON: Displays rotating quotes in the bulletin section for a dynamic user experience.
 
 Future Features:
 Admin Bulletin Management:
@@ -77,17 +76,14 @@ Run npm install to install dependencies.
 Start the development server with npm run dev.
 Open http://localhost:3003 in your browser to view the app.
 
-
 Deployment:
 This app will be deployed using [Heroku/AWS]. Upon deployment, you will be able to access it through:
 
-
-https://capable-selkie-5113d6.netlify.app/ 
+https://capable-selkie-5113d6.netlify.app/
 
 <img width="463" alt="Screenshot 2024-10-27 at 10 43 32 PM" src="https://github.com/user-attachments/assets/a7531890-a77b-4478-9b86-81b070ee55df">
 
 <img width="481" alt="Screenshot 2024-10-27 at 10 43 45 PM" src="https://github.com/user-attachments/assets/7bc1ad96-8e12-4007-8eb7-5fc402499710">
-
 
 <img width="548" alt="Screenshot 2024-10-27 at 10 34 00 PM" src="https://github.com/user-attachments/assets/ff27278d-7626-4483-a243-117f39aae395">
 

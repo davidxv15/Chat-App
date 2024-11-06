@@ -435,7 +435,7 @@ const ChatRoom: React.FC = () => {
       >
         <h1
           id="chat-title"
-          className="font-bold text-2xl text-gray-800 dark:text-gray-400 flex justify-center items-center"
+          className="font-bold text-2xl text-gray-800 dark:text-gray-400 flex justify-center items-center align-middle"
         >
           {" "}
           {roomName

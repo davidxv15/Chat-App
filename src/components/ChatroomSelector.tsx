@@ -66,7 +66,7 @@ const ChatroomSelector: React.FC = () => {
           <button
             key={room}
             onClick={() => handleRoomSelection(room)}
-            className="bg-blue-700 text-xl text-gray-200 py-2 px-5 rounded border border-gray-500 hover:bg-blue-700"
+            className="bg-blue-700 text-xl text-gray-200 py-2 px-5 rounded border border-gray-500 hover:bg-blue-700 align-middle"
             aria-label={`Join ${room} chat room`}
           >
             {room}

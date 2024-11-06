@@ -45,7 +45,7 @@ const ActiveUsers: React.FC<{ room: string }> = ({ room }) => {
     <div
       role="region"
       aria-labelledby="active-users-title"
-      className={`active-users-list hover:scale-125 bg-gray-400 bg-opacity-60 text-white px-2 pl-4 py-0 sticky  dark:bg-opacity-5 backdrop-blur-sm dark:text-gray-200 hover:scale-110 transition-all duration-500 ease-in-out ${
+      className={`active-users-list hover:scale-125 bg-gray-400 bg-opacity-60 text-black px-2 pl-4 py-0 sticky  dark:bg-opacity-5 backdrop-blur-sm dark:text-gray-200 hover:scale-110 transition-all duration-500 ease-in-out ${
         isScrolled ? "transform translate-y-[4.5rem]" : ""
       }`}
     >

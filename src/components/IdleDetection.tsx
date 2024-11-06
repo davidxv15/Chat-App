@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useAuth } from '../context/AuthContext'; // Assuming this is your auth context
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useRef, useState } from "react";
+import { useAuth } from "../context/AuthContext"; // Assuming this is your auth context
+import { useParams } from "react-router-dom";
 
 interface IdleDetectionProps {
   timeout: number; // Total inactivity time before warning, in ms
@@ -8,13 +8,13 @@ interface IdleDetectionProps {
 }
 
 const IdleDetection: React.FC<IdleDetectionProps> = ({
-    timeout = 240 * 60 * 1000, // 4 hours
-    warningTime = 10 * 60 * 1000 // 10 minutes warning
+  timeout = 240 * 60 * 1000, // 4 hours
+  warningTime = 10 * 60 * 1000, // 10 minutes warning
 }) => {
   const { logout } = useAuth();
   const { roomName } = useParams<{ roomName: string }>();
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
-  const countdownIntervalId = useRef<number | null>(null); 
+  const countdownIntervalId = useRef<number | null>(null);
   const [showWarning, setShowWarning] = useState(false);
   const [countdown, setCountdown] = useState(warningTime / 1000); // Countdown in seconds
 
@@ -28,7 +28,7 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
   const startIdleTimer = () => {
     // console.log('Idle timer started');
     timeoutId.current = setTimeout(() => {
-    //   console.log('Showing warning modal');
+      //   console.log('Showing warning modal');
       setShowWarning(true);
       startWarningCountdown();
     }, timeout - warningTime);
@@ -36,7 +36,7 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
 
   const startWarningCountdown = () => {
     let remainingTime = warningTime / 1000;
-  
+
     countdownIntervalId.current = window.setInterval(() => {
       setCountdown((prev) => {
         if (prev <= 1) {
@@ -48,30 +48,30 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
         }
         return prev - 1;
       });
-  
+
       remainingTime -= 1;
     }, 1000);
   };
-  
 
   useEffect(() => {
     startIdleTimer();
 
     const handleUserActivity = () => {
-        console.log('User activity detected, resetting timer.');
-        resetTimer(); // Reset on any user interaction
-      };
+      console.log("User activity detected, resetting timer.");
+      resetTimer(); // Reset on any user interaction
+    };
 
-    window.addEventListener('mousemove', handleUserActivity);
-    window.addEventListener('keypress', handleUserActivity);
-    window.addEventListener('touchstart', handleUserActivity);
+    window.addEventListener("mousemove", handleUserActivity);
+    window.addEventListener("keypress", handleUserActivity);
+    window.addEventListener("touchstart", handleUserActivity);
 
     return () => {
-      window.removeEventListener('mousemove', handleUserActivity);
-      window.removeEventListener('keypress', handleUserActivity);
-      window.removeEventListener('touchstart', handleUserActivity);
+      window.removeEventListener("mousemove", handleUserActivity);
+      window.removeEventListener("keypress", handleUserActivity);
+      window.removeEventListener("touchstart", handleUserActivity);
       if (timeoutId.current) clearTimeout(timeoutId.current);
-      if (countdownIntervalId.current) clearInterval(countdownIntervalId.current); // Cleanup
+      if (countdownIntervalId.current)
+        clearInterval(countdownIntervalId.current); // Cleanup
     };
   }, []);
 
@@ -90,7 +90,8 @@ const IdleDetection: React.FC<IdleDetectionProps> = ({
             Inactivity Warning
           </h2>
           <p id="warning-description" className="mb-4">
-            You will be logged out in <strong>{countdown}</strong> seconds due to inactivity.
+            You will be logged out in <strong>{countdown}</strong> seconds due
+            to inactivity.
           </p>
           <button
             onClick={resetTimer}

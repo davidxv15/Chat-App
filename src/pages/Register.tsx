@@ -88,7 +88,7 @@ const Register: React.FC = () => {
       aria-labelledby="register-title"
     >
       <h1 id="register-title" className="text-4xl text-gray-200 font-bold mb-4 italic-slant">
-        REGISTER
+        Register
       </h1>
 
       <form

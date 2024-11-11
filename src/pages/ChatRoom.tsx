@@ -549,7 +549,7 @@ const ChatRoom: React.FC = () => {
           {/* Input and Send Button */}
           <input
             type="text"
-            className="flex-1 p-2 rounded-md text-black dark:bg-gray-800 dark:text-white"
+            className="flex-1 p-2 rounded-md text-black bg-gray-200 dark:bg-gray-800 dark:text-white"
             placeholder="Type your message..."
             aria-label="Message input"
             aria-required="true"

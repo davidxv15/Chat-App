@@ -474,7 +474,7 @@ const ChatRoom: React.FC = () => {
         </button>
         <button
           onClick={handleLogout}
-          className="bg-red-600 text-white dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4 hover:bg-red-800 dark:hover:bg-red-600 dark:hover:text-white"
+          className="bg-red-600 text-gray-200 dark:bg-red-800 dark:text-gray-400 px-4 py-2 rounded-md absolute top-2 right-4 hover:bg-red-800 dark:hover:bg-red-600 dark:hover:text-white"
           aria-label="Logout from the Chat Application"
         >
           Logout

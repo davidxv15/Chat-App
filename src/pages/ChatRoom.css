@@ -258,5 +258,5 @@ hr::after {
 
 .italic-slant {
   font-style: italic;
-  transform: skew(-1deg); /* Adjust the angle as needed */
+  transform: skew(1deg); /* Adjust the angle as needed */
 }

@@ -40,7 +40,7 @@
 }
 .dark .toggle-checkbox:checked::before {
   transform: translateX(20px);
-  background-color: #c5c5c5;
+  background-color: #9CA;
 }
 
 /* Dark mode styles */

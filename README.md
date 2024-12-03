@@ -1,6 +1,6 @@
 # Real-Time Chat Application in TypeScript + Vite
 
-How to Use the App?
+## How to Use the App?
 
 * **Sign Up:**
 If you do not have an account, use the "Register" button to create an account. You will need to provide a username and password to get started.  

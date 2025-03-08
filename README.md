@@ -1,6 +1,6 @@
 # Real-Time Chat Application in TypeScript + Vite
 
-**How to Use the App?**
+## How to Use the App?
 
 * **Sign Up:**
 If you do not have an account, use the "Register" button to create an account. You will need to provide a username and password to get started.  
@@ -39,7 +39,7 @@ You can log out at any time using the "Logout" button in the top-right corner. C
 * **CAPTCHA**: Protects against spam registrations.  
 * **Custom JSON**: Displays rotating quotes in the bulletin section for a dynamic user experience.  
 
-**Future Features:**
+**Future Features:**  
 * Admin Bulletin Management: Enable admins to update the bulletin directly from the app instead of manually editing JSON files.
 * Push Notifications: Allow users to receive notifications of new messages or activity when not on the app.
 * Enhanced User Profile: Add the ability for users to customize their profiles with avatars, status messages, and more.
@@ -51,8 +51,8 @@ You can log out at any time using the "Logout" button in the top-right corner. C
 The goal of this project is to create a lightweight, real-time chat app that can be used in workplaces. This app can be utilized by businesses for internal communication, allowing different departments to have their own chat rooms. The login process can even serve as an unofficial "clock-in" for employees, helping track work hours and participation. With built-in features like dark mode, sound notifications, and typing indicators, this chat app is designed for ease of use and maximum productivity.
 
 **How to Run Locally**:
-Clone the repository.
-Run npm install to install dependencies.
+1. Clone the repository.
+2. Run npm install to install dependencies.
 Start the development server with npm run dev.
 Open http://localhost:3003 in your browser to view the app.
 

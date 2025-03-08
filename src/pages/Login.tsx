@@ -52,6 +52,7 @@ const Login: React.FC = () => {
 
     // Get reCAPTCHA token from the widget
     const token = window.grecaptcha.getResponse();
+    console.log("reCAPTCHA Token:", token); 
     if (!token) {
       setError("Please complete the CAPTCHA");
       setLoading(false);
@@ -62,7 +63,7 @@ const Login: React.FC = () => {
       // Send recaptcha token to backend for verification
       const captchaResponse = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/verify-captcha`,
-        { captchaToken: token }
+        {  token }
       );
       if (captchaResponse.data.message === "Verification successful") {
         // If captcha is verified, proceed with the login

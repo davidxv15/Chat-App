@@ -52,13 +52,13 @@ const Register: React.FC = () => {
     try {
       // Send reCAPTCHA token and registration data to the backend
       const captchaResponse = await axios.post(
-        `${import.meta.env.VITE_API_URL}/verify-captcha`,
+        `${import.meta.env.VITE_API_URL}/api/verify-captcha`,
         { captchaToken: token }
       );
 
       if (captchaResponse.data.message === "Verification successful") {
         // Proceed with registration if CAPTCHA is valid
-        await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, {
+        await axios.post(`${import.meta.env.VITE_API_URL}api/auth/register`, {
           username,
           password,
         });

@@ -63,7 +63,7 @@ const Login: React.FC = () => {
       // Send recaptcha token to backend for verification
       const captchaResponse = await axios.post(
         `${import.meta.env.VITE_API_URL}/api/verify-captcha`,
-        { token }
+        { captchaToken: token }
       );
       if (captchaResponse.data.message === "Verification successful") {
         // If captcha is verified, proceed with the login
@@ -197,4 +197,4 @@ const Login: React.FC = () => {
 
 export default Login;
 
-// check paths, routes, and keys for 3rd party updates
+// check paths, routes, and keys for 3rd party update

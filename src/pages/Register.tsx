@@ -58,12 +58,12 @@ const Register: React.FC = () => {
 
       if (captchaResponse.data.message === "Verification successful") {
         // Proceed with registration if CAPTCHA is valid
-        await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
           username,
           password,
         });
         setSuccess("Registration successful! Redirecting to login...");
-        setTimeout(() => navigate("/login"), 2000); // Redirect to login after 2 seconds
+        setTimeout(() => navigate("/login"), 20000); // Redirect to login after 2 seconds
       } else {
         setError("CAPTCHA verification failed. Please try again.");
       }

@@ -58,7 +58,7 @@ const Register: React.FC = () => {
 
       if (captchaResponse.data.message === "Verification successful") {
         // Proceed with registration if CAPTCHA is valid
-        await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
+        await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, {
           username,
           password,
         });

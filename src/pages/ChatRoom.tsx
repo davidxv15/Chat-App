@@ -54,7 +54,7 @@ const ChatRoom: React.FC = () => {
         // Fetch from the backend if no messages are found in sessionStorage
         try {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/messages/${roomName}`
+            `${import.meta.env.VITE_API_URL}/api/messages/${roomName}`
 
           );
           const fetchedMessages = response.data;
@@ -334,7 +334,7 @@ const ChatRoom: React.FC = () => {
 
       // Send a request to the backend to delete the messages
       await axios.delete(
-        `${import.meta.env.VITE_API_URL}/messages/${user?.username}`
+        `${import.meta.env.VITE_API_URL}/api/messages/${user?.username}`
       );
 
       // Clear all room messages from sessionStorage

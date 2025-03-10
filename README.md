@@ -22,6 +22,8 @@ Once inside a room, simply start typing in the message input area at the bottom 
 The app features a bulletin section where quotes or important messages appear. These are randomly selected from a custom collection of admin-updated quotes.  
 * **Logout**:
 You can log out at any time using the "Logout" button in the top-right corner. Closing the browser window or being inactive for 4 hours will also log you out automatically.
+* **Auto-Reconnection:** If the WebSocket disconnects due to network issues, the app will attempt to **automatically reconnect** instead of logging you out.
+
 
 ### Technology Used:  
 **Frontend:**

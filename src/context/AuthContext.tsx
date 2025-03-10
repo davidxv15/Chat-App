@@ -161,7 +161,7 @@ const startInactivityTimer = (roomName: string) => {
     }
     logout(); // Call the full logout logic
     alert("You have been logged out due to inactivity.");
-  }, 240 * 60 * 1000); // 30 minutes inactivity timeout
+  }, 240 * 60 * 1000); // 240 minutes inactivity timeout
 };
 
 useEffect(() => {

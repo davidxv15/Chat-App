@@ -1,108 +1,49 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useAuth } from "../context/AuthContext"; // Assuming this is your auth context
-import { useParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 interface IdleDetectionProps {
-  timeout: number; // Total inactivity time before warning, in ms
-  warningTime: number; // Time before actual logout to show warning, in ms
+  timeout: number; // Time before logout
+  warningTime: number; // Time before warning
+  onLogout: () => void;
 }
 
-const IdleDetection: React.FC<IdleDetectionProps> = ({
-  timeout = 240 * 60 * 1000, // 4 hours
-  warningTime = 10 * 60 * 1000, // 10 minutes warning
-}) => {
-  const { logout } = useAuth();
-  const { roomName } = useParams<{ roomName: string }>();
+const IdleDetection: React.FC<IdleDetectionProps> = ({ timeout, warningTime, onLogout }) => {
   const timeoutId = useRef<NodeJS.Timeout | null>(null);
-  const countdownIntervalId = useRef<number | null>(null);
-  const [showWarning, setShowWarning] = useState(false);
-  const [countdown, setCountdown] = useState(warningTime / 1000); // Countdown in seconds
+  const warningId = useRef<NodeJS.Timeout | null>(null);
 
+  // Function to reset the idle timer
   const resetTimer = () => {
+    console.log("🟢 User activity detected. Resetting Idle Timer.");
+
     if (timeoutId.current) clearTimeout(timeoutId.current);
-    if (countdownIntervalId.current) clearInterval(countdownIntervalId.current);
-    setShowWarning(false);
-    startIdleTimer();
-  };
+    if (warningId.current) clearTimeout(warningId.current);
 
-  const startIdleTimer = () => {
-    // console.log('Idle timer started');
+    // **Set a new warning timeout before the full logout**
+    warningId.current = setTimeout(() => {
+      console.warn("⚠️ Warning: You will be logged out soon due to inactivity.");
+    }, timeout - warningTime); // Warn the user before auto-logout
+
+    // **Set full logout timer**
     timeoutId.current = setTimeout(() => {
-      //   console.log('Showing warning modal');
-      setShowWarning(true);
-      startWarningCountdown();
-    }, timeout - warningTime);
-  };
-
-  const startWarningCountdown = () => {
-    let remainingTime = warningTime / 1000;
-
-    countdownIntervalId.current = window.setInterval(() => {
-      setCountdown((prev) => {
-        if (prev <= 1) {
-          if (countdownIntervalId.current !== null) {
-            clearInterval(countdownIntervalId.current); // Stop countdown
-          }
-          logout(); // Log the user out
-          alert(`You have been logged out from ${roomName} due to inactivity.`);
-        }
-        return prev - 1;
-      });
-
-      remainingTime -= 1;
-    }, 1000);
+      console.error("🚨 Logging out due to inactivity.");
+      onLogout();
+    }, timeout);
   };
 
   useEffect(() => {
-    startIdleTimer();
+    resetTimer(); // Initialize timer on mount
 
-    const handleUserActivity = () => {
-      console.log("User activity detected, resetting timer.");
-      resetTimer(); // Reset on any user interaction
-    };
-
-    window.addEventListener("mousemove", handleUserActivity);
-    window.addEventListener("keypress", handleUserActivity);
-    window.addEventListener("touchstart", handleUserActivity);
+    // Reset timer when user interacts
+    const events = ["mousemove", "keydown", "click", "scroll"];
+    events.forEach((event) => window.addEventListener(event, resetTimer));
 
     return () => {
-      window.removeEventListener("mousemove", handleUserActivity);
-      window.removeEventListener("keypress", handleUserActivity);
-      window.removeEventListener("touchstart", handleUserActivity);
+      events.forEach((event) => window.removeEventListener(event, resetTimer));
       if (timeoutId.current) clearTimeout(timeoutId.current);
-      if (countdownIntervalId.current)
-        clearInterval(countdownIntervalId.current); // Cleanup
+      if (warningId.current) clearTimeout(warningId.current);
     };
-  }, []);
+  }, [timeout]);
 
-  if (!showWarning) return null;
-
-  return (
-    showWarning && (
-      <div
-        role="dialog"
-        aria-labelledby="warning-title"
-        aria-describedby="warning-description"
-        className="fixed inset-0 flex items-center justify-center bg-black z-50"
-      >
-        <div className="bg-white p-6 rounded-md shadow-md text-center">
-          <h2 id="warning-title" className="text-2xl font-bold mb-2">
-            Inactivity Warning
-          </h2>
-          <p id="warning-description" className="mb-4">
-            You will be logged out in <strong>{countdown}</strong> seconds due
-            to inactivity.
-          </p>
-          <button
-            onClick={resetTimer}
-            className="bg-blue-600 text-white px-4 py-2 rounded-md"
-          >
-            Stay Logged In
-          </button>
-        </div>
-      </div>
-    )
-  );
+  return null; // No UI, just background logic
 };
 
 export default IdleDetection;

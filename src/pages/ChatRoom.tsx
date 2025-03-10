@@ -40,6 +40,9 @@ const ChatRoom: React.FC = () => {
   const lastMessageRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  const [activeUsers, setActiveUsers] = useState<string[]>([]);
+
+
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
@@ -54,7 +57,7 @@ const ChatRoom: React.FC = () => {
         // Fetch from the backend if no messages are found in sessionStorage
         try {
           const response = await axios.get(
-            `${import.meta.env.VITE_API_URL}/api/messages/${roomName}`
+            `${import.meta.env.VITE_API_URL}/messages/${roomName}`
 
           );
           const fetchedMessages = response.data;
@@ -93,7 +96,7 @@ const ChatRoom: React.FC = () => {
             JSON.stringify({
               type: "join",
               room: roomName,
-              username: user?.username,
+              username: user?.username, // added username!
             })
           );
           console.log(`Joined room: ${roomName} as ${user?.username}`);
@@ -162,93 +165,103 @@ const ChatRoom: React.FC = () => {
 
   useEffect(() => {
     if (!socket) return;
-
+  
+    // Handles incoming WebSocket messages
     const handleMessage = (event: MessageEvent) => {
       try {
         const data = JSON.parse(event.data);
-        console.log("Message received on client:", data);
-
-        if (data.type === "userLoggedOut" && data.username) {
-          // Remove the messages of the logged-out user
-          setMessages((prevMessages) =>
-            prevMessages.filter((msg) => msg.username !== data.username)
-          );
-
-          // Clear the sessionStorage for that user's messages
-          const storedMessages = sessionStorage.getItem(`messages-${roomName}`);
-          if (storedMessages) {
-            const parsedMessages = JSON.parse(storedMessages);
-            const filteredMessages = parsedMessages.filter(
-              (msg: { username: any }) => msg.username !== data.username
-            );
-            sessionStorage.setItem(
-              `messages-${roomName}`,
-              JSON.stringify(filteredMessages)
-            );
-          }
+        console.log("📩 WebSocket Message Received:", data);
+  
+        if (!data.type) {
+          console.error("❌ Invalid message format: Missing type", data);
+          return;
         }
-
-        // only process valid msg data
-        if (data.message && data.username && data.room === roomName) {
-          const newMessage = {
-            timestamp: new Date().toLocaleTimeString("en-US", {
-              hour: "numeric",
-              minute: "numeric",
-              hour12: true,
-            }),
-            username: data.username,
-            message: data.message,
-          };
-          //update msgs state on new msg
-          setMessages((prevMessages) => {
-            const updatedMessages = [...prevMessages, newMessage];
-
-            // Store updated messages in sessionStorage
-            sessionStorage.setItem(
-              `messages-${roomName}`,
-              JSON.stringify(updatedMessages)
-            );
-
-            return updatedMessages;
-          });
-
-          // Play sound if enabled
-          if (soundEnabled) {
-            const audio = new Audio("/notification.wav");
-            audio.play();
-          }
-
-          // Handle typing indicator only if same room
-        } else if (data.typing && data.username && data.room === roomName) {
-          setIsTyping(data.typing);
-          setTypingUser(data.username);
-        } else {
-          console.error("Received data is not valid:", data);
+  
+        switch (data.type) {
+          case "userListUpdate":
+            console.log("👥 User List Update:", data.users);
+            setActiveUsers(data.users || []);
+            break;
+  
+          case "join":
+            console.log(`✅ User joined room: ${data.room}, username: ${data.username}`);
+            break;
+  
+          case "leave":
+            console.log(`🚪 User left room: ${data.room}, username: ${data.username}`);
+            break;
+  
+          case "message":
+            console.log(`💬 Message received in ${data.room}: ${data.message}`);
+            const newMessage = {
+              timestamp: new Date().toLocaleTimeString("en-US", {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: true,
+              }),
+              username: data.username,
+              message: data.message,
+            };
+  
+            setMessages((prev) => {
+              const updatedMessages = [...prev, newMessage];
+  
+              // Store messages in sessionStorage
+              sessionStorage.setItem(`messages-${roomName}`, JSON.stringify(updatedMessages));
+  
+              return updatedMessages;
+            });
+  
+            // Play notification sound **if enabled**
+            if (soundEnabled) {
+              const audio = new Audio("/notification.wav");
+              audio.play();
+            }
+            break;
+  
+          case "typing":
+            console.log(`⌨ ${data.username} is typing...`);
+            setIsTyping(data.typing);
+            setTypingUser(data.username);
+            break;
+  
+          default:
+            console.warn("⚠️ Unrecognized WebSocket event type:", data.type);
         }
       } catch (error) {
-        console.error(
-          "Error parsing message:",
-          error,
-          "Message data:",
-          event.data
-        );
+        console.error("❌ WebSocket message parsing error:", error);
       }
     };
-
+  
+    // **Auto-reconnect logic**
+    const handleClose = () => {
+      console.warn("🚨 WebSocket Disconnected. Attempting Reconnect...");
+      setTimeout(() => {
+        if (!socket || socket.readyState === WebSocket.CLOSED) {
+          initializeWebSocket(token); // Reinitialize WebSocket
+        }
+      }, 3000); // Wait 3 sec before reconnecting
+    };
+  
     socket.addEventListener("message", handleMessage);
-
-    socket.onerror = (error: Event) => {
-      console.error("WebSocket error:", error);
-    };
-
-    socket.onclose = () => {
-      console.log("WebSocket closed");
-    };
-
+    socket.addEventListener("close", handleClose);
+  
     return () => {
       socket.removeEventListener("message", handleMessage);
+      socket.removeEventListener("close", handleClose);
     };
-  }, [socket, soundEnabled, roomName, messages]);
+  }, [socket, roomName, token, soundEnabled]);
+  
+  
+  
+  const reconnectWebSocket = () => {
+    console.warn("🔄 Attempting to reconnect WebSocket...");
+  
+    if (!socket || socket.readyState === WebSocket.CLOSED) {
+      initializeWebSocket(token); // Ensure token is passed correctly
+    }
+  };
+  
 
   useEffect(() => {
     if (lastMessageRef.current) {
@@ -320,6 +333,8 @@ const ChatRoom: React.FC = () => {
 
   // Ensures socket is cleaned up when user logs out
   const handleLogout = async () => {
+    console.warn("🚨 handleLogout was called! Checking why...");
+    console.trace(); // Shows full call stack
     try {
       // Notify WebSocket that the user is leaving the room
       if (socket && socket.readyState === WebSocket.OPEN) {
@@ -333,8 +348,9 @@ const ChatRoom: React.FC = () => {
       }
 
       // Send a request to the backend to delete the messages
+      console.warn("🗑️ Deleting user messages...");
       await axios.delete(
-        `${import.meta.env.VITE_API_URL}/api/messages/${user?.username}`
+        `${import.meta.env.VITE_API_URL}/messages/${user?.username}`
       );
 
       // Clear all room messages from sessionStorage
@@ -347,6 +363,7 @@ const ChatRoom: React.FC = () => {
       // Clear user authentication
       setUser(null);
       setToken(null);
+      console.warn("🧹 Clearing session & localStorage...");
       localStorage.removeItem("token");
       sessionStorage.removeItem("token");
       localStorage.removeItem("username");
@@ -354,10 +371,12 @@ const ChatRoom: React.FC = () => {
 
       // Remove WebSocket connection if needed
       if (socket) {
+        console.warn("🧹 Clearing session & localStorage...");
         socket.close();
       }
 
       // Redirect to login
+      console.warn("🚪 Redirecting to /login");
       navigate("/login");
       window.location.reload();
     } catch (error) {
@@ -389,27 +408,44 @@ const ChatRoom: React.FC = () => {
   }, [socket, roomName, user?.username]); // Ensure it's triggered by any changes to socket or user state
 
   useEffect(() => {
+    let logoutTimeout: NodeJS.Timeout | null = null;
+
     const checkLogoutConditions = () => {
-      if (
-        !user ||
-        !token ||
-        (socket && socket.readyState === WebSocket.CLOSED)
-      ) {
-        handleLogout();
+      if (!user || !token) {
+        console.warn("🚨 User or token missing, logging out...");
+        // handle logout func was here...
+        return;
+      }
+
+      if (socket && socket.readyState === WebSocket.CLOSED) {
+        console.warn("🔌 WebSocket disconnected. Waiting to see if it reconnects...");
+
+        // Wait 10 seconds before logging out
+        logoutTimeout = setTimeout(() => {
+          if (socket.readyState === WebSocket.CLOSED) {
+            console.warn("⏳ Still disconnected. Logging out.");
+            handleLogout();
+          } else {
+            console.log("✅ WebSocket reconnected. Canceling logout.");
+          }
+        }, 100000); // 10 seconds delay
       }
     };
 
-    window.addEventListener("beforeunload", checkLogoutConditions); // Detects when user navigates away
+    window.addEventListener("beforeunload", checkLogoutConditions);
+
     return () => {
       window.removeEventListener("beforeunload", checkLogoutConditions);
+      if (logoutTimeout) clearTimeout(logoutTimeout); // Cleanup timeout if component unmounts
     };
-  }, [user, token, socket]);
+}, [user, token, socket]); 
+
 
   // Also call handleLogout on WebSocket closure or timeout
   useEffect(() => {
     if (socket) {
       socket.onclose = () => {
-        handleLogout();
+      //  handle logout func was here
       };
     }
   }, [socket]);
@@ -427,7 +463,7 @@ const ChatRoom: React.FC = () => {
 
   return (
     <div className="chatroom-container sticky-header sticky">
-      <IdleDetection timeout={240 * 60 * 1000} warningTime={10 * 60 * 1000} />
+      <IdleDetection timeout={240 * 60 * 1000} warningTime={10 * 60 * 1000} onLogout={handleLogout} />
       <div
         className="flex flex-col min-h-screen bg-gray-200 dark:bg-gray-900 p-4 sticky top-0"
         role="main"

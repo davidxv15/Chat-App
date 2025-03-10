@@ -39,6 +39,7 @@ const ChatroomSelector: React.FC = () => {
         JSON.stringify({
           type: "join",
           room: room.toLowerCase(),
+          
         })
       );
     }

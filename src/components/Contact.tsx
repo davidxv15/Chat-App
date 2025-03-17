@@ -22,7 +22,7 @@ const Contact: React.FC = () => {
 
           {/* Email Icon */}
           <a 
-            href="mailto:davidxvaz@gmail.com" 
+            href="mailto:davidxvaz@gmail.com?subject=Let's Chat&body=Hello David, " 
             aria-label="Email"
             className="hover:text-green-600 transition duration-300"
           >

@@ -1,4 +1,4 @@
-# Real-Time Chat Application in TypeScript + Vite
+# Real-Time Chat Application in TypeScript + Vite     [![Netlify Status](https://api.netlify.com/api/v1/badges/1f4bf78a-7b9c-4489-a62f-4bb07937afb7/deploy-status)](https://app.netlify.com/sites/chat-department/deploys)
 
 ## How to Use the App?
 

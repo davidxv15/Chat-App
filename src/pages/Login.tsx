@@ -178,14 +178,14 @@ const Login: React.FC = () => {
         </button>
       </form>
 
-      <button
-        onClick={() => navigate("/register")}
-        className="mt-4 text-blue-800 p-1"
-        disabled={loading} //disables button while loading
-        aria-label="Navigate to register page"
-      >
-        New User? Register Here
-      </button>
+
+      // Inside your Login.tsx file, modify the Register button:
+{import.meta.env.VITE_ENV !== "production" && (
+  <button onClick={() => navigate("/register")} className="mt-4 text-blue-800 p-1">
+    New User? Register Here
+  </button>
+)}
+
       <script
         src="https://www.google.com/recaptcha/api.js"
         async

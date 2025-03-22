@@ -92,9 +92,9 @@ const Register: React.FC = () => {
         <hr className="w-32 mx-auto -translate-y-8 shadow-lg"></hr>
         <span className="text-red-600 text-sm"> 
         Credentials: 
+        </span>
         Username: kermit
         Password: frog
-        </span>
       </h1>
 
       <form

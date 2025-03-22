@@ -104,14 +104,14 @@ const Register: React.FC = () => {
   <div className="flex justify-between gap-6 text-sm font-mono text-gray-900">
     {/* First Set */}
     <div className="text-left border border-black p-2 rounded-md w-full">
-      <p><span className="text-purple-600">Username:</span> <code>demoUser1</code></p>
-      <p><span className="text-purple-600">Password:</span> <code>demoPass1</code></p>
+      <p><span className="text-green-600">Username:</span> <code>demoUser1</code></p>
+      <p><span className="text-green-600">Password:</span> <code>demoPass1</code></p>
     </div>
 
     {/* Second Set */}
     <div className="text-left border border-black p-2 rounded-md w-full">
-      <p><span className="text-orange-500">Username:</span> <code>demoUser2</code></p>
-      <p><span className="text-orange-500">Password:</span> <code>demoPass2</code></p>
+      <p><span className="text-pink-500">Username:</span> <code>demoUser2</code></p>
+      <p><span className="text-pink-500">Password:</span> <code>demoPass2</code></p>
     </div>
   </div>
 </div>

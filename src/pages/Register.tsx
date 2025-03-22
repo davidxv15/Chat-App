@@ -92,14 +92,14 @@ const Register: React.FC = () => {
       </h1>
       {/* Quick Access Notice */}
 <div
-  className="p-4 mb-6 rounded-2xl border border-yellow-100 bg-gradient-to-br from-yellow-500 via-yellow-100 to-yellow-500 text-black shadow-lg max-w-md text-center"
+  className="p-2 mb-2 rounded-2xl border border-yellow-100 bg-gradient-to-br from-yellow-500 via-yellow-100 to-yellow-500 text-black shadow-lg max-w-md text-center"
   role="alert"
   aria-label="Recruiter quick login info"
 >
-  <h2 className="text-md font-semibold mb-3 text-gray-800 flex items-center justify-center gap-2">
+  <h2 className="text-md font-semibold mb-1 text-gray-800 flex items-center justify-center gap-2">
     ⚠️ Quick Access for Recruiters ⚠️
   </h2>
-  <p className="text-sm text-gray-800 mb-3">Demo Credentials:</p>
+  <p className="text-sm text-gray-800 mb-1">Demo Credentials:</p>
 
   <div className="flex justify-between gap-6 text-sm font-mono text-gray-900">
     {/* First Set */}

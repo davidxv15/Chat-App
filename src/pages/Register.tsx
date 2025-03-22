@@ -166,9 +166,11 @@ const Register: React.FC = () => {
           Returning User Login Here
         </button>
       </form>
+
+      
       {/* Quick Access Demo Credentials Notice */}
 <div
-  className="p-2 mb-2 rounded-2xl border border-yellow-500 bg-gradient-to-br from-stone-600 via-stone-300 to-stone-500 text-black shadow-lg max-w-md text-center"
+  className="mt-4 p-2 mb-2 rounded-2xl border border-yellow-500 bg-gradient-to-br from-stone-600 via-stone-300 to-stone-500 text-black shadow-lg max-w-md text-center"
   role="alert"
   aria-label="Recruiter quick login info"
 >

@@ -92,7 +92,7 @@ const Register: React.FC = () => {
       </h1>
       {/* Quick Access Notice */}
 <div
-  className="p-4 mb-6 rounded-2xl border border-yellow-400 bg-gradient-to-br from-yellow-100 via-yellow-200 to-yellow-300 text-black shadow-lg max-w-md text-center"
+  className="p-4 mb-6 rounded-2xl border border-yellow-100 bg-gradient-to-br from-yellow-500 via-yellow-100 to-yellow-500 text-black shadow-lg max-w-md text-center"
   role="alert"
   aria-label="Recruiter quick login info"
 >

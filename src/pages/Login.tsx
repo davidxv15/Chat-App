@@ -180,11 +180,11 @@ const Login: React.FC = () => {
 
 
       {/* // Inside your Login.tsx file, modify the Register button: */}
-{import.meta.env.VITE_ENV !== "production" && (
+{/* {import.meta.env.VITE_ENV !== "production" && ( */}
   <button onClick={() => navigate("/register")} className="mt-4 text-blue-800 p-1">
     New User? Register Here
   </button>
-)}
+
 
       <script
         src="https://www.google.com/recaptcha/api.js"

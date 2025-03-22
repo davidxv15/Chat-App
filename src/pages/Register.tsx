@@ -90,7 +90,7 @@ const Register: React.FC = () => {
       <h1 id="register-title" className="text-4xl text-gray-200 font-bold mb-4 italic-slant">
         Register
       </h1>
-      {/* Quick Access Notice */}
+      {/* Quick Access Demo Credentials Notice */}
 <div
   className="p-2 mb-2 rounded-2xl border border-red-500 bg-gradient-to-br from-yellow-500 via-yellow-100 to-yellow-500 text-black shadow-lg max-w-md text-center"
   role="alert"

@@ -90,7 +90,7 @@ const Register: React.FC = () => {
       <h1 id="register-title" className="text-4xl text-gray-200 font-bold mb-4 italic-slant">
         Register
         <hr className="w-32 mx-auto -translate-y-8 shadow-lg"></hr>
-        <span className="text-red-600 text-md"> Credentials: username: password: </span>
+        <span className="text-red-600 text-sm"> Credentials: username: password: </span>
       </h1>
 
       <form

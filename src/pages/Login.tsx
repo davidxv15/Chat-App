@@ -105,7 +105,34 @@ const Login: React.FC = () => {
       role="main"
       aria-labelledby="login-title"
     >
-      <h1 id="login-title" className="text-4xl font-bold mb-4 text-gray-200 italic-slant">
+
+      {/* Quick Access Demo Credentials Notice */}
+<div
+  className="p-2 mb-2 rounded-2xl border border-yellow-500 bg-gradient-to-br from-stone-600 via-stone-300 to-stone-500 text-black shadow-lg max-w-md text-center"
+  role="alert"
+  aria-label="Recruiter quick login info"
+>
+  <h2 className="text-md font-semibold mb-1 text-gray-800 flex items-center justify-center gap-2">
+    ⚠️ Quick Access for Recruiters ⚠️
+  </h2>
+  <p className="text-sm text-gray-800 mb-1">Demo Credentials:</p>
+
+  <div className="flex justify-between gap-6 text-sm font-mono text-gray-900">
+    {/* First Set */}
+    <div className="text-left border border-black p-2 rounded-md w-full">
+      <p>Username: <code className="text-green-500">demoUser1</code></p>
+      <p>Password: <code className="text-green-500">demoPass1</code></p>
+    </div>
+
+    {/* Second Set */}
+    <div className="text-left border border-black p-2 rounded-md w-full">
+      <p>Username: <code className="text-pink-600">demoUser2</code></p>
+      <p>Password: <code className="text-pink-600">demoPass2</code></p>
+    </div>
+  </div>
+</div>
+
+<h1 id="login-title" className="text-4xl font-bold mb-4 text-gray-200 italic-slant">
         Login
       </h1>
 

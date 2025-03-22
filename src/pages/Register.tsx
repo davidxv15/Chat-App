@@ -93,7 +93,7 @@ const Register: React.FC = () => {
         <span className="text-red-600 text-sm"> 
         Credentials: 
         Username: kermit
-        Password: 
+        Password: frog
         </span>
       </h1>
 

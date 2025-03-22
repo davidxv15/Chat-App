@@ -89,13 +89,33 @@ const Register: React.FC = () => {
     >
       <h1 id="register-title" className="text-4xl text-gray-200 font-bold mb-4 italic-slant">
         Register
-        <hr className="w-32 mx-auto -translate-y-8 shadow-lg"></hr>
-        <span className="text-red-600 text-sm"> 
-        Credentials: 
-        </span>
-        Username: kermit
-        Password: frog
       </h1>
+      {/* Quick Access Notice */}
+<div
+  className="p-4 mb-6 rounded-2xl border border-yellow-400 bg-gradient-to-br from-yellow-100 via-yellow-200 to-yellow-300 text-black shadow-lg max-w-md text-center"
+  role="alert"
+  aria-label="Recruiter quick login info"
+>
+  <h2 className="text-md font-semibold mb-3 text-gray-800 flex items-center justify-center gap-2">
+    ⚠️ Quick Access for Recruiters ⚠️
+  </h2>
+  <p className="text-sm text-gray-800 mb-3">Demo Credentials:</p>
+
+  <div className="flex justify-between gap-6 text-sm font-mono text-gray-900">
+    {/* First Set */}
+    <div className="text-left border border-black p-2 rounded-md w-full">
+      <p><span className="text-purple-600">Username:</span> <code>demoUser1</code></p>
+      <p><span className="text-purple-600">Password:</span> <code>demoPass1</code></p>
+    </div>
+
+    {/* Second Set */}
+    <div className="text-left border border-black p-2 rounded-md w-full">
+      <p><span className="text-orange-500">Username:</span> <code>demoUser2</code></p>
+      <p><span className="text-orange-500">Password:</span> <code>demoPass2</code></p>
+    </div>
+  </div>
+</div>
+
 
       <form
         onSubmit={handleSubmit}

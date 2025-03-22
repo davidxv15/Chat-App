@@ -120,14 +120,14 @@ const Login: React.FC = () => {
   <div className="flex justify-between gap-6 text-sm font-mono text-gray-900">
     {/* First Set */}
     <div className="text-left border border-black p-2 rounded-md w-full">
-      <p>Username: <code className="text-green-500">demoUser1</code></p>
-      <p>Password: <code className="text-green-500">demoPass1</code></p>
+      <p>Username1: <code className="text-green-500">demoUser1</code></p>
+      <p>Password1: <code className="text-green-500">demoPass1</code></p>
     </div>
 
     {/* Second Set */}
     <div className="text-left border border-black p-2 rounded-md w-full">
-      <p>Username: <code className="text-pink-600">demoUser2</code></p>
-      <p>Password: <code className="text-pink-600">demoPass2</code></p>
+      <p>Username2: <code className="text-pink-600">demoUser2</code></p>
+      <p>Password2: <code className="text-pink-600">demoPass2</code></p>
     </div>
   </div>
 </div>

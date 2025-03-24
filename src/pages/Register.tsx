@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import axios from "axios";
+import RecruiterAccordion from "../components/RecruiterQuickAccess";
 
 declare global {
   interface Window {

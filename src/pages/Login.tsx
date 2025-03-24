@@ -124,8 +124,8 @@ const Login: React.FC = () => {
 
         {showCreds && (
           <div
-            id="demo-creds"
-            className="flex justify-between gap-6 text-sm font-mono text-gray-900 mt-2"
+          id="demo-creds"
+          className="flex justify-between gap-6 text-sm font-mono text-gray-900 mt-2"
           >
             {/* First Set */}
             <div className="text-left border border-black p-2 rounded-md w-full">

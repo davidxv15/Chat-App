@@ -5,7 +5,7 @@ const RecruiterAccordion = () => {
 
   return (
     <div
-      className="max-w-md w-full mb-6 border border-yellow-500 rounded-2xl bg-gradient-to-br from-stone-800 via-stone-600 to-stone-700 shadow-lg text-black opacity-90 translate-y-4"
+      className="max-w-md w-full mb-6 border border-yellow-500 rounded-2xl bg-gradient-to-br from-stone-700 via-stone-500 to-stone-800 shadow-lg text-black opacity-90 translate-y-4"
       role="alert"
       aria-label="Recruiter quick login info"
     >
@@ -17,7 +17,7 @@ const RecruiterAccordion = () => {
         aria-controls="recruiter-credentials"
       >
         ⚠️ Quick Access for Recruiters ⚠️
-        <span className="justify-end">{isOpen ? "−" : "+"}</span>
+        <span className="translate-x-16 text-yellow-500">{isOpen ? "−" : "+"}</span>
       </button>
 
       {/* Accordion Body */}

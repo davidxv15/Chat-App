@@ -17,7 +17,7 @@ const RecruiterAccordion = () => {
         aria-controls="recruiter-credentials"
       >
         ⚠️ Quick Access for Recruiters ⚠️
-        <span className="translate-x-16 text-yellow-500">{isOpen ? "−" : "+"}</span>
+        <span className="translate-x-16 text-yellow-400">{isOpen ? "−" : "+"}</span>
       </button>
 
       {/* Accordion Body */}

@@ -20,6 +20,7 @@ const Login: React.FC = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [captchaComplete, setCaptchaComplete] = useState(false);
   const loginButtonRef = useRef<HTMLButtonElement>(null);
+  const [showCreds, setShowCreds ] = useState(false);
 
   // const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 

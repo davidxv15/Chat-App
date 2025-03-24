@@ -107,49 +107,8 @@ const Login: React.FC = () => {
       role="main"
       aria-labelledby="login-title"
     >
-      {/* Quick Access Demo Credentials Notice */}
-      <div
-        className="p-2 mb-4 rounded-2xl border border-yellow-500 bg-gradient-to-br from-stone-600 via-stone-300 to-stone-500 text-black shadow-lg max-w-md text-center opacity-75"
-        role="alert"
-        aria-label="Recruiter quick login info"
-      >
-        <button
-          onClick={() => setShowCreds((prev) => !prev)}
-          className="w-full text-md font-semibold mb-1 text-gray-800 flex items-center justify-between gap-2 hover:underline"
-          aria-expanded={showCreds}
-          aria-controls="demo-creds"
-        >
-          ⚠️ Quick Access for Recruiters ⚠️
-          <span>{showCreds ? "▲" : "▼"}</span>
-        </button>
 
-        {showCreds && (
-          <div
-          id="demo-creds"
-          className="flex justify-between gap-6 text-sm font-mono text-gray-900 mt-2"
-          >
-            {/* First Set */}
-            <div className="text-left border border-black p-2 rounded-md w-full">
-              <p>
-                Username: <code className="text-green-500">demo1</code>
-              </p>
-              <p>
-                Password: <code className="text-green-500">demo1</code>
-              </p>
-            </div>
-
-            {/* Second Set */}
-            <div className="text-left border border-black p-2 rounded-md w-full">
-              <p>
-                Username: <code className="text-pink-600">demo2</code>
-              </p>
-              <p>
-                Password: <code className="text-pink-600">demo2</code>
-              </p>
-            </div>
-          </div>
-        )}
-      </div>
+    <RecruiterAccordion />
 
       <h1
         id="login-title"

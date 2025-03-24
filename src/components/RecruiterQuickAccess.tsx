@@ -28,7 +28,7 @@ const RecruiterAccordion = () => {
         }`}
       >
         <p className="text-sm text-gray-200 mb-2">Demo Credentials:</p>
-        <div className="flex justify-between gap-4 text-sm font-mono text-gray-900">
+        <div className="flex justify-between gap-4 text-sm font-mono text-gray-200">
           <div className="text-left border border-black p-2 rounded-md w-full">
             <p>
               Username: <code className="text-green-500">demo1</code>

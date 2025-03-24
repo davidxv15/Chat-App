@@ -31,10 +31,10 @@ const RecruiterAccordion = () => {
         <div className="flex justify-between gap-4 text-sm font-mono text-gray-200">
           <div className="text-left border border-black p-2 rounded-md w-full">
             <p>
-              Username: <code className="text-red-200">mario</code>
+              Username: <code className="text-red-300">mario</code>
             </p>
             <p>
-              Password: <code className="text-red-200">brother</code>
+              Password: <code className="text-red-300">brother</code>
             </p>
           </div>
           <div className="text-left border border-black p-2 rounded-md w-full">

@@ -5,7 +5,7 @@ const RecruiterAccordion = () => {
 
   return (
     <div
-      className="max-w-md w-full mb-6 border border-yellow-500 rounded-2xl bg-gradient-to-br from-stone-700 via-stone-500 to-stone-800 shadow-lg text-black opacity-90 translate-y-4"
+      className="max-w-md w-full mb-6 border border-yellow-500 rounded-2xl bg-gradient-to-br from-zinc-800 via-zinc-700 to-zinc-600 shadow-lg text-black opacity-50 translate-y-4"
       role="alert"
       aria-label="Recruiter quick login info"
     >

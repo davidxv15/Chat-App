@@ -42,7 +42,7 @@ const RecruiterAccordion = () => {
               Username: <code className="text-pink-200">miss</code>
             </p>
             <p>
-              Password: <code className="text-pink-200">demo2</code>
+              Password: <code className="text-pink-200">piggy</code>
             </p>
           </div>
         </div>

@@ -5,14 +5,14 @@ const RecruiterAccordion = () => {
 
   return (
     <div
-      className="max-w-md w-full mb-6 border border-yellow-500 rounded-2xl bg-gradient-to-br from-stone-600 via-stone-300 to-stone-400 shadow-lg text-black opacity-90 translate-y-4"
+      className="max-w-md w-full mb-6 border border-yellow-500 rounded-2xl bg-gradient-to-br from-stone-800 via-stone-600 to-stone-700 shadow-lg text-black opacity-90 translate-y-4"
       role="alert"
       aria-label="Recruiter quick login info"
     >
       {/* Accordion Header */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="w-full px-4 py-2 pt-1 text-left text-md font-semibold text-gray-800 flex items-center justify-center hover:bg-stone-500 rounded-t-2xl"
+        className="w-full px-4 py-2 pt-1 text-left text-md font-semibold text-gray-200 flex items-center justify-center hover:bg-stone-500 rounded-t-2xl"
         aria-expanded={isOpen}
         aria-controls="recruiter-credentials"
       >

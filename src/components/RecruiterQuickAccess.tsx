@@ -12,7 +12,7 @@ const RecruiterAccordion = () => {
       {/* Accordion Header */}
       <button
         onClick={() => setIsOpen((prev) => !prev)}
-        className="w-full px-4 py-2 text-left text-md font-semibold text-gray-800 flex items-center justify-between hover:bg-yellow-100 rounded-t-2xl"
+        className="w-full px-4 py-2 text-left text-md font-semibold text-gray-800 flex items-center justify-center hover:bg-yellow-100 rounded-t-2xl"
         aria-expanded={isOpen}
         aria-controls="recruiter-credentials"
       >

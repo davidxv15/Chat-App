@@ -22,9 +22,8 @@ const Login: React.FC = () => {
   const loginButtonRef = useRef<HTMLButtonElement>(null);
   const [showCreds, setShowCreds ] = useState(false);
 
-  // const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
-  // Ensure the recaptcha script is "loaded"
+  // Ensure the recaptcha script loads
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://www.google.com/recaptcha/api.js";

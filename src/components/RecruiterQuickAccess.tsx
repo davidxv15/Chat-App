@@ -27,7 +27,7 @@ const RecruiterAccordion = () => {
           isOpen ? "max-h-40 p-4" : "max-h-0 p-0"
         }`}
       >
-        <p className="text-sm text-gray-800 mb-2">Demo Credentials:</p>
+        <p className="text-sm text-gray-200 mb-2">Demo Credentials:</p>
         <div className="flex justify-between gap-4 text-sm font-mono text-gray-900">
           <div className="text-left border border-black p-2 rounded-md w-full">
             <p>

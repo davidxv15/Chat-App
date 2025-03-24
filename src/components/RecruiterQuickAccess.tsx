@@ -39,10 +39,10 @@ const RecruiterAccordion = () => {
           </div>
           <div className="text-left border border-black p-2 rounded-md w-full">
             <p>
-              Username: <code className="text-pink-600">demo2</code>
+              Username: <code className="text-pink-300">demo2</code>
             </p>
             <p>
-              Password: <code className="text-pink-600">demo2</code>
+              Password: <code className="text-pink-300">demo2</code>
             </p>
           </div>
         </div>

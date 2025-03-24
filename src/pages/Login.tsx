@@ -215,8 +215,6 @@ const Login: React.FC = () => {
         </button>
       </form>
 
-      {/* // Inside your Login.tsx file, modify the Register button: */}
-      {/* {import.meta.env.VITE_ENV !== "production" && ( */}
       <button
         onClick={() => navigate("/register")}
         className="mt-4 text-blue-800 p-1"
